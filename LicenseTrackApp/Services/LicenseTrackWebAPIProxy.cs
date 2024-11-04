@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LicenseTrackApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -52,6 +53,40 @@ namespace LicenseTrackApp.Services
         public string GetDefaultProfilePhotoUrl()
         {
             return $"{LicenseTrackWebAPIProxy.ImageBaseAddress}/profileImages/default.png";
+        }
+
+        public async Task<UsersModels?> LoginAsync(LoginInfoModels userInfo)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}login";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(userInfo);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    UsersModels? result = JsonSerializer.Deserialize<UsersModels>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }
