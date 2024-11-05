@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using LicenseTrackApp.Services;
+using LicenseTrackApp.ViewModels;
+using LicenseTrackApp.Views;
+using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 
 namespace LicenseTrackApp
@@ -28,15 +31,18 @@ namespace LicenseTrackApp
 
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<LoginView>();
             return builder;
         }
 
         public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
         {
+            builder.Services.AddSingleton<LicenseTrackWebAPIProxy>();
             return builder;
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<LoginViewModel>();
             return builder;
         }
     }
