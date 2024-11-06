@@ -17,31 +17,6 @@ namespace LicenseTrackApp.Models
         public string? Comments { get; set; }
 
         public LessonModels() { }
-        public LessonModels(Models.LessonModels modelLesson)
-        {
-            this.Id = modelLesson.Id;
-            this.LessonDate = modelLesson.LessonDate;
-            this.LessonTime = modelLesson.LessonTime;
-            this.LessonType = modelLesson.LessonType;
-            this.StudentId = modelLesson.StudentId;
-            this.InstructorId = modelLesson.InstructorId;
-            this.Comments = modelLesson.Comments;
-        }
-
-        public Models.LessonModels GetModels()
-        {
-            Models.LessonModels modelLesson = new Models.LessonModels()
-            {
-                Id = this.Id,
-                LessonDate = this.LessonDate,
-                LessonTime = this.LessonTime,
-                LessonType = this.LessonType,
-                StudentId = this.StudentId,
-                InstructorId = this.InstructorId,
-                Comments = this.Comments
-            };
-
-            return modelLesson;
-        }
+        
     }
 }

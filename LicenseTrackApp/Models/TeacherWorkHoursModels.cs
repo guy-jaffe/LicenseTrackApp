@@ -15,25 +15,6 @@ namespace LicenseTrackApp.Models
 
 
         public TeacherWorkHoursModels() { }
-        public TeacherWorkHoursModels(Models.TeacherWorkHoursModels modelTeacherWorkHour)
-        {
-            this.TeacherId = modelTeacherWorkHour.TeacherId;
-            this.DayDate = modelTeacherWorkHour.DayDate;
-            this.StartTime = modelTeacherWorkHour.StartTime;
-            this.EndTime = modelTeacherWorkHour.EndTime;
-        }
-
-        public Models.TeacherWorkHoursModels GetModels()
-        {
-            Models.TeacherWorkHoursModels modelTeacherWorkHour = new Models.TeacherWorkHoursModels()
-            {
-                TeacherId = this.TeacherId,
-                DayDate = this.DayDate,
-                StartTime = this.StartTime,
-                EndTime = this.EndTime
-            };
-
-            return modelTeacherWorkHour;
-        }
+        
     }
 }

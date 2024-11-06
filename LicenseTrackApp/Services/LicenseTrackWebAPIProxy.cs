@@ -75,6 +75,57 @@ namespace LicenseTrackApp.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
+                    UsersModels? result = null;
+                    StudentModels? student = JsonSerializer.Deserialize<StudentModels>(resContent, options);
+                    TeacherModels? teacher = JsonSerializer.Deserialize<TeacherModels>(resContent, options);
+                    if (student.LicenseStatus == null)
+                    {
+                        if (teacher.ManualCar != null)
+                        {
+                            result = teacher;
+                        }
+                        else
+                            result = JsonSerializer.Deserialize<UsersModels>(resContent, options);
+                    }
+                    else
+                        result = student;
+                
+                
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        //This methos call the Register web API on the server and return the AppUser object with the given ID
+        //or null if the call fails
+        public async Task<UsersModels?> Register(UsersModels user)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}register";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(user);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
                     UsersModels? result = JsonSerializer.Deserialize<UsersModels>(resContent, options);
                     return result;
                 }
