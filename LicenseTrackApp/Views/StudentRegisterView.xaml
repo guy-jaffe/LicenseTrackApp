@@ -159,26 +159,6 @@
                 Style="{StaticResource entryStyle}"
                 Text="{Binding City}" />
 
-            <!--  Id  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Column="0"
-                    Style="{StaticResource labelNameStyle}"
-                    Text="Id" />
-                <Label
-                    Grid.Column="1"
-                    IsVisible="{Binding ShowIdError}"
-                    Style="{StaticResource labelErrorStyle}"
-                    Text="{Binding IdError}" />
-            </Grid>
-            <Entry
-                Placeholder="Type Id"
-                Style="{StaticResource entryStyle}"
-                Text="{Binding Id}" />
 
             <!--  Street  -->
             <Grid>

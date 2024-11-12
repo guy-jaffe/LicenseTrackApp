@@ -26,7 +26,7 @@ namespace LicenseTrackApp.ViewModels
             LastNameError = "Last name is required";
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
-            IdError = "id is required";
+            //IdError = "id is required";
             CityError = "city is required";
             StreetError = "street is required";
         }
@@ -254,49 +254,49 @@ namespace LicenseTrackApp.ViewModels
         }
         #endregion
 
-        #region id
-        private bool showIdError;
+        //#region id
+        //private bool showIdError;
 
-        public bool ShowIdError
-        {
-            get => showIdError;
-            set
-            {
-                showIdError = value;
-                OnPropertyChanged("ShowIdError");
-            }
-        }
-
-        private int id;
-
-        public int Id
-        {
-            get => id;
-            set
-            {
-                id = value;
-                //ValidateId();
-                OnPropertyChanged("Id");
-            }
-        }
-
-        private string idError;
-
-        public string IdError
-        {
-            get => idError;
-            set
-            {
-                idError = value;
-                OnPropertyChanged("IdError");
-            }
-        }
-
-        //private void ValidateId()
+        //public bool ShowIdError
         //{
-        //    this.ShowIdError = string.IsNullOrEmpty(Id);
+        //    get => showIdError;
+        //    set
+        //    {
+        //        showIdError = value;
+        //        OnPropertyChanged("ShowIdError");
+        //    }
         //}
-        #endregion
+
+        //private int id;
+
+        //public int Id
+        //{
+        //    get => id;
+        //    set
+        //    {
+        //        id = value;
+        //        //ValidateId();
+        //        OnPropertyChanged("Id");
+        //    }
+        //}
+
+        //private string idError;
+
+        //public string IdError
+        //{
+        //    get => idError;
+        //    set
+        //    {
+        //        idError = value;
+        //        OnPropertyChanged("IdError");
+        //    }
+        //}
+
+        ////private void ValidateId()
+        ////{
+        ////    this.ShowIdError = string.IsNullOrEmpty(Id);
+        ////}
+        //#endregion
 
         #region Street
         private bool showStreetError;

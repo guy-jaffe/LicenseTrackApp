@@ -31,6 +31,7 @@ namespace LicenseTrackApp
 
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<TeacherRegisterView>();
             builder.Services.AddTransient<StudentRegisterView>();
             builder.Services.AddTransient<LoginView>();
             
@@ -44,6 +45,7 @@ namespace LicenseTrackApp
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<TeacheRegisterViewModel>();
             builder.Services.AddTransient<StudentRegisterViewModel>();
             builder.Services.AddTransient<LoginViewModel>();
             return builder;
