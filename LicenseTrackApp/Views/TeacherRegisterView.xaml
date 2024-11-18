@@ -180,6 +180,30 @@
                     Style="{StaticResource entryStyle}"
                     Text="{Binding SchoolName}" />
 
+            <!--  VehicleType  -->
+            <!--
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label
+                    Grid.Column="0"
+                    Style="{StaticResource labelNameStyle}"
+                    Text="Vehicle Type" />
+            <Label
+                    Grid.Column="1"
+                    IsVisible="{Binding }"
+                    Style="{StaticResource labelErrorStyle}"
+                    Text="{Binding SchoolNameError}" />
+        </Grid>
+        <Entry
+                    Placeholder="Type School Name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding SchoolName}" />-->
+
+
+
             <!--  Register and Cancel Buttons  -->
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -207,8 +231,5 @@
         VerticalOptions="Center"
         Color="Red" />
     </Grid>
-
-
-
-
+    
 </ContentPage>
