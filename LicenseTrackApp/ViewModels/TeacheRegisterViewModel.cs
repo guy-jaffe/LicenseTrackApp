@@ -30,6 +30,7 @@ namespace LicenseTrackApp.ViewModels
             SchoolNameError = "SchoolName is required";
             VehicleTypeError = "VehicleType is required";
             TeachingAreaError = "TeachingArea is required";
+            ManualButton = "0";
 
         }
 
@@ -433,6 +434,17 @@ namespace LicenseTrackApp.ViewModels
         #endregion
 
         #region ManualCar
+        private string manualButton;
+
+        public string ManualButton
+        {
+            get => manualButton;
+            set
+            {
+                manualButton  = value;
+                OnPropertyChanged();
+            }
+        }
         private bool showManualCarError;
 
         public bool ShowManualCarError
@@ -445,16 +457,11 @@ namespace LicenseTrackApp.ViewModels
             }
         }
 
-        private bool? manualCar;
-
-        public bool? ManualCar
+        
+        public bool ManualCar
         {
-            get => manualCar;
-            set
-            {
-                manualCar = value;
-                //ValidateManualCar();
-                OnPropertyChanged("ManualCar");
+            get {
+                return ManualButton == "0";
             }
         }
 
@@ -618,9 +625,9 @@ namespace LicenseTrackApp.ViewModels
                 };
 
                 //Call the Register method on the proxy to register the new user
-                InServerCall = true;
+                
                 newUser = await proxy.TeacherRegister(newUser);
-                InServerCall = false;
+                
 
                 //If the registration was successful, navigate to the login page
                 if (newUser != null)

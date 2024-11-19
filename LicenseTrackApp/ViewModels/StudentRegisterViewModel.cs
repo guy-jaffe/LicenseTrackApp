@@ -1,5 +1,6 @@
 ﻿using LicenseTrackApp.Models;
 using LicenseTrackApp.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,14 @@ namespace LicenseTrackApp.ViewModels
 {
     public class StudentRegisterViewModel:ViewModelBase
     {
-
+        private IServiceProvider serviceProvider;
         private LicenseTrackWebAPIProxy proxy;
         public StudentRegisterViewModel(LicenseTrackWebAPIProxy proxy)
         {
             this.proxy = proxy;
             RegisterCommand = new Command(OnRegister);
             CancelCommand = new Command(OnCancel);
+            TeacherRegisterCommand = new Command(OnTeacherRegister);
             ShowPasswordCommand = new Command(OnShowPassword);
             UploadPhotoCommand = new Command(OnUploadPhoto);
             PhotoURL = proxy.GetDefaultProfilePhotoUrl();
@@ -448,6 +450,7 @@ namespace LicenseTrackApp.ViewModels
         //Define a command for the register button
         public Command RegisterCommand { get; }
         public Command CancelCommand { get; }
+        public Command TeacherRegisterCommand { get; }
 
         //Define a method that will be called when the register button is clicked
         public async void OnRegister()
@@ -523,5 +526,13 @@ namespace LicenseTrackApp.ViewModels
                 return "";
             return this.LocalPhotoPath.Substring(index);
         }
+
+        private void OnTeacherRegister() =>
+            //ErrorMsg = "";
+            //Email = "";
+            //Password = "";
+            // Navigate to the Register View page
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<TeacheRegisterViewModel>());
+
     }
 }
