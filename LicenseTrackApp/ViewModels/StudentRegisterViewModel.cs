@@ -528,12 +528,15 @@ namespace LicenseTrackApp.ViewModels
             return this.LocalPhotoPath.Substring(index);
         }
 
-        private void OnTeacherRegister() =>
+        private void OnTeacherRegister()
+        {
             //ErrorMsg = "";
             //Email = "";
             //Password = "";
             // Navigate to the Register View page
             ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<TeacherRegisterView>());
+        }
+
 
     }
 }
