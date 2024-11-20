@@ -1,5 +1,6 @@
 ﻿using LicenseTrackApp.Models;
 using LicenseTrackApp.Services;
+using LicenseTrackApp.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -532,7 +533,7 @@ namespace LicenseTrackApp.ViewModels
             //Email = "";
             //Password = "";
             // Navigate to the Register View page
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<TeacheRegisterViewModel>());
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<TeacherRegisterView>());
 
     }
 }
