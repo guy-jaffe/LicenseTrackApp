@@ -14,8 +14,9 @@ namespace LicenseTrackApp.ViewModels
     {
         private IServiceProvider serviceProvider;
         private LicenseTrackWebAPIProxy proxy;
-        public StudentRegisterViewModel(LicenseTrackWebAPIProxy proxy)
+        public StudentRegisterViewModel(LicenseTrackWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
+            this.serviceProvider = serviceProvider;
             this.proxy = proxy;
             RegisterCommand = new Command(OnRegister);
             CancelCommand = new Command(OnCancel);
@@ -534,7 +535,8 @@ namespace LicenseTrackApp.ViewModels
             //Email = "";
             //Password = "";
             // Navigate to the Register View page
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<TeacherRegisterView>());
+            TeacherRegisterView? t = serviceProvider.GetService<TeacherRegisterView>();
+            ((App)Application.Current).MainPage.Navigation.PushAsync(t);
         }
 
 

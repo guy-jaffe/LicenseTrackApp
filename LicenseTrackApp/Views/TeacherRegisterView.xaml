@@ -231,6 +231,19 @@
                         Style="{StaticResource buttonStyle}"
                         Text="Cancel" />
                 </Grid>
+
+                <Label 
+Text="student?"
+TextColor="Blue"
+HorizontalOptions="Center"
+VerticalOptions="End" 
+IsEnabled="{Binding NotInServerCall}">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding StudentRegisterCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
             </VerticalStackLayout>
             <!--  Centered ActivityIndicator  -->
             <ActivityIndicator

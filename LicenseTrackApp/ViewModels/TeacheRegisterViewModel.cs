@@ -1,5 +1,7 @@
 ﻿using LicenseTrackApp.Models;
 using LicenseTrackApp.Services;
+using LicenseTrackApp.Views;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,13 @@ namespace LicenseTrackApp.ViewModels
 {
     public class TeacheRegisterViewModel:ViewModelBase
     {
-
+        private IServiceProvider serviceProvider;
         private LicenseTrackWebAPIProxy proxy;
-        public TeacheRegisterViewModel(LicenseTrackWebAPIProxy proxy)
+        public TeacheRegisterViewModel(LicenseTrackWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;
+            this.serviceProvider = serviceProvider;
+            StudentRegisterCommand = new Command(OnStudentRegister);
             RegisterCommand = new Command(OnRegister);
             CancelCommand = new Command(OnCancel);
             ShowPasswordCommand = new Command(OnShowPassword);
@@ -31,7 +35,7 @@ namespace LicenseTrackApp.ViewModels
             VehicleTypeError = "VehicleType is required";
             TeachingAreaError = "TeachingArea is required";
             ManualButton = "0";
-
+            this.serviceProvider = serviceProvider;
         }
 
         //Defiine properties for each field in the registration form including error messages and validation logic
@@ -589,6 +593,7 @@ namespace LicenseTrackApp.ViewModels
         //Define a command for the register button
         public Command RegisterCommand { get; }
         public Command CancelCommand { get; }
+        public Command StudentRegisterCommand { get; }
 
         //Define a method that will be called when the register button is clicked
         public async void OnRegister()
@@ -615,7 +620,6 @@ namespace LicenseTrackApp.ViewModels
                     City = City,
                     SchoolName = SchoolName,
                     VehicleType = VehicleType,
-                    TeachingArea = TeachingArea,
                     ManualCar = ManualCar,
                     ConfirmationStatus = false,
                     //Street = Street,
@@ -670,6 +674,16 @@ namespace LicenseTrackApp.ViewModels
             if (index == -1)
                 return "";
             return this.LocalPhotoPath.Substring(index);
+        }
+
+        private void OnStudentRegister()
+        {
+            //ErrorMsg = "";
+            //Email = "";
+            //Password = "";
+            // Navigate to the Register View page
+            StudentRegisterView? t = serviceProvider.GetService<StudentRegisterView>();
+            ((App)Application.Current).MainPage.Navigation.PushAsync(t);
         }
 
     }
