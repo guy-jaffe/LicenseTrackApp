@@ -3,37 +3,93 @@
     x:Class="LicenseTrackApp.Views.AccompaniedDetailsView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="AccompaniedDetailsView">
+    Title="פרטי מלווה"
+    FlowDirection="RightToLeft">
 
-    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*">
-        <RoundRectangle
+    <VerticalStackLayout>
+
+        <Grid
+            ColumnDefinitions="*,*"
+            RowDefinitions="*,*,*,*,*,*"
+            RowSpacing="10">
+
+            <BoxView
             Grid.Row="0"
-            Grid.Column="1"
             BackgroundColor="Transparent"
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50" />
-        <Label Grid.Row="0" Grid.Column="0" Text="{Binding morningDays}"></Label>
+            HeightRequest="100" />
+            
+            <Frame
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                CornerRadius="80"
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="80">
+                <Label
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding MorningDays}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Frame>
 
-        <RoundRectangle
-            Grid.Row="0"
-            Grid.Column="0"
-            BackgroundColor="Transparent"
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50" />
-        <Label Grid.Row="0" Grid.Column="1" Text="{Binding nightDays}"></Label>
+            <Frame
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="Transparent"
+                CornerRadius="80"
+                HeightRequest="80"
+                WidthRequest="80">
+                <Label
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding NightDays}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Frame>
 
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalOptions="Center"
+                Text="מלווה יום" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                Text="מלווה לילה" />
+            <BoxView
+                Grid.Row="3"
+                BackgroundColor="Transparent"
+                HeightRequest="100" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="0"
+                Padding="10"
+                HorizontalOptions="End"
+                Text="תאריך קבלת הרישיון:" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="1"
+                Padding="10"
+                HorizontalOptions="Start"
+                Text="{Binding EarningLicenseDate}" />
 
-        <Label Grid.Row="1" Grid.Column="1" Text="מלווה יום"></Label>
-        <Label Grid.Row="1" Grid.Column="0" Text="מלווה לילה"></Label>
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                HorizontalOptions="End"
+                Text="תאריך סיום נהג צעיר:  " />
+            <Label
+                Grid.Row="5"
+                Grid.Column="1"
+                HorizontalOptions="Start"
+                Text="{Binding FinishNewDriverDate}" />
 
-        <Label Grid.Row="2" Grid.Column="1" Text="תאריך קבלת הרישיון:"></Label>
-        <Label Grid.Row="2" Grid.Column="0" Text="{Binding earningLicenseDate}"></Label>
+        </Grid>
 
-        <Label Grid.Row="3" Grid.Column="1" Text="תאריך סיום נהג צעיר:"></Label>
-        <Label Grid.Row="3" Grid.Column="0" Text="{Binding finishNewDriverDate}"></Label>
-
-    </Grid>
+    </VerticalStackLayout>
 
 </ContentPage>

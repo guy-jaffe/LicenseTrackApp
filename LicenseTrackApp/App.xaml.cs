@@ -22,22 +22,15 @@ namespace LicenseTrackApp
             this.proxy = proxy;
             LoggedInUser = null;
             InitializeComponent();
-            //LoadBasicDataFromServer();
+            LoadQuestionsFromServer();
             //Start with the Login View
             MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
         }
 
-        //private async void LoadBasicDataFromServer()
-        //{
-        //    List<UrgencyLevel>? levels = await this.proxy.GetUrgencyLevels();
-        //    if (levels != null)
-        //    {
-        //        UrgencyLevels.Clear();
-        //        foreach (UrgencyLevel level in levels)
-        //        {
-        //            UrgencyLevels.Add(level);
-        //        }
-        //    }
-        //}
+        private async void LoadQuestionsFromServer()
+        {
+            TheoryQuestionsAPIProxy proxy = new TheoryQuestionsAPIProxy();
+            Question[] arr = await proxy.GetQuestions(5); 
+        }
     }
 }

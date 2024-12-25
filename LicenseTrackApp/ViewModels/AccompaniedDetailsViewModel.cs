@@ -25,6 +25,8 @@ namespace LicenseTrackApp.ViewModels
             finishNewDriverDate = earningLicenseDate.AddYears(2);
         }
 
+    
+
         private int morningDays;
         public int MorningDays
         {
@@ -38,6 +40,8 @@ namespace LicenseTrackApp.ViewModels
                 }
             }
         }
+
+
 
         private int nightDays;
         public int NightDays
