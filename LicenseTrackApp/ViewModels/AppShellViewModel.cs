@@ -31,6 +31,8 @@ namespace LicenseTrackApp.ViewModels
             }
         }
 
+
+
         //this command will be used for logout menu item
         public Command LogoutCommand
         {

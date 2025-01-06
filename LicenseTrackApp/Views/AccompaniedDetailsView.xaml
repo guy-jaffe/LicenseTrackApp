@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<ContentPage BackgroundColor="AliceBlue"
     x:Class="LicenseTrackApp.Views.AccompaniedDetailsView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -17,11 +17,15 @@
             Grid.Row="0"
             BackgroundColor="Transparent"
             HeightRequest="100" />
-            
-            <Frame
+
+
+
+                <Frame
                 Grid.Row="1"
                 Grid.Column="0"
                 BackgroundColor="Transparent"
+                BorderColor="Black"
+                
                 CornerRadius="80"
                 HeightRequest="80"
                 HorizontalOptions="Center"
@@ -39,6 +43,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 BackgroundColor="Transparent"
+                BorderColor="Black"
                 CornerRadius="80"
                 HeightRequest="80"
                 WidthRequest="80">
