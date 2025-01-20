@@ -23,6 +23,8 @@ namespace LicenseTrackApp.ViewModels
             morningDays = s1.Days+90;
             nightDays = morningDays + 90;
             finishNewDriverDate = earningLicenseDate.AddYears(2);
+            if(morningDays < 0) { morningDays =0 ; }
+            if (nightDays < 0) { nightDays = 0; }
         }
 
     

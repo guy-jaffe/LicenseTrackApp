@@ -55,6 +55,33 @@ namespace LicenseTrackApp.Models
         public string author { get; set; }
         public string category { get; set; }
         public DateTime pubDate { get; set; }
+        public string[] answers
+        {
+            get
+            {
+                string[] arr = new string[4];
+                int startIndex = 0;
+                for(int i = 0; i < 4; i++)
+                {
+                    startIndex = description4.IndexOf("<span", startIndex);
+                    if (description4[startIndex+5] == '>')
+                    {
+                        startIndex += 6;
+                        int endIndex = description4.IndexOf("</span>", startIndex);
+                        arr[i] = description4.Substring(startIndex, endIndex - startIndex);
+                    }
+                    else
+                    {
+                        correctAnswer = i;
+                        startIndex = description4.IndexOf(">", startIndex) + 1;
+                        int endIndex = description4.IndexOf("</span>", startIndex);
+                        arr[i] = description4.Substring(startIndex, endIndex - startIndex);
+                    }
+                }
+                return arr;
+            }
+        }
+        public int correctAnswer { get; set; }
     }
 
     public class Field
