@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage BackgroundColor="AliceBlue"
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LicenseTrackApp.Views.TheoryCourseView"
-             Title="TheoryCourseView">
+             Title="למידה לתיאוריה"
+             FlowDirection="RightToLeft">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="{Binding Category}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Start" />
+
+        <Label 
+            Margin="15"
+            Text="{Binding QuestionDescription}"
+            FontSize="Large"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button 
+            Margin="5"
+            Text="{Binding Answer0}"
+            Command="{Binding Answer0Command}" 
+            BackgroundColor="{Binding Color0}"
+            TextColor="Black"
+            IsEnabled="{Binding NotInServerCall}"/>
+
+        <Button 
+            Margin="5"
+            Text="{Binding Answer1}"
+            Command="{Binding Answer1Command}"
+            BackgroundColor="{Binding Color1}"
+            TextColor="Black"
+            IsEnabled="{Binding NotInServerCall}"/>
+
+        <Button 
+            Margin="5"
+            Text="{Binding Answer2}"
+            Command="{Binding Answer2Command}"
+            BackgroundColor="{Binding Color2}"
+            TextColor="Black"
+            IsEnabled="{Binding NotInServerCall}"/>
+
+        <Button 
+            Margin="5"
+            Text="{Binding Answer3}"
+            Command="{Binding Answer3Command}" 
+            BackgroundColor="{Binding Color3}"
+            TextColor="Black"
+            IsEnabled="{Binding NotInServerCall}"/>
+
+        <Button 
+            Margin="25"
+            Text="שאלה הבאה"
+            Command="{Binding NextQuestionCommand}" 
+            IsEnabled="{Binding NotInServerCall}"/>
     </VerticalStackLayout>
 </ContentPage>

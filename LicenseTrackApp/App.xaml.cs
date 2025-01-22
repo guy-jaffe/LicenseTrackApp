@@ -23,9 +23,9 @@ namespace LicenseTrackApp
             this.proxy = proxy;
             LoggedInUser = null;
             InitializeComponent();
-            LoadQuestionsFromServer();
+            //LoadQuestionsFromServer();
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
+            MainPage = new NavigationPage(serviceProvider.GetService<TheoryCourseView>());
         }
 
         private async void LoadQuestionsFromServer()

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LicenseTrackApp.Services
 {
-    internal class TheoryQuestionsAPIProxy
+    public class TheoryQuestionsAPIProxy
     {
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
         private HttpClient client;

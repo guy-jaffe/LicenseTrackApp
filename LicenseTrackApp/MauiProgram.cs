@@ -49,6 +49,7 @@ namespace LicenseTrackApp
         public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<LicenseTrackWebAPIProxy>();
+            builder.Services.AddSingleton<TheoryQuestionsAPIProxy>();
             return builder;
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)

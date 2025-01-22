@@ -12,16 +12,48 @@ namespace LicenseTrackApp.ViewModels
     public class TheoryCourseViewModel:ViewModelBase
     {
 
-        private LicenseTrackWebAPIProxy proxy;
+        private TheoryQuestionsAPIProxy proxy;
         private IServiceProvider serviceProvider;
-        public TheoryCourseViewModel(LicenseTrackWebAPIProxy proxy, IServiceProvider serviceProvider)
+        public TheoryCourseViewModel(TheoryQuestionsAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;
             this.serviceProvider = serviceProvider;
             StudentModels studentModels = (StudentModels)((App)Application.Current).LoggedInUser;
+            currentQuestionIndex = -1;
+            NextQuestionCommand = new Command(OnNextQuestion);
+            Answer0Command = new Command(OnAnswer0);
+            Answer1Command = new Command(OnAnswer1);
+            Answer2Command = new Command(OnAnswer2);
+            Answer3Command = new Command(OnAnswer3);
+            ReadQuestions();
         }
 
+        private int currentQuestionIndex;
+        private async void ReadQuestions()
+        {
+            InServerCall = true;
+            Question [] q = await proxy.GetQuestions(50);
+            Questions = q;
+            currentQuestionIndex++;
+            InitQuestionData();
+            InServerCall = false;
+        }
 
+        private void InitQuestionData()
+        {
+            Category = Questions[currentQuestionIndex].category;
+            QuestionDescription = Questions[currentQuestionIndex].title2;
+            Answer0 = Questions[currentQuestionIndex].answers[0];
+            Answer1 = Questions[currentQuestionIndex].answers[1];
+            Answer2 = Questions[currentQuestionIndex].answers[2];
+            Answer3 = Questions[currentQuestionIndex].answers[3];
+            CorrectAnswer = Questions[currentQuestionIndex].correctAnswer;
+            Color0 = Colors.LightGoldenrodYellow;
+            Color1 = Colors.LightGoldenrodYellow;
+            Color2 = Colors.LightGoldenrodYellow;
+            Color3 = Colors.LightGoldenrodYellow;
+
+        }
 
         private string category;
         public string Category
@@ -109,8 +141,8 @@ namespace LicenseTrackApp.ViewModels
             }
         }
 
-        private string color0;
-        public string Color0
+        private Color color0;
+        public Color Color0
         {
             get => color0;
             set
@@ -123,8 +155,10 @@ namespace LicenseTrackApp.ViewModels
             }
         }
 
-        private string color1;
-        public string Color1
+
+
+        private Color color1;
+        public Color Color1
         {
             get => color1;
             set
@@ -137,8 +171,8 @@ namespace LicenseTrackApp.ViewModels
             }
         }
 
-        private string color2;
-        public string Color2
+        private Color color2;
+        public Color Color2
         {
             get => color2;
             set
@@ -151,8 +185,8 @@ namespace LicenseTrackApp.ViewModels
             }
         }
 
-        private string color3;
-        public string Color3
+        private Color color3;
+        public Color Color3
         {
             get => color3;
             set
@@ -186,7 +220,49 @@ namespace LicenseTrackApp.ViewModels
 
         public ICommand NextQuestionCommand { get; }
 
-        public List<Question> Questions { get; set; }
+        private Question [] Questions { get; set; }
+
+        private void OnNextQuestion()
+        {
+            if (currentQuestionIndex >= Questions.Length) 
+                currentQuestionIndex = 0;
+            currentQuestionIndex++;
+            InitQuestionData();
+        }
+
+        private void OnAnswer0()
+        {
+            if (CorrectAnswer == 0)
+                Color0 = Colors.Green;
+            else
+                Color0 = Colors.Red;
+        }
+
+
+        private void OnAnswer1()
+        {
+            if (CorrectAnswer == 1)
+                Color1 = Colors.Green;
+            else
+                Color1 = Colors.Red;
+        }
+
+        private void OnAnswer2()
+        {
+            if (CorrectAnswer == 2)
+                Color2 = Colors.Green;
+            else
+                Color2 = Colors.Red;
+
+        }
+
+        private void OnAnswer3()
+        {
+            if (CorrectAnswer == 3)
+                Color3 = Colors.Green;
+            else
+                Color3 = Colors.Red;
+        }
 
     }
 }
