@@ -42,11 +42,12 @@ namespace LicenseTrackApp.ViewModels
         private void InitQuestionData()
         {
             Category = Questions[currentQuestionIndex].category;
-            QuestionDescription = Questions[currentQuestionIndex].title2;
+            QuestionDescription = Questions[currentQuestionIndex].QuestionHeader;
             Answer0 = Questions[currentQuestionIndex].answers[0];
             Answer1 = Questions[currentQuestionIndex].answers[1];
             Answer2 = Questions[currentQuestionIndex].answers[2];
             Answer3 = Questions[currentQuestionIndex].answers[3];
+            ImageUrl = Questions[currentQuestionIndex].imageURL;
             CorrectAnswer = Questions[currentQuestionIndex].correctAnswer;
             Color0 = Colors.LightGoldenrodYellow;
             Color1 = Colors.LightGoldenrodYellow;
@@ -65,6 +66,29 @@ namespace LicenseTrackApp.ViewModels
                 {
                     category = value;
                     OnPropertyChanged(nameof(Category));
+                }
+            }
+        }
+
+        
+        public bool ShowImage
+        {
+            get => !string.IsNullOrEmpty(ImageUrl);
+            
+        }
+
+        private string imageUrl;
+        public string ImageUrl
+        {
+            get => imageUrl;
+            set
+            {
+                if (imageUrl != value)
+                {
+                    imageUrl = value;
+                    OnPropertyChanged(nameof(ImageUrl));
+                    OnPropertyChanged(nameof(ShowImage));
+
                 }
             }
         }

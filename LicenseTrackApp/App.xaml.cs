@@ -25,7 +25,7 @@ namespace LicenseTrackApp
             InitializeComponent();
             //LoadQuestionsFromServer();
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<TheoryCourseView>());
+            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
         }
 
         private async void LoadQuestionsFromServer()

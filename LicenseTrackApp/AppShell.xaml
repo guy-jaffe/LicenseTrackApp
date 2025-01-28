@@ -27,7 +27,8 @@
             Title="AccompaniedDetails"
             ContentTemplate="{DataTemplate Views:AccompaniedDetailsView}"
             Icon="licensepic.png"
-            Route="AccompaniedDetails" />
+            Route="AccompaniedDetails"
+            IsVisible="{Binding IsPassTest}"/>
 
         <ShellContent
             Title="Profile"

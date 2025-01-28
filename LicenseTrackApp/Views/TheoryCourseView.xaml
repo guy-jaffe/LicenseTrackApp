@@ -18,6 +18,11 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
+        <Image
+            Source="{Binding ImageUrl}" 
+            HeightRequest="150"
+            IsVisible="{Binding ShowImage}"/>
+
         <Button 
             Margin="5"
             Text="{Binding Answer0}"
@@ -49,6 +54,8 @@
             BackgroundColor="{Binding Color3}"
             TextColor="Black"
             IsEnabled="{Binding NotInServerCall}"/>
+
+
 
         <Button 
             Margin="25"

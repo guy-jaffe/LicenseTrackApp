@@ -49,12 +49,40 @@ namespace LicenseTrackApp.Models
         public string generator { get; set; }
         public string language { get; set; }
         public string title2 { get; set; }
+        public string QuestionHeader
+        {
+            get
+            {
+                int startIndex = title2.IndexOf(".");
+                if (startIndex == -1)
+                    return title2;
+                return title2.Substring(startIndex + 1);
+            }
+        }
         public string link3 { get; set; }
         public string guid { get; set; }
         public string description4 { get; set; }
         public string author { get; set; }
         public string category { get; set; }
         public DateTime pubDate { get; set; }
+        public string imageURL 
+        {
+            get
+            {
+                int startIndex = description4.IndexOf("<img src=\"");
+                if (startIndex == -1)
+                {
+                    return "";
+                }
+
+                startIndex += 10;
+                int endIndex = description4.IndexOf("\"", startIndex);
+                if (endIndex == -1)
+                    return "";
+                return description4.Substring(startIndex, endIndex - startIndex);
+
+            }
+        }
         public string[] answers
         {
             get
@@ -78,6 +106,7 @@ namespace LicenseTrackApp.Models
                         arr[i] = description4.Substring(startIndex, endIndex - startIndex);
                     }
                 }
+                
                 return arr;
             }
         }
