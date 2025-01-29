@@ -36,11 +36,17 @@ namespace LicenseTrackApp.ViewModels
         {
             get
             {
-                StudentModels studentModel = (StudentModels)((App)Application.Current).LoggedInUser;
-                if (studentModel.LicenseStatus == 2)
-                    return true;
+                if (((App)Application.Current).LoggedInUser is StudentModels)
+                {
+                    StudentModels studentModel = (StudentModels)((App)Application.Current).LoggedInUser;
+                    if (studentModel.LicenseStatus == 2)
+                        return true;
+                    else
+                        return false;
+                }
                 else
                     return false;
+                
                 
             }
         }
