@@ -62,6 +62,7 @@ namespace LicenseTrackApp
             builder.Services.AddTransient<DrivingLessonsViewModel>();
             builder.Services.AddTransient<PreviousDrivingLessonsViewModel>();
             builder.Services.AddTransient<ProfileViewModel>();
+            builder.Services.AddTransient<TeacherProfileViewModel>();
             builder.Services.AddTransient<SetDrivingLessonsViewModel>();
             builder.Services.AddTransient<TheoryCourseViewModel>();
             builder.Services.AddTransient<AppShellViewModel>();

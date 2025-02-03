@@ -4,10 +4,49 @@
              x:Class="LicenseTrackApp.Views.ProfileView"
              xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
              Title="ProfileView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Padding="20">
+        
+        <!--first name-->
+        <Label Text="First name " FontSize="Medium"></Label>
+        <Entry Text="{Binding Name}" Placeholder="Enter first name"></Entry>
+        <Label Text="{Binding NameError}" TextColor="Red" IsVisible="{Binding ShowNameError}"></Label>
+               
+        <!--last name-->
+        <Label Text="Last name " FontSize="Medium"></Label>
+        <Entry Text="{Binding LastName}" Placeholder="Enter last name"></Entry>
+        <Label Text="{Binding LastNameError}" TextColor="Red" IsVisible="{Binding ShowLastNameError}"></Label>
+
+
+        <!--email-->
+        <Label Text="Email " FontSize="Medium"></Label>
+        <Entry Text="{Binding Email}" Placeholder="Enter email"></Entry>
+        <Label Text="{Binding EmailError}" TextColor="Red" IsVisible="{Binding ShowEmailError}"></Label>
+
+
+        <!--password-->
+        <Label Text="Password " FontSize="Medium"></Label>
+        <Entry Text="{Binding Password}" Placeholder="Enter password"></Entry>
+        <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}"></Label>
+
+
+        <!--City-->
+        <Label Text="City " FontSize="Medium"></Label>
+        <Entry Text="{Binding City}" Placeholder="Enter city"></Entry>
+        <Label Text="{Binding CityError}" TextColor="Red" IsVisible="{Binding ShowCityError}"></Label>
+
+
+        <!--Street-->
+        <Label Text="Street " FontSize="Medium"></Label>
+        <Entry Text="{Binding Street}" Placeholder="Enter street"></Entry>
+        <Label Text="{Binding StreetError}" TextColor="Red" IsVisible="{Binding ShowStreetError}"></Label>
+        
+        
+        <!--save button-->
+        <Button Text="Save Profile" Command="{Binding UpdateStudentCommand}"></Button>
+        
+        
+        <!--loading indicator-->
+        <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}"></ActivityIndicator>
+
     </VerticalStackLayout>
 </ContentPage>
