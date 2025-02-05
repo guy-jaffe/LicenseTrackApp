@@ -60,6 +60,7 @@
 	  <None Remove="Resources\Images\admin.png" />
 	  <None Remove="Resources\Images\driving.png" />
 	  <None Remove="Resources\Images\licensepic.png" />
+	  <None Remove="Resources\Images\logout.png" />
 	  <None Remove="Resources\Images\profilepic.png" />
 	  <None Remove="Resources\Images\theory.png" />
 	</ItemGroup>

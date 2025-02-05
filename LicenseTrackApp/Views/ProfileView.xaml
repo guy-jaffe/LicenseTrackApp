@@ -39,8 +39,18 @@
         <Label Text="Street " FontSize="Medium"></Label>
         <Entry Text="{Binding Street}" Placeholder="Enter street"></Entry>
         <Label Text="{Binding StreetError}" TextColor="Red" IsVisible="{Binding ShowStreetError}"></Label>
-        
-        
+
+
+        <!--LicenseAcquisitionDate-->
+        <!--<Label Text="License Acquisition Date " FontSize="Medium" IsVisible="{Binding }></Label>
+        <Label Text="{Binding LicenseAcquisitionDate}" FontSize="Medium"></Label>-->
+
+
+        <!--LicenseStatus-->
+        <!--<Label Text="License Status " FontSize="Medium" IsVisible="{Binding }></Label>
+        <Label Text="{Binding LicenseStatus}" FontSize="Medium"></Label>-->
+
+
         <!--save button-->
         <Button Text="Save Profile" Command="{Binding UpdateStudentCommand}"></Button>
         
