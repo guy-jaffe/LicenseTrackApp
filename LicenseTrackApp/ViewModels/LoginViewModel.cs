@@ -95,7 +95,7 @@ namespace LicenseTrackApp.ViewModels
                 ErrorMsg = "";
                 //Navigate to the main page
                 AppShell shell = serviceProvider.GetService<AppShell>();
-                DrivingLessonsViewModel DrivingLessonsViewModel = serviceProvider.GetService<DrivingLessonsViewModel>();
+                //DrivingLessonsViewModel DrivingLessonsViewModel = serviceProvider.GetService<DrivingLessonsViewModel>();
                 /*DrivingLessonsViewModel.Refresh();*/ //Refresh data and user in the tasksview model as it is a singleton
                 ((App)Application.Current).MainPage = shell;
                 Shell.Current.FlyoutIsPresented = false; //close the flyout

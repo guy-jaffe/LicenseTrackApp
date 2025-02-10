@@ -17,7 +17,7 @@ namespace LicenseTrackApp.ViewModels
         {
             this.serviceProvider = serviceProvider;
             this.currentUser = ((App)Application.Current).LoggedInUser;
-            StudentModels studentModel = (StudentModels)((App)Application.Current).LoggedInUser;
+            
         }
 
         public bool IsManager
@@ -27,6 +27,30 @@ namespace LicenseTrackApp.ViewModels
                 if (currentUser.IsManager == true)
                     return true;
                 if (currentUser.IsManager == false)
+                    return false;
+                return false;
+            }
+        }
+
+        public bool IsTeacher
+        {
+            get
+            {
+                if (currentUser is TeacherModels == true)
+                    return true;
+                if (currentUser is TeacherModels == false)
+                    return false;
+                return false;
+            }
+        }
+
+        public bool IsStudent
+        {
+            get
+            {
+                if (currentUser is StudentModels == true)
+                    return true;
+                if (currentUser is StudentModels == false)
                     return false;
                 return false;
             }

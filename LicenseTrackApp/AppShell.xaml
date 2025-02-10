@@ -27,14 +27,23 @@
             Title="AccompaniedDetails"
             ContentTemplate="{DataTemplate Views:AccompaniedDetailsView}"
             Icon="licensepic.png"
-            Route="AccompaniedDetails"
-            IsVisible="{Binding IsPassTest}"/>
+            IsVisible="{Binding IsPassTest}"
+            Route="AccompaniedDetails" />
 
         <ShellContent
             Title="Profile"
             ContentTemplate="{DataTemplate Views:ProfileView}"
             Icon="profilepic.png"
-            Route="Profile" />
+            IsVisible="{Binding IsStudent}"
+            Route="ProfileStudent" />
+
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate Views:TeacherProfileView}"
+            Icon="profilepic.png"
+            IsVisible="{Binding IsTeacher}"
+            Route="ProfileTeacher" />
+
 
         <ShellContent
             Title="AdminPage"
@@ -45,7 +54,10 @@
 
     </FlyoutItem>
 
-    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" IconImageSource="logout.png" />
+    <MenuItem
+        Command="{Binding LogoutCommand}"
+        IconImageSource="logout.png"
+        Text="Logout" />
 
 
 </Shell>

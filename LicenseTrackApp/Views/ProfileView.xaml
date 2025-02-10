@@ -42,13 +42,9 @@
 
 
         <!--LicenseAcquisitionDate-->
-        <!--<Label Text="License Acquisition Date " FontSize="Medium" IsVisible="{Binding }></Label>
-        <Label Text="{Binding LicenseAcquisitionDate}" FontSize="Medium"></Label>-->
+        <Label Text="License Acquisition Date " FontSize="Medium" IsVisible="{Binding IsPassTest}"></Label>
+        <Label Text="{Binding LicenseAcquisitionDate}" FontSize="Medium"></Label>
 
-
-        <!--LicenseStatus-->
-        <!--<Label Text="License Status " FontSize="Medium" IsVisible="{Binding }></Label>
-        <Label Text="{Binding LicenseStatus}" FontSize="Medium"></Label>-->
 
 
         <!--save button-->

@@ -42,6 +42,26 @@ namespace LicenseTrackApp.ViewModels
 
         //Defiine properties for each field in the registration form including error messages and validation logic
 
+        public bool IsPassTest
+        {
+            get
+            {
+                if (((App)Application.Current).LoggedInUser is StudentModels)
+                {
+                    StudentModels studentModel = (StudentModels)((App)Application.Current).LoggedInUser;
+                    if (studentModel.LicenseStatus == 2)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+
+
+            }
+        }
+
+
         private DateOnly? licenseAcquisitionDate;
 
         public DateOnly? LicenseAcquisitionDate

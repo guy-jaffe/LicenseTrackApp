@@ -18,7 +18,7 @@ namespace LicenseTrackApp.ViewModels
         {
             this.proxy = proxy;
             this.serviceProvider = serviceProvider;
-            StudentModels studentModels = (StudentModels)((App)Application.Current).LoggedInUser;
+            //StudentModels studentModels = (StudentModels)((App)Application.Current).LoggedInUser;
             currentQuestionIndex = -1;
             NextQuestionCommand = new Command(OnNextQuestion);
             Answer0Command = new Command(OnAnswer0);
