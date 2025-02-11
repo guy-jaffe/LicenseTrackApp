@@ -138,7 +138,7 @@
                         Source="passwordeye.jpg" />
                 </Grid>
 
-                <!--  City  -->
+                <!--  TeachingArea  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -147,17 +147,17 @@
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource labelNameStyle}"
-                        Text="City" />
+                        Text="Teaching Area" />
                     <Label
                         Grid.Column="1"
-                        IsVisible="{Binding ShowCityError}"
+                        IsVisible="{Binding ShowTeachingAreaError}"
                         Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding CityError}" />
+                        Text="{Binding TeachingAreaError}" />
                 </Grid>
                 <Entry
-                    Placeholder="Type city"
+                    Placeholder="Type Teaching Area"
                     Style="{StaticResource entryStyle}"
-                    Text="{Binding City}" />
+                    Text="{Binding TeachingArea}" />
 
 
                 <!--  school Name  -->

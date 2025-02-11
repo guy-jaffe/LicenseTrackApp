@@ -617,14 +617,11 @@ namespace LicenseTrackApp.ViewModels
                     Email = Email,
                     PasswordHash = Password,
                     IsManager = false,
-                    City = City,
+                    TeachingArea = teachingArea,
                     SchoolName = SchoolName,
                     VehicleType = VehicleType,
                     ManualCar = ManualCar,
                     ConfirmationStatus = false,
-                    //Street = Street,
-                    //LicenseAcquisitionDate = null,
-                    //LicenseStatus = 0,
                     FileExtension = GetImageExtention()
                 };
 
