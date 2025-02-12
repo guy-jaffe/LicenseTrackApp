@@ -279,5 +279,110 @@ namespace LicenseTrackApp.Services
                 return null;
             }
         }
+
+
+        public async Task<List<LessonScheduleModels>?> GetAvailableLessonSchedules(int teacherId, int month, int year)
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}getAvailableLessonSchedules?teacherId={teacherId}&month={month}&year={year}";
+
+            try
+            {
+                // יצירת אובייקט הבקשה
+                var requestData = new { teacherId, month, year };
+                string json = JsonSerializer.Serialize(requestData);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // קריאה ל-API
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                // בדיקת תקינות התשובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת LessonSchedule
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<LessonScheduleModels>? result = JsonSerializer.Deserialize<List<LessonScheduleModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<bool> AddLesson(LessonModels lesson)
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}addLesson";
+
+            try
+            {
+                // המרת הנתונים ל-JSON
+                string json = JsonSerializer.Serialize(lesson);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // שליחת הבקשה לשרת
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                // אם התגובה תקינה (סטטוס 200-299), מחזירים true
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+        public async Task<List<TeacherModels>?> GetTeachers()
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}GetTeachers";
+
+            try
+            {
+                // שליחת בקשת GET לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת TeacherModels
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<TeacherModels>? result = JsonSerializer.Deserialize<List<TeacherModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
     }
 }
