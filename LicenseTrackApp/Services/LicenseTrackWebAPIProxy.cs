@@ -288,13 +288,9 @@ namespace LicenseTrackApp.Services
 
             try
             {
-                // יצירת אובייקט הבקשה
-                var requestData = new { teacherId, month, year };
-                string json = JsonSerializer.Serialize(requestData);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
+                
                 // קריאה ל-API
-                HttpResponseMessage response = await client.PostAsync(url, content);
+                HttpResponseMessage response = await client.GetAsync(url);
 
                 // בדיקת תקינות התשובה
                 if (response.IsSuccessStatusCode)
