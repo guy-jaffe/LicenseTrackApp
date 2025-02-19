@@ -1,9 +1,12 @@
+using LicenseTrackApp.ViewModels;
+
 namespace LicenseTrackApp.Views;
 
 public partial class DrivingLessonsView : ContentPage
 {
-	public DrivingLessonsView()
+	public DrivingLessonsView(DrivingLessonsViewModel vm)
 	{
-		InitializeComponent();
+        this.BindingContext = vm;
+        InitializeComponent();
 	}
 }

@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LicenseTrackApp.Views.DrivingLessonsView"
+             xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
              Title="DrivingLessonsView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
+
+        <Button Text="לקביעת שיעור" Command="{Binding SetDrivingLessonCommand}"></Button>
+        
     </VerticalStackLayout>
 </ContentPage>
