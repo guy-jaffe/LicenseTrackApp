@@ -6,7 +6,7 @@
              Title="SetDrivingLessonsView">
     <VerticalStackLayout>
 
-        <Picker Title="בחר מורה" ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}" Margin="10"></Picker>
+        <Picker Title="בחר מורה" ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}" Margin="10" ItemDisplayBinding="{Binding FirstName}"></Picker>
 
         <!--name-->
         <Label Text="teacher name - " FontSize="Medium"></Label>
@@ -28,7 +28,13 @@
         <DatePicker Date="{Binding SelectedDate}"></DatePicker>
 
 
-        <CollectionView ItemsSource="{Binding LessonsByDate}" SelectedItem="{Binding LessonTime}"></CollectionView>
+        <CollectionView ItemsSource="{Binding LessonsByDate}" SelectedItem="{Binding LessonTime}" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding LessonTime}" HorizontalOptions="Center"></Label>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <!--save button-->
         <Button Text="Save lesson" Command="{Binding SaveCommand}"></Button>
