@@ -28,7 +28,7 @@
         <DatePicker Date="{Binding SelectedDate}"></DatePicker>
 
 
-        <CollectionView ItemsSource="{Binding LessonsByDate}" SelectedItem="{Binding LessonTime}" SelectionMode="Single">
+        <CollectionView ItemsSource="{Binding LessonsByDate}" SelectedItem="{Binding SelectedTime}" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding LessonTime}" HorizontalOptions="Center"></Label>

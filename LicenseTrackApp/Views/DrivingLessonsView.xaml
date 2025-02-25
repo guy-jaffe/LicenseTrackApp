@@ -8,6 +8,7 @@
 
 
         <Button Text="לקביעת שיעור" Command="{Binding SetDrivingLessonCommand}"></Button>
+        <Image Source="https://www.gov.il/BlobFolder/generalpage/tq_pic_01/he/TQ_PIC_31073.jpg"></Image>
         
     </VerticalStackLayout>
 </ContentPage>
