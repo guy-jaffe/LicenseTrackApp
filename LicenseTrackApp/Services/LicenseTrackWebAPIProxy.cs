@@ -380,5 +380,71 @@ namespace LicenseTrackApp.Services
         }
 
 
+
+        public async Task<List<LessonModels>?> GetFutureLessonsAsync()
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}GetFutureLessons";  // נתיב ל-API שלך
+
+            try
+            {
+                // שליחת בקשת GET לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת LessonDto
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<LessonModels>? result = JsonSerializer.Deserialize<List<LessonModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;  // אם לא התקבלה תשובה תקינה
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;  // במקרה של שגיאה
+            }
+        }
+
+
+        public async Task<bool> DeleteLessonAsync(int lessonId)
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}DeleteLesson?lessonId={lessonId}";  // נתיב ל-API שלך
+
+            try
+            {
+                // שליחת בקשת DELETE לשרת
+                HttpResponseMessage response = await client.DeleteAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;  // השיעור נמחק בהצלחה
+                }
+                else
+                {
+                    return false;  // אם לא התקבלה תשובה תקינה
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;  // במקרה של שגיאה
+            }
+        }
+
+
+
     }
 }

@@ -1,12 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LicenseTrackApp.Views.DrivingLessonsView"
-             xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
-             Title="DrivingLessonsView">
+<ContentPage
+    x:Class="LicenseTrackApp.Views.DrivingLessonsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
+    Title="DrivingLessonsView">
     <VerticalStackLayout>
 
 
-        <Button Text="לקביעת שיעור" Command="{Binding SetDrivingLessonCommand}"></Button>
+        <Button
+            Margin="10"
+            Command="{Binding SetDrivingLessonCommand}"
+            Text="לקביעת שיעור" />
+
+        <Button
+            Margin="10"
+            Command="{Binding PreviousDrivingLessonsCommand}"
+            Text="לשיעורים הקודמים" />
+
+        <Label
+            Margin="10"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="השיעורים הקרובים:" />
+
+        <CollectionView
+            x:Name="cv"
+            ItemsSource="{Binding Lessons}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <StackLayout Padding="10">
+                            <Label
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                Text="{Binding LessonDate, StringFormat='Date: {0:MM/dd/yyyy}'}" />
+                            <Label
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                Text="{Binding LessonTime, StringFormat='Time: {0:hh-mm}'}" />
+                            <Button
+                                Command="{Binding Source={x:Reference cv}, Path=BindingContext.DeleteLessonCommand}"
+                                CommandParameter="{Binding}"
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                Text="ביטול שיעור" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>
