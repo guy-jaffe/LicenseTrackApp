@@ -11,22 +11,20 @@ using System.Windows.Input;
 
 namespace LicenseTrackApp.ViewModels
 {
-    public class DrivingLessonsViewModel:ViewModelBase
+    public class TeacherDrivingLessonsViewModel : ViewModelBase
     {
 
         private LicenseTrackWebAPIProxy proxy;
         private IServiceProvider serviceProvider;
-        public DrivingLessonsViewModel(LicenseTrackWebAPIProxy proxy, IServiceProvider serviceProvider)
+        public TeacherDrivingLessonsViewModel(LicenseTrackWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
-            SetDrivingLessonCommand = new Command(OnSetDrivingLesson);
             PreviousDrivingLessonsCommand = new Command(OnPreviousDrivingLessons);
             DeleteLessonCommand = new Command<LessonModels>(OnDeleteLesson);
             InitData();
         }
 
-        public Command SetDrivingLessonCommand { get; }
         public Command PreviousDrivingLessonsCommand { get; }
         public Command DeleteLessonCommand { get; }
 
@@ -70,10 +68,6 @@ namespace LicenseTrackApp.ViewModels
 
 
 
-        private void OnSetDrivingLesson()
-        {
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<SetDrivingLessonsView>());
-        }
 
         private void OnPreviousDrivingLessons()
         {
@@ -82,7 +76,7 @@ namespace LicenseTrackApp.ViewModels
 
         private async void OnDeleteLesson(LessonModels l)
         {
-            bool ok = await Application.Current.MainPage.DisplayAlert("ביטול שיעור", "האם אתה בטוח?","כן", "לא", FlowDirection.RightToLeft);
+            bool ok = await Application.Current.MainPage.DisplayAlert("ביטול שיעור", "האם אתה בטוח?", "כן", "לא", FlowDirection.RightToLeft);
             if (ok)
             {
                 ok = await proxy.DeleteLessonAsync(l.Id);
@@ -93,11 +87,6 @@ namespace LicenseTrackApp.ViewModels
                 else
                     await Application.Current.MainPage.DisplayAlert("ביטול שיעור", "השיעור לא בוטל עקב תקלה. יש לנסות מאוחר יותר", "בסדר", FlowDirection.RightToLeft);
             }
-        }
-
-        public override void Refresh()
-        {
-            InitData();
         }
 
     }

@@ -19,5 +19,14 @@ namespace LicenseTrackApp
             Routing.RegisterRoute("AccompaniedDetailsView", typeof(AccompaniedDetailsView));
             Routing.RegisterRoute("DrivingLessonsView", typeof(DrivingLessonsView));
         }
+
+        public event Action<Type> DataChanged;
+        public void Refresh(Type type)
+        {
+            if (DataChanged != null)
+            {
+                DataChanged(type);
+            }
+        }
     }
 }

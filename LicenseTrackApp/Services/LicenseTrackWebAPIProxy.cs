@@ -420,13 +420,13 @@ namespace LicenseTrackApp.Services
 
         public async Task<bool> DeleteLessonAsync(int lessonId)
         {
-            // קביעת כתובת ה-API לקריאה
+            // קביעת כתובת ה-API לקריאהDeleteLesson
             string url = $"{this.baseUrl}DeleteLesson?lessonId={lessonId}";  // נתיב ל-API שלך
 
             try
             {
                 // שליחת בקשת DELETE לשרת
-                HttpResponseMessage response = await client.DeleteAsync(url);
+                HttpResponseMessage response = await client.GetAsync(url);
 
                 // בדיקת תקינות התגובה
                 if (response.IsSuccessStatusCode)
@@ -445,6 +445,78 @@ namespace LicenseTrackApp.Services
         }
 
 
+        public async Task<List<LessonModels>?> GetPreviousLessonsAsync()
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}GetPreviousLessons";  // נתיב ל-API שלך
+
+            try
+            {
+                // שליחת בקשת GET לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת LessonDto
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<LessonModels>? result = JsonSerializer.Deserialize<List<LessonModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;  // אם לא התקבלה תשובה תקינה
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;  // במקרה של שגיאה
+            }
+        }
+
+
+        public async Task<List<LessonModels>?> GetTeacherFutureLessonsAsync()
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}GetTeacherFutureLessons";  // נתיב ל-API שלך
+
+            try
+            {
+                // שליחת בקשת GET לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת LessonDto
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<LessonModels>? result = JsonSerializer.Deserialize<List<LessonModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;  // אם לא התקבלה תשובה תקינה
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;  // במקרה של שגיאה
+            }
+        }
 
     }
 }

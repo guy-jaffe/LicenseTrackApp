@@ -54,6 +54,8 @@ namespace LicenseTrackApp.ViewModels
                 }
                 else
                 {
+                    //Refresh the driving lesson page
+                    ((AppShell)Shell.Current).Refresh(typeof(DrivingLessonsViewModel));
                     await Shell.Current.Navigation.PopAsync();
                 }
             }
