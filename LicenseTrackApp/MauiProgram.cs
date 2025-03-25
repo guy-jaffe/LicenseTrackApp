@@ -38,6 +38,7 @@ namespace LicenseTrackApp
             builder.Services.AddTransient<AdminPageView>();
             builder.Services.AddTransient<DrivingLessonsView>();
             builder.Services.AddTransient<PreviousDrivingLessonsView>();
+            builder.Services.AddTransient<TeacherPreviousDrivingLessonsView>();
             builder.Services.AddTransient<ProfileView>();
             builder.Services.AddTransient<SetDrivingLessonsView>();
             builder.Services.AddTransient<TheoryCourseView>();
@@ -64,6 +65,7 @@ namespace LicenseTrackApp
             builder.Services.AddTransient<AdminPageViewModel>();
             builder.Services.AddTransient<DrivingLessonsViewModel>();
             builder.Services.AddTransient<PreviousDrivingLessonsViewModel>();
+            builder.Services.AddTransient<TeacherPreviousDrivingLessonsViewModel>();
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddTransient<TeacherProfileViewModel>();
             builder.Services.AddTransient<SetDrivingLessonsViewModel>();

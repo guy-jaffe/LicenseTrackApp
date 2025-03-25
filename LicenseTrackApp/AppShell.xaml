@@ -21,7 +21,15 @@
             Title="DrivingLessons"
             ContentTemplate="{DataTemplate Views:DrivingLessonsView}"
             Icon="driving.png"
+            IsVisible="{Binding IsStudent}"
             Route="DrivingLessons" />
+
+        <ShellContent
+            Title="TeacherDrivingLessons"
+            ContentTemplate="{DataTemplate Views:TeacherDrivingLessonsView}"
+            Icon="driving.png"
+            IsVisible="{Binding IsTeacher}"
+            Route="TeacherDrivingLessons" />
 
         <ShellContent
             Title="AccompaniedDetails"

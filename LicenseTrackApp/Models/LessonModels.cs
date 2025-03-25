@@ -13,8 +13,20 @@ namespace LicenseTrackApp.Models
         public TimeOnly? LessonTime { get; set; }
         public string LessonType { get; set; }
         public int? StudentId { get; set; }
+        public StudentModels? Student { get; set; }
         public int? InstructorId { get; set; }
         public string? Comments { get; set; }
+
+        public string StudentName
+        {
+            get
+            {
+                if (Student != null)
+                    return Student.LastName + " " + Student.FirstName;
+                else
+                    return "שם לא ידוע";
+            }
+        }
 
         public LessonModels() { }
         

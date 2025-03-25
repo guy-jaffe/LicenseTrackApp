@@ -59,7 +59,7 @@ namespace LicenseTrackApp.ViewModels
 
         private async void InitData()
         {
-            List<LessonModels>? lessons = await proxy.GetFutureLessonsAsync();
+            List<LessonModels>? lessons = await proxy.GetTeacherFutureLessonsAsync();
             if (lessons != null)
             {
                 Lessons = new ObservableCollection<LessonModels>(lessons);
@@ -71,7 +71,7 @@ namespace LicenseTrackApp.ViewModels
 
         private void OnPreviousDrivingLessons()
         {
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<PreviousDrivingLessonsView>());
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<TeacherPreviousDrivingLessonsView>());
         }
 
         private async void OnDeleteLesson(LessonModels l)
@@ -79,7 +79,7 @@ namespace LicenseTrackApp.ViewModels
             bool ok = await Application.Current.MainPage.DisplayAlert("ביטול שיעור", "האם אתה בטוח?", "כן", "לא", FlowDirection.RightToLeft);
             if (ok)
             {
-                ok = await proxy.DeleteLessonAsync(l.Id);
+                ok = await proxy.TeacherDeleteLessonAsync(l.Id);
                 if (ok)
                 {
                     Lessons.Remove(l);

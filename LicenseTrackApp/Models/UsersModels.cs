@@ -17,7 +17,7 @@ namespace LicenseTrackApp.Models
         public string FileExtension { get; set; }
         public bool IsManager { get; set; }
 
-
+        public string ProfileImagePath { get; set; } = "";
 
         public UsersModels() { }
        

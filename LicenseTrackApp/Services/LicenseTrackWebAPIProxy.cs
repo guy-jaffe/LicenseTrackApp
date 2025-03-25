@@ -175,6 +175,34 @@ namespace LicenseTrackApp.Services
         }
 
 
+        public async Task<bool> UpdateLesson(LessonModels lesson)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}updateLesson";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(lesson);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
         public async Task<TeacherModels?> UpdateTeacher(TeacherModels user)
         {
             //Set URI to the specific function API
@@ -418,6 +446,33 @@ namespace LicenseTrackApp.Services
         }
 
 
+        public async Task<bool> TeacherDeleteLessonAsync(int lessonId)
+        {
+            // קביעת כתובת ה-API לקריאהDeleteLesson
+            string url = $"{this.baseUrl}TeacherDeleteLesson?lessonId={lessonId}";  // נתיב ל-API שלך
+
+            try
+            {
+                // שליחת בקשת DELETE לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;  // השיעור נמחק בהצלחה
+                }
+                else
+                {
+                    return false;  // אם לא התקבלה תשובה תקינה
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;  // במקרה של שגיאה
+            }
+        }
+
+
         public async Task<bool> DeleteLessonAsync(int lessonId)
         {
             // קביעת כתובת ה-API לקריאהDeleteLesson
@@ -449,6 +504,43 @@ namespace LicenseTrackApp.Services
         {
             // קביעת כתובת ה-API לקריאה
             string url = $"{this.baseUrl}GetPreviousLessons";  // נתיב ל-API שלך
+
+            try
+            {
+                // שליחת בקשת GET לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת LessonDto
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<LessonModels>? result = JsonSerializer.Deserialize<List<LessonModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;  // אם לא התקבלה תשובה תקינה
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;  // במקרה של שגיאה
+            }
+        }
+
+
+        public async Task<List<LessonModels>?> GetTeacherPreviousLessonsAsync()
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}GetTeacherPreviousLessons";  // נתיב ל-API שלך
 
             try
             {

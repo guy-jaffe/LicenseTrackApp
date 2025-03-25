@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LicenseTrackApp.Views.TeacherDrivingLessonsView"
-             xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
-             Title="TeacherDrivingLessonsView">
+<ContentPage
+    x:Class="LicenseTrackApp.Views.TeacherPreviousDrivingLessonsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
+    Title="TeacherPreviousDrivingLessonsView">
     <VerticalStackLayout>
-
-        <Button
-            Margin="10"
-            Command="{Binding PreviousDrivingLessonsCommand}"
-            Text="לשיעורים הקודמים" />
-
         <Label
             Margin="10"
             FontSize="Medium"
             HorizontalOptions="Center"
-            Text="השיעורים הקרובים:" />
+            Text="השיעורים הקודמים:" />
 
         <CollectionView
             x:Name="cv"
@@ -37,16 +32,16 @@
                                 FontAttributes="Italic"
                                 FontSize="Small"
                                 Text="{Binding LessonTime, StringFormat='Time: {0:hh-mm}'}" />
+                            <Entry Placeholder="COMMENT" Text="{Binding Comments}" />
                             <Button
-                                Command="{Binding Source={x:Reference cv}, Path=BindingContext.DeleteLessonCommand}"
+                                Command="{Binding Source={x:Reference cv}, Path=BindingContext.SaveCommentsCommand}"
                                 CommandParameter="{Binding}"
-                                FontAttributes="Italic"
-                                FontSize="Small"
-                                Text="ביטול שיעור" />
+                                Text="שמור הערה" />
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>
