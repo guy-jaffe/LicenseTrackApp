@@ -32,7 +32,7 @@ namespace LicenseTrackApp.Services
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://xxgd7p2z-5070.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://xxgd7p2z-5070.euw.devtunnels.ms/";
+        public static string ImageBaseAddress = "https://xxgd7p2z-5070.euw.devtunnels.ms/";
         #endregion
 
         public LicenseTrackWebAPIProxy()
@@ -407,7 +407,113 @@ namespace LicenseTrackApp.Services
             }
         }
 
+        public async Task<List<TeacherModels>?> GetAllTeachers()
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}GetAllTeachers";
 
+            try
+            {
+                // שליחת בקשת GET לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת TeacherModels
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<TeacherModels>? result = JsonSerializer.Deserialize<List<TeacherModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<StudentModels>?> GetAllStudents()
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}GetAllStudents";
+
+            try
+            {
+                // שליחת בקשת GET לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת StudentModels
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<StudentModels>? result = JsonSerializer.Deserialize<List<StudentModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<TeacherModels>?> GetPendingTeachers()
+        {
+            // קביעת כתובת ה-API לקריאה
+            string url = $"{this.baseUrl}GetPendingTeachers";
+
+            try
+            {
+                // שליחת בקשת GET לשרת
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // בדיקת תקינות התגובה
+                if (response.IsSuccessStatusCode)
+                {
+                    // קריאת התוכן כתשובה
+                    string resContent = await response.Content.ReadAsStringAsync();
+
+                    // המרת התשובה לרשימת TeacherModels
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<TeacherModels>? result = JsonSerializer.Deserialize<List<TeacherModels>>(resContent, options);
+
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         public async Task<List<LessonModels>?> GetFutureLessonsAsync()
         {

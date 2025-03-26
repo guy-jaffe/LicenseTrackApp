@@ -12,7 +12,7 @@ namespace LicenseTrackApp.Models
         public bool? ManualCar { get; set; }
         public string VehicleType { get; set; }
         public string TeachingArea { get; set; }
-        public bool? ConfirmationStatus { get; set; }
+        public int? ConfirmationStatus { get; set; }
 
 
         public TeacherModels() { }

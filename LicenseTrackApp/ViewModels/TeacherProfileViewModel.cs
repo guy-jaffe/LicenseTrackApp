@@ -18,9 +18,9 @@ namespace LicenseTrackApp.ViewModels
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
             TeacherModels teacherModels = (TeacherModels)((App)Application.Current).LoggedInUser;
-            UpdateStudentCommand = new Command(OnUpdateStudent);
+            UpdateTeacherCommand = new Command(OnUpdateStudent);
             UploadPhotoCommand = new Command(OnUploadPhoto);
-            PhotoURL = proxy.GetDefaultProfilePhotoUrl();
+            PhotoURL = teacherModels.ProfileImageUrl;
             LocalPhotoPath = "";
             IsPassword = true;
             NameError = "Name is required";
@@ -28,11 +28,11 @@ namespace LicenseTrackApp.ViewModels
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             //IdError = "id is required";
-            CityError = "city is required";
+            //CityError = "city is required";
             this.Name = teacherModels.FirstName;
             this.LastName = teacherModels.LastName;
             this.Email = teacherModels.Email;
-            this.City = teacherModels.City;
+            //this.City = teacherModels.City;
             this.Password = teacherModels.PasswordHash;
             this.SchoolName = teacherModels.SchoolName;
             this.ManualCar = teacherModels.ManualCar;   
@@ -316,49 +316,49 @@ namespace LicenseTrackApp.ViewModels
         #endregion
 
 
-        #region City
-        private bool showCityError;
+        //#region City
+        //private bool showCityError;
 
-        public bool ShowCityError
-        {
-            get => showCityError;
-            set
-            {
-                showCityError = value;
-                OnPropertyChanged("ShowCityError");
-            }
-        }
+        //public bool ShowCityError
+        //{
+        //    get => showCityError;
+        //    set
+        //    {
+        //        showCityError = value;
+        //        OnPropertyChanged("ShowCityError");
+        //    }
+        //}
 
-        private string city;
+        //private string city;
 
-        public string City
-        {
-            get => city;
-            set
-            {
-                city = value;
-                ValidateCity();
-                OnPropertyChanged("City");
-            }
-        }
+        //public string City
+        //{
+        //    get => city;
+        //    set
+        //    {
+        //        city = value;
+        //        ValidateCity();
+        //        OnPropertyChanged("City");
+        //    }
+        //}
 
-        private string cityError;
+        //private string cityError;
 
-        public string CityError
-        {
-            get => cityError;
-            set
-            {
-                cityError = value;
-                OnPropertyChanged("CityError");
-            }
-        }
+        //public string CityError
+        //{
+        //    get => cityError;
+        //    set
+        //    {
+        //        cityError = value;
+        //        OnPropertyChanged("CityError");
+        //    }
+        //}
 
-        private void ValidateCity()
-        {
-            this.ShowCityError = string.IsNullOrEmpty(City);
-        }
-        #endregion
+        //private void ValidateCity()
+        //{
+        //    this.ShowCityError = string.IsNullOrEmpty(City);
+        //}
+        //#endregion
 
         #region Photo
 
@@ -420,7 +420,7 @@ namespace LicenseTrackApp.ViewModels
         #endregion
 
         //Define a command for the register button
-        public Command UpdateStudentCommand { get; }
+        public Command UpdateTeacherCommand { get; }
 
         //Define a method that will be called when the register button is clicked
         public async void OnUpdateStudent()
@@ -429,7 +429,7 @@ namespace LicenseTrackApp.ViewModels
             ValidateLastName();
             ValidateEmail();
             ValidatePassword();
-            ValidateCity();
+            //ValidateCity();
             if (!ShowNameError && !ShowLastNameError && !ShowEmailError && !ShowPasswordError)
             {
                 TeacherModels theTeacher = (TeacherModels)((App)Application.Current).LoggedInUser;
@@ -438,7 +438,7 @@ namespace LicenseTrackApp.ViewModels
                 theTeacher.Email = Email;
                 theTeacher.PasswordHash = Password;
                 theTeacher.IsManager = false;
-                theTeacher.City = City;
+                //theTeacher.City = City;
                 theTeacher.SchoolName = SchoolName;
                 theTeacher.ManualCar = ManualCar;
                 theTeacher.VehicleType = VehicleType;
@@ -458,7 +458,6 @@ namespace LicenseTrackApp.ViewModels
                     //UPload profile imae if needed
                     if (!string.IsNullOrEmpty(LocalPhotoPath))
                     {
-                        await proxy.LoginAsync(new LoginInfoModels { UserEmail = theTeacher.Email, UserPassword = theTeacher.PasswordHash });
                         UsersModels? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
                         if (updatedUser == null)
                         {

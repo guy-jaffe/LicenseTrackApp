@@ -20,7 +20,7 @@ namespace LicenseTrackApp.ViewModels
             StudentModels studentModels = (StudentModels)((App)Application.Current).LoggedInUser;
             UpdateStudentCommand = new Command(OnUpdateStudent);
             UploadPhotoCommand = new Command(OnUploadPhoto);
-            PhotoURL = proxy.GetDefaultProfilePhotoUrl();
+            PhotoURL = studentModels.ProfileImageUrl;
             LocalPhotoPath = "";
             IsPassword = true;
             NameError = "Name is required";
@@ -489,7 +489,6 @@ namespace LicenseTrackApp.ViewModels
                     //UPload profile imae if needed
                     if (!string.IsNullOrEmpty(LocalPhotoPath))
                     {
-                        await proxy.LoginAsync(new LoginInfoModels { UserEmail = theStudent.Email, UserPassword = theStudent.PasswordHash });
                         UsersModels? updatedUser = await proxy.UploadProfileImage(LocalPhotoPath);
                         if (updatedUser == null)
                         {

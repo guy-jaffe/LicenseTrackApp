@@ -1,58 +1,111 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LicenseTrackApp.Views.ProfileView"
-             xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
-             Title="ProfileView">
-    <VerticalStackLayout Padding="20">
-        
-        <!--first name-->
-        <Label Text="First name " FontSize="Medium"></Label>
-        <Entry Text="{Binding Name}" Placeholder="Enter first name"></Entry>
-        <Label Text="{Binding NameError}" TextColor="Red" IsVisible="{Binding ShowNameError}"></Label>
-               
-        <!--last name-->
-        <Label Text="Last name " FontSize="Medium"></Label>
-        <Entry Text="{Binding LastName}" Placeholder="Enter last name"></Entry>
-        <Label Text="{Binding LastNameError}" TextColor="Red" IsVisible="{Binding ShowLastNameError}"></Label>
+<ContentPage
+    x:Class="LicenseTrackApp.Views.ProfileView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
+    Title="ProfileView">
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <!--  Photo  -->
+            <Frame
+                Margin="10"
+                Padding="5"
+                BorderColor="Black">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        x:Name="theImageBug"
+                        HeightRequest="150"
+                        Source="{Binding PhotoURL}" />
+                    <Label
+                        Grid.Row="1"
+                        HorizontalOptions="Center"
+                        Text="Click Here To Upload Photo!"
+                        TextColor="Blue"
+                        VerticalOptions="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Frame>
+            <!--  first name  -->
+            <Label FontSize="Medium" Text="First name " />
+            <Entry Placeholder="Enter first name" Text="{Binding Name}" />
+            <Label
+                IsVisible="{Binding ShowNameError}"
+                Text="{Binding NameError}"
+                TextColor="Red" />
+
+            <!--  last name  -->
+            <Label FontSize="Medium" Text="Last name " />
+            <Entry Placeholder="Enter last name" Text="{Binding LastName}" />
+            <Label
+                IsVisible="{Binding ShowLastNameError}"
+                Text="{Binding LastNameError}"
+                TextColor="Red" />
 
 
-        <!--email-->
-        <Label Text="Email " FontSize="Medium"></Label>
-        <Entry Text="{Binding Email}" Placeholder="Enter email"></Entry>
-        <Label Text="{Binding EmailError}" TextColor="Red" IsVisible="{Binding ShowEmailError}"></Label>
+            <!--  email  -->
+            <Label FontSize="Medium" Text="Email " />
+            <Entry Placeholder="Enter email" Text="{Binding Email}" />
+            <Label
+                IsVisible="{Binding ShowEmailError}"
+                Text="{Binding EmailError}"
+                TextColor="Red" />
 
 
-        <!--password-->
-        <Label Text="Password " FontSize="Medium"></Label>
-        <Entry Text="{Binding Password}" Placeholder="Enter password"></Entry>
-        <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}"></Label>
+            <!--  password  -->
+            <Label FontSize="Medium" Text="Password " />
+            <Entry Placeholder="Enter password" Text="{Binding Password}" />
+            <Label
+                IsVisible="{Binding ShowPasswordError}"
+                Text="{Binding PasswordError}"
+                TextColor="Red" />
 
 
-        <!--City-->
-        <Label Text="City " FontSize="Medium"></Label>
-        <Entry Text="{Binding City}" Placeholder="Enter city"></Entry>
-        <Label Text="{Binding CityError}" TextColor="Red" IsVisible="{Binding ShowCityError}"></Label>
+            <!--  City  -->
+            <Label FontSize="Medium" Text="City " />
+            <Entry Placeholder="Enter city" Text="{Binding City}" />
+            <Label
+                IsVisible="{Binding ShowCityError}"
+                Text="{Binding CityError}"
+                TextColor="Red" />
 
 
-        <!--Street-->
-        <Label Text="Street " FontSize="Medium"></Label>
-        <Entry Text="{Binding Street}" Placeholder="Enter street"></Entry>
-        <Label Text="{Binding StreetError}" TextColor="Red" IsVisible="{Binding ShowStreetError}"></Label>
+            <!--  Street  -->
+            <Label FontSize="Medium" Text="Street " />
+            <Entry Placeholder="Enter street" Text="{Binding Street}" />
+            <Label
+                IsVisible="{Binding ShowStreetError}"
+                Text="{Binding StreetError}"
+                TextColor="Red" />
 
 
-        <!--LicenseAcquisitionDate-->
-        <Label Text="License Acquisition Date " FontSize="Medium" IsVisible="{Binding IsPassTest}"></Label>
-        <Label Text="{Binding LicenseAcquisitionDate}" FontSize="Medium"></Label>
+            <!--  LicenseAcquisitionDate  -->
+            <Label
+                FontSize="Medium"
+                IsVisible="{Binding IsPassTest}"
+                Text="License Acquisition Date " />
+            <Label FontSize="Medium" Text="{Binding LicenseAcquisitionDate}" />
 
 
 
-        <!--save button-->
-        <Button Text="Save Profile" Command="{Binding UpdateStudentCommand}"></Button>
-        
-        
-        <!--loading indicator-->
-        <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}"></ActivityIndicator>
+            <!--  save button  -->
+            <Button Command="{Binding UpdateStudentCommand}" Text="Save Profile" />
 
-    </VerticalStackLayout>
+
+            <!--  loading indicator  -->
+            <ActivityIndicator IsRunning="{Binding InServerCall}" IsVisible="{Binding InServerCall}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

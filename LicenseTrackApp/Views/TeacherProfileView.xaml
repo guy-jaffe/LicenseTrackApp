@@ -3,7 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LicenseTrackApp.Views.TeacherProfileView"
              Title="TeacherProfileView">
+    <ScrollView>
     <VerticalStackLayout>
+        <!--  Photo  -->
+        <Frame
+            Margin="10"
+            Padding="5"
+            BorderColor="Black">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image
+            x:Name="theImageBug"
+            HeightRequest="150"
+            Source="{Binding PhotoURL}" />
+                <Label
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            Text="Click Here To Upload Photo!"
+            TextColor="Blue"
+            VerticalOptions="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
         <!--first name-->
         <Label Text="First name " FontSize="Medium"></Label>
         <Entry Text="{Binding Name}" Placeholder="Enter first name"></Entry>
@@ -27,10 +57,10 @@
         <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}"></Label>
 
 
-        <!--City-->
+        <!--City--><!--
         <Label Text="City " FontSize="Medium"></Label>
         <Entry Text="{Binding City}" Placeholder="Enter city"></Entry>
-        <Label Text="{Binding CityError}" TextColor="Red" IsVisible="{Binding ShowCityError}"></Label>
+        <Label Text="{Binding CityError}" TextColor="Red" IsVisible="{Binding ShowCityError}"></Label>-->
 
 
         <!--School Name-->
@@ -46,11 +76,12 @@
 
 
         <!--save button-->
-        <Button Text="Save Profile" Command="{Binding UpdateStudentCommand}"></Button>
+        <Button Text="Save Profile" Command="{Binding UpdateTeacherCommand}"></Button>
 
 
         <!--loading indicator-->
         <ActivityIndicator IsVisible="{Binding InServerCall}" IsRunning="{Binding InServerCall}"></ActivityIndicator>
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
