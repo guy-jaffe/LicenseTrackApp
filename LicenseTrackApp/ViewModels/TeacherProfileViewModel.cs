@@ -88,8 +88,8 @@ namespace LicenseTrackApp.ViewModels
             }
         }
 
-        private bool? confirmationStatus;
-        public bool? ConfirmationStatus
+        private int? confirmationStatus;
+        public int? ConfirmationStatus
         {
             get => confirmationStatus;
             set

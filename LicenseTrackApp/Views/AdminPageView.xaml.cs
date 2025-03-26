@@ -1,9 +1,11 @@
 namespace LicenseTrackApp.Views;
+using LicenseTrackApp.ViewModels;
 
 public partial class AdminPageView : ContentPage
 {
-	public AdminPageView()
+	public AdminPageView(AdminPageViewModel vm)
 	{
+		this.BindingContext = vm;
 		InitializeComponent();
 	}
 }

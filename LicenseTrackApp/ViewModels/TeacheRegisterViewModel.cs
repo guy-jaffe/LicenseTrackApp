@@ -621,7 +621,7 @@ namespace LicenseTrackApp.ViewModels
                     SchoolName = SchoolName,
                     VehicleType = VehicleType,
                     ManualCar = ManualCar,
-                    ConfirmationStatus = false,
+                    ConfirmationStatus = 0,
                     FileExtension = GetImageExtention()
                 };
 

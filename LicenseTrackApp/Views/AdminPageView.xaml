@@ -2,11 +2,157 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LicenseTrackApp.Views.AdminPageView"
+             xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
              Title="AdminPageView">
+    <ScrollView>
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+        <Label
+            Margin="10"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="אישור מורים:" />
+
+        <CollectionView
+    x:Name="cv"
+    ItemsSource="{Binding PendingTeachers}"
+    SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <StackLayout Padding="10">
+
+                                <!--להוסיף תמונת המורה-->
+
+                                <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding FirstName, StringFormat='first Name: {0}'}" />
+                            <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding LastName, StringFormat='last Name: {0}'}" />
+                            <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding SchoolName, StringFormat='school Name: {0}'}" />
+                            <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding PhoneNum, StringFormat='phone Number: {0}'}" />
+
+                            <Button
+                        Command="{Binding Source={x:Reference cv}, Path=BindingContext.ApproveCommand}"
+                        CommandParameter="{Binding}"
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="אישור מורה" />
+
+                            <Button
+                        Command="{Binding Source={x:Reference cv}, Path=BindingContext.DeclineCommand}"
+                        CommandParameter="{Binding}"
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="חסימת מורה" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+
+        <Label
+            Margin="10"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="רשימת תלמידים:" />
+
+        <SearchBar Text="{Binding SearchStudents}" Placeholder="search student.."></SearchBar>
+
+        <CollectionView
+    ItemsSource="{Binding FilteredStudents}"
+    SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <StackLayout Padding="10">
+                            
+                            <!--להוסיף תמונת התלמיד-->
+                            
+                            <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding FirstName, StringFormat='first Name: {0}'}" />
+                            <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding LastName, StringFormat='last Name: {0}'}" />
+                            <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding Email, StringFormat='Email: {0}'}" />
+                            <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding PhoneNum, StringFormat='phone Number: {0}'}" />
+                            
+                            <!--להוסיף את מצב הרישיון-->
+
+
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+            <Label
+            Margin="10"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="רשימת מורים:" />
+
+            <SearchBar Text="{Binding SearchTeachers}" Placeholder="search teacher.."></SearchBar>
+
+            <CollectionView
+    ItemsSource="{Binding FilteredTeachers}"
+    SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <StackLayout Padding="10">
+
+                                <!--להוסיף תמונת המורה-->
+
+                                <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding FirstName, StringFormat='first Name: {0}'}" />
+                                <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding LastName, StringFormat='last Name: {0}'}" />
+                                <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding Email, StringFormat='Email: {0}'}" />
+                                <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding PhoneNum, StringFormat='phone Number: {0}'}" />
+                                <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding SchoolName, StringFormat='school Name: {0}'}" />
+
+
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
