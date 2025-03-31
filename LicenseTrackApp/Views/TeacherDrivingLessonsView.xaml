@@ -4,6 +4,7 @@
              x:Class="LicenseTrackApp.Views.TeacherDrivingLessonsView"
              xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
              Title="TeacherDrivingLessonsView">
+    <ScrollView>
     <VerticalStackLayout>
 
         <Button
@@ -49,4 +50,5 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -6,7 +6,7 @@
     xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
     Title="StudentRegisterView"
     x:DataType="viewmodels:StudentRegisterViewModel">
-
+    <ScrollView>
     <Grid>
 
 
@@ -221,5 +221,5 @@
             VerticalOptions="Center"
             Color="Red" />
     </Grid>
-
+    </ScrollView>
 </ContentPage>

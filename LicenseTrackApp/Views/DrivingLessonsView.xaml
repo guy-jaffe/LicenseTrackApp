@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
     Title="DrivingLessonsView">
+    <ScrollView>
     <VerticalStackLayout>
 
 
@@ -53,4 +54,5 @@
         </CollectionView>
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

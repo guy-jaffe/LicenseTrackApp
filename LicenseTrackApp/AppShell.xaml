@@ -15,6 +15,7 @@
             Title="TheoryCourse"
             ContentTemplate="{DataTemplate Views:TheoryCourseView}"
             Icon="theory.png"
+            IsVisible="{Binding IsStudent}"
             Route="TheoryCourse" />
 
         <ShellContent
