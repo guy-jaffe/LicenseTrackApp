@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LicenseTrackApp.Views.HomepageView"
+             Title="HomepageView">
+    <VerticalStackLayout>
+        <Label 
+            Text="המסע לרישיון"
+            FontSize="Large"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Margin="15"/>
+
+   
+
+        <Frame
+                Margin="0,20,0,0"
+                BackgroundColor="{Binding ColorTheory}"
+                BorderColor="Black"
+                CornerRadius="80"
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="80">
+            <Image Source="theory.png"></Image>
+        </Frame>
+        <Label
+                    Text="מלווה"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+            <Button
+            Command="{Binding FinishTheoryCommand}"
+            Text=" עברתי תיאוריה!!" />
+
+
+        <Frame
+                Margin="0,30,0,0"
+                BackgroundColor="{Binding ColorLessons}"
+                BorderColor="Black"
+                CornerRadius="80"
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="80">
+            <Image Source="driving.png"></Image>
+        </Frame>
+        <Label
+                    Text="בשיעורים"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+        <Button
+            Command="{Binding FinishLessonsCommand}"
+            Text=" עברתי טסט!!" />
+
+        <Frame
+                Margin="0,30,0,0"
+                BackgroundColor="{Binding colorAccompanied}"
+                BorderColor="Black"
+                CornerRadius="80"
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="80">
+            <Image Source="licensepic.png"></Image>
+        </Frame>
+        <Label
+                    Text="במלווה"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+    </VerticalStackLayout>
+</ContentPage>

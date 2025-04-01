@@ -45,6 +45,8 @@ namespace LicenseTrackApp
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<TeacherProfileView>();
             builder.Services.AddTransient<TeacherDrivingLessonsView>();
+            builder.Services.AddTransient<HomepageView>();
+
 
 
             return builder;
@@ -73,6 +75,8 @@ namespace LicenseTrackApp
             builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddTransient<TeacherProfileViewModel>();
             builder.Services.AddTransient<TeacherDrivingLessonsViewModel>();
+            builder.Services.AddTransient<HomepageViewModel>();
+
 
 
 

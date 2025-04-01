@@ -21,7 +21,7 @@
                     <Frame>
                         <StackLayout Padding="10">
 
-                                <!--להוסיף תמונת המורה-->
+                                <Image Source="{Binding ProfileImageUrl}"></Image>
 
                                 <Label
                         FontAttributes="Italic"
@@ -77,8 +77,7 @@
                     <Frame>
                         <StackLayout Padding="10">
                             
-                            <!--להוסיף תמונת התלמיד-->
-                            
+                                <Image Source="{Binding ProfileImageUrl}"></Image>
                             <Label
                         FontAttributes="Italic"
                         FontSize="Small"
@@ -95,8 +94,13 @@
                         FontAttributes="Italic"
                         FontSize="Small"
                         Text="{Binding PhoneNum, StringFormat='phone Number: {0}'}" />
-                            
-                            <!--להוסיף את מצב הרישיון-->
+                                <Label
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        Text="{Binding LicenseStatusName, StringFormat='מצב רישיון: {0}'}" />
+
+
+                                <!--להוסיף את מצב הרישיון-->
 
 
                         </StackLayout>
@@ -122,7 +126,7 @@
                         <Frame>
                             <StackLayout Padding="10">
 
-                                <!--להוסיף תמונת המורה-->
+                                <Image Source="{Binding ProfileImageUrl}"></Image>
 
                                 <Label
                         FontAttributes="Italic"
