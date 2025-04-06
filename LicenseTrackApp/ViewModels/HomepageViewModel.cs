@@ -30,15 +30,27 @@ namespace LicenseTrackApp.ViewModels
             Student = (StudentModels)user;
 
 
-
-            if(Student.LicenseStatus == 1)
+            if (Student.LicenseStatus == 0)
+            {
+                InTheory = true;
+                InLessons = false;
+            }
+            else if (Student.LicenseStatus == 1)
             {
                 ColorTheory = Colors.Green;
+
+                InTheory = false;
+                InLessons = true;
+
             }
             else if(Student.LicenseStatus == 2)
             {
                 ColorTheory = Colors.Green;
                 ColorLessons = Colors.Green;
+
+                InTheory = false;
+                InLessons = false;
+
 
                 DateTime testTime = new DateTime(Student.LicenseAcquisitionDate.Value.Year,
                     Student.LicenseAcquisitionDate.Value.Month,
@@ -58,12 +70,45 @@ namespace LicenseTrackApp.ViewModels
                 ColorTheory = Colors.Green;
                 ColorLessons = Colors.Green;
                 colorAccompanied = Colors.Green;
-        
+
+                InTheory = false;
+                InLessons = false;
+
+
             }
         }
 
         public Command FinishTheoryCommand { get; }
         public Command FinishLessonsCommand { get; }
+
+
+        private bool inTheory;
+        public bool InTheory
+        {
+            get => inTheory;
+            set
+            {
+                if (inTheory != value)
+                {
+                    inTheory = value;
+                    OnPropertyChanged(nameof(InTheory));
+                }
+            }
+        }
+
+        private bool inLessons;
+        public bool InLessons
+        {
+            get => inLessons;
+            set
+            {
+                if (inLessons != value)
+                {
+                    inLessons = value;
+                    OnPropertyChanged(nameof(InLessons));
+                }
+            }
+        }
 
 
         private Color colorTheory;
@@ -119,6 +164,8 @@ namespace LicenseTrackApp.ViewModels
                 if (s != null)
                 {
                     ColorTheory = Colors.Green;
+                    InTheory = false;
+                    InLessons = true;
                 }
                 else
                 {
@@ -142,7 +189,9 @@ namespace LicenseTrackApp.ViewModels
                 if (s != null)
                 {
                     ColorTheory = Colors.Green;
-                    colorLessons = Colors.Green;
+                    ColorLessons = Colors.Green;
+
+                    InLessons = false;
                 }
                 else
                 {

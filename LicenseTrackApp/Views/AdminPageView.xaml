@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LicenseTrackApp.Views.AdminPageView"
              xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
-             Title="AdminPageView">
+             Title="דף מנהל">
     <ScrollView>
     <VerticalStackLayout>
         <Label

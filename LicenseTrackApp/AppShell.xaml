@@ -12,49 +12,49 @@
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
 
         <ShellContent
-            Title="Homepage"
+            Title="דף בית"
             ContentTemplate="{DataTemplate Views:HomepageView}"
-            Icon="icons8-home-50.png"
+            Icon="home.png"
             IsVisible="{Binding IsStudent}"
             Route="Homepage" />
 
         <ShellContent
-            Title="TheoryCourse"
+            Title="למידה לתיאוריה"
             ContentTemplate="{DataTemplate Views:TheoryCourseView}"
             Icon="theory.png"
             IsVisible="{Binding IsStudent}"
             Route="TheoryCourse" />
 
         <ShellContent
-            Title="DrivingLessons"
+            Title="שיעורי הנהיגה"
             ContentTemplate="{DataTemplate Views:DrivingLessonsView}"
             Icon="driving.png"
             IsVisible="{Binding IsStudent}"
             Route="DrivingLessons" />
 
         <ShellContent
-            Title="TeacherDrivingLessons"
+            Title="שיעורי הנהיגה"
             ContentTemplate="{DataTemplate Views:TeacherDrivingLessonsView}"
             Icon="driving.png"
             IsVisible="{Binding IsTeacher}"
             Route="TeacherDrivingLessons" />
 
         <ShellContent
-            Title="AccompaniedDetails"
+            Title="פרטי המלווה"
             ContentTemplate="{DataTemplate Views:AccompaniedDetailsView}"
             Icon="licensepic.png"
             IsVisible="{Binding IsPassTest}"
             Route="AccompaniedDetails" />
 
         <ShellContent
-            Title="Profile"
+            Title="פרופיל"
             ContentTemplate="{DataTemplate Views:ProfileView}"
             Icon="profilepic.png"
             IsVisible="{Binding IsStudent}"
             Route="ProfileStudent" />
 
         <ShellContent
-            Title="Profile"
+            Title="פרופיל"
             ContentTemplate="{DataTemplate Views:TeacherProfileView}"
             Icon="profilepic.png"
             IsVisible="{Binding IsTeacher}"
@@ -62,7 +62,7 @@
 
 
         <ShellContent
-            Title="AdminPage"
+            Title="דף מנהל"
             ContentTemplate="{DataTemplate Views:AdminPageView}"
             Icon="admin.png"
             IsVisible="{Binding IsManager}"
@@ -73,7 +73,7 @@
     <MenuItem
         Command="{Binding LogoutCommand}"
         IconImageSource="logout.png"
-        Text="Logout" />
+        Text="התנתקות" />
 
 
 </Shell>

@@ -1,66 +1,153 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="AliceBlue"
-            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LicenseTrackApp.Views.TheoryCourseView"
              Title="למידה לתיאוריה"
-             FlowDirection="RightToLeft">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding Category}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Start" />
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F5F9FC">
+    <Grid>
+        <!-- רקע דקורטיבי -->
+        <BoxView 
+            Grid.Row="0"
+            HeightRequest="180"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            BackgroundColor="#1A75BC"
+            Opacity="0.9" />
 
-        <Label 
-            Margin="15"
-            Text="{Binding QuestionDescription}"
-            FontSize="Large"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Path Fill="#1C8AD9" 
+              Opacity="0.3"
+              Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z" />
 
-        <Image
-            Source="{Binding ImageUrl}" 
-            HeightRequest="150"
-            IsVisible="{Binding ShowImage}"/>
+        <ScrollView>
+            <VerticalStackLayout Padding="20">
+                <!-- כותרת ראשית -->
+                <Frame BackgroundColor="#FFFFFF" 
+                       CornerRadius="15" 
+                       Margin="0,10,0,20"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15">
+                    <StackLayout>
+                        <Label 
+                            Text="שאלות תיאוריה"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#1A75BC"
+                            HorizontalOptions="Center"
+                            Margin="0,10,0,5"/>
 
-        <Button 
-            Margin="5"
-            Text="{Binding Answer0}"
-            Command="{Binding Answer0Command}" 
-            BackgroundColor="{Binding Color0}"
-            TextColor="Black"
-            IsEnabled="{Binding NotInServerCall}"/>
+                        <Label 
+                            Text="{Binding Category}"
+                            FontSize="16"
+                            TextColor="#6D7B92"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Margin="0,0,0,5"/>
+                    </StackLayout>
+                </Frame>
 
-        <Button 
-            Margin="5"
-            Text="{Binding Answer1}"
-            Command="{Binding Answer1Command}"
-            BackgroundColor="{Binding Color1}"
-            TextColor="Black"
-            IsEnabled="{Binding NotInServerCall}"/>
+                <!-- תוכן השאלה -->
+                <Frame BackgroundColor="#FFFFFF"
+                       CornerRadius="20"
+                       Margin="0,10,0,15"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15">
+                    <StackLayout>
+                        <Label 
+                            Text="{Binding QuestionDescription}"
+                            FontSize="18"
+                            TextColor="#2C3E50"
+                            HorizontalOptions="Fill"
+                            Margin="0,5,0,15" />
 
-        <Button 
-            Margin="5"
-            Text="{Binding Answer2}"
-            Command="{Binding Answer2Command}"
-            BackgroundColor="{Binding Color2}"
-            TextColor="Black"
-            IsEnabled="{Binding NotInServerCall}"/>
+                        <Frame IsVisible="{Binding ShowImage}"
+                               BorderColor="#E5E7F1"
+                               CornerRadius="10"
+                               Padding="5"
+                               HasShadow="False"
+                               Margin="0,0,0,15"
+                               HorizontalOptions="Center">
+                            <Image Source="{Binding ImageUrl}" 
+                                   HeightRequest="180"
+                                   WidthRequest="300"
+                                   Aspect="AspectFit"/>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
 
-        <Button 
-            Margin="5"
-            Text="{Binding Answer3}"
-            Command="{Binding Answer3Command}" 
-            BackgroundColor="{Binding Color3}"
-            TextColor="Black"
-            IsEnabled="{Binding NotInServerCall}"/>
+                <!-- תשובות אפשריות -->
+                <Frame BackgroundColor="#FFFFFF"
+                       CornerRadius="20"
+                       Margin="0,10,0,15"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Button 
+                            Margin="0,5"
+                            Text="{Binding Answer0}"
+                            Command="{Binding Answer0Command}" 
+                            BackgroundColor="{Binding Color0, FallbackValue=#E3F2FD}"
+                            TextColor="#2C3E50"
+                            FontSize="16"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Fill"
+                            IsEnabled="{Binding NotInServerCall}"/>
 
+                        <Button 
+                            Margin="0,5"
+                            Text="{Binding Answer1}"
+                            Command="{Binding Answer1Command}"
+                            BackgroundColor="{Binding Color1, FallbackValue=#E3F2FD}"
+                            TextColor="#2C3E50"
+                            FontSize="16"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Fill"
+                            IsEnabled="{Binding NotInServerCall}"/>
 
+                        <Button 
+                            Margin="0,5"
+                            Text="{Binding Answer2}"
+                            Command="{Binding Answer2Command}"
+                            BackgroundColor="{Binding Color2, FallbackValue=#E3F2FD}"
+                            TextColor="#2C3E50"
+                            FontSize="16"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Fill"
+                            IsEnabled="{Binding NotInServerCall}"/>
 
-        <Button 
-            Margin="25"
-            Text="שאלה הבאה"
-            Command="{Binding NextQuestionCommand}" 
-            IsEnabled="{Binding NotInServerCall}"/>
-    </VerticalStackLayout>
+                        <Button 
+                            Margin="0,5"
+                            Text="{Binding Answer3}"
+                            Command="{Binding Answer3Command}" 
+                            BackgroundColor="{Binding Color3, FallbackValue=#E3F2FD}"
+                            TextColor="#2C3E50"
+                            FontSize="16"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Fill"
+                            IsEnabled="{Binding NotInServerCall}"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- כפתור לשאלה הבאה -->
+                <Button 
+                    Margin="20,10,20,20"
+                    Text="שאלה הבאה"
+                    Command="{Binding NextQuestionCommand}" 
+                    BackgroundColor="#1A75BC"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    CornerRadius="15"
+                    HeightRequest="50"
+                    IsEnabled="{Binding NotInServerCall}"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

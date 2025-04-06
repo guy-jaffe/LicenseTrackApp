@@ -4,45 +4,154 @@
              xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
              x:Class="LicenseTrackApp.Views.LoginView"
              x:DataType="viewmodels:LoginViewModel"
-             Title="LoginView">
-    <VerticalStackLayout Padding="20" Spacing="15">
+             Title="התחברות"
+             BackgroundColor="#F5F9FC">
+    <Grid>
+        <!-- רקע דקורטיבי -->
+        <BoxView 
+            Grid.Row="0"
+            HeightRequest="220"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            BackgroundColor="#1A75BC"
+            Opacity="0.9" />
 
-        <Entry 
-    Placeholder="Email"
-    Keyboard="Email"
-    Text="{Binding Email}" 
-    IsEnabled="{Binding NotInServerCall}"/>
+        <Path Fill="#1C8AD9" 
+              Opacity="0.3"
+              Data="M0,170 C150,220 300,130 400,200 L400,0 L0,0 Z" />
 
-        <Entry 
-    Placeholder="Password"
-    IsPassword="True"
-    Text="{Binding Password}" 
-    IsEnabled="{Binding NotInServerCall}"/>
+        <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
+            <!-- כותרת המסך -->
+            <Image 
+                Source="licensepic.png" 
+                HeightRequest="80" 
+                WidthRequest="80"
+                HorizontalOptions="Center"
+                Margin="0,0,0,10" />
 
-        <Button 
-    Text="Login"
-    Command="{Binding LoginCommand}" 
-    IsEnabled="{Binding NotInServerCall}"/>
-        
-        <Label 
-            Text="{Binding ErrorMsg}" 
-            TextColor="Red" 
-            HorizontalOptions="Center">
-            
-        </Label>
-        
-        <Label 
-            Text="Don't have an account? Register"
-            TextColor="Blue"
-            HorizontalOptions="Center"
-            VerticalOptions="End" 
-            IsEnabled="{Binding NotInServerCall}">
-            
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
-            </Label.GestureRecognizers>
-        </Label>
-        
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
-    </VerticalStackLayout>
+            <Label 
+                Text="התחברות לחשבון"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#FFFFFF"
+                HorizontalOptions="Center"
+                Margin="0,0,0,20" />
+
+            <!-- טופס התחברות -->
+            <Frame
+                BackgroundColor="#FFFFFF"
+                CornerRadius="20"
+                HasShadow="True"
+                BorderColor="#E5E7F1"
+                Padding="20"
+                Margin="0,0,0,20">
+
+                <VerticalStackLayout Spacing="20">
+                    <!-- אימייל -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label 
+                            Text="אימייל"
+                            FontSize="14"
+                            TextColor="#6D7B92"
+                            FlowDirection="RightToLeft" />
+
+                        <Frame
+                            Padding="15,0"
+                            CornerRadius="10"
+                            BorderColor="#E5E7F1"
+                            HasShadow="False"
+                            HeightRequest="50">
+
+                            <Entry 
+                                Placeholder="הכנס את האימייל שלך"
+                                PlaceholderColor="#A0AEC0"
+                                Keyboard="Email"
+                                Text="{Binding Email}" 
+                                IsEnabled="{Binding NotInServerCall}"
+                                BackgroundColor="Transparent"
+                                FlowDirection="RightToLeft" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- סיסמה -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label 
+                            Text="סיסמה"
+                            FontSize="14"
+                            TextColor="#6D7B92"
+                            FlowDirection="RightToLeft" />
+
+                        <Frame
+                            Padding="15,0"
+                            CornerRadius="10"
+                            BorderColor="#E5E7F1"
+                            HasShadow="False"
+                            HeightRequest="50">
+
+                            <Entry 
+                                Placeholder="הכנס את הסיסמה שלך"
+                                PlaceholderColor="#A0AEC0"
+                                IsPassword="True"
+                                Text="{Binding Password}" 
+                                IsEnabled="{Binding NotInServerCall}"
+                                BackgroundColor="Transparent"
+                                FlowDirection="RightToLeft" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- כפתור כניסה -->
+                    <Button 
+                        Text="התחבר למערכת"
+                        Command="{Binding LoginCommand}" 
+                        IsEnabled="{Binding NotInServerCall}"
+                        BackgroundColor="#1A75BC"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Margin="0,10,0,0" />
+
+                    <!-- הודעת שגיאה -->
+                    <Label 
+                        Text="{Binding ErrorMsg}" 
+                        TextColor="#E53E3E" 
+                        HorizontalOptions="Center"
+                        FontSize="14"
+                        IsVisible="{Binding ErrorMsg, Converter={StaticResource StringToBoolConverter}}" />
+
+                    <!-- אינדיקטור טעינה -->
+                    <ActivityIndicator 
+                        IsRunning="{Binding InServerCall}" 
+                        Color="#1A75BC"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- קישור להרשמה -->
+            <Frame
+                BackgroundColor="#FFFFFF"
+                CornerRadius="15"
+                HasShadow="True"
+                BorderColor="#E5E7F1"
+                Padding="20"
+                HeightRequest="60">
+
+                <Label 
+                    Text="אין לך חשבון? הירשם עכשיו"
+                    TextColor="#1A75BC"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" 
+                    IsEnabled="{Binding NotInServerCall}">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Frame>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
