@@ -3,40 +3,218 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LicenseTrackApp.Views.SetDrivingLessonsView"
              xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
-             Title="קביעת שיעור">
-    <VerticalStackLayout>
+             Title="קביעת שיעור"
+             FlowDirection="RightToLeft"
+             BackgroundColor="#F5F9FC">
+    <Grid>
+        <!-- רקע דקורטיבי -->
+        <BoxView 
+            Grid.Row="0"
+            HeightRequest="180"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            BackgroundColor="#1A75BC"
+            Opacity="0.9" />
 
-        <Picker Title="בחר מורה" ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}" Margin="10" ItemDisplayBinding="{Binding FirstName}"></Picker>
+        <Path Fill="#1C8AD9" 
+              Opacity="0.3"
+              Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z" />
 
-        <!--name-->
-        <Label Text="teacher name - " FontSize="Medium"></Label>
-        <Label Text="{Binding TeacherName}"></Label>
+        <ScrollView>
+            <VerticalStackLayout Padding="20">
+                <!-- כותרת ראשית -->
+                <Frame BackgroundColor="#FFFFFF" 
+                       CornerRadius="15" 
+                       Margin="0,10,0,20"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15">
+                    <StackLayout>
+                        <Label 
+                            Text="קביעת שיעור נהיגה"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#1A75BC"
+                            HorizontalOptions="Center"
+                            Margin="0,10,0,5"/>
 
-        <!--city-->
-        <Label Text="city - " FontSize="Medium"></Label>
-        <Label Text="{Binding City}"></Label>
+                        <Label 
+                            Text="בחר מורה, תאריך ושעה"
+                            FontSize="16"
+                            TextColor="#6D7B92"
+                            HorizontalOptions="Center"
+                            Margin="0,0,0,5"/>
+                    </StackLayout>
+                </Frame>
 
-        <!--car type-->
-        <Label Text="car type - " FontSize="Medium"></Label>
-        <Label Text="{Binding CarType}"></Label>
+                <!-- בחירת מורה -->
+                <Frame BackgroundColor="#FFFFFF"
+                       CornerRadius="20"
+                       Margin="0,10,0,15"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15">
+                    <StackLayout>
+                        <Label 
+                            Text="בחירת מורה"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#2C3E50"
+                            Margin="0,0,0,10" />
 
-        <!--is manual-->
-        <Label Text="ידני / אוטומט - " FontSize="Medium"></Label>
-        <Label Text="{Binding IsManual}"></Label>
+                        <Frame
+                            BackgroundColor="#F8FAFC"
+                            BorderColor="#E5E7F1"
+                            CornerRadius="10"
+                            Padding="10"
+                            HasShadow="False">
+                            <Picker 
+                                Title="בחר מורה" 
+                                ItemsSource="{Binding Teachers}" 
+                                SelectedItem="{Binding SelectedTeacher}" 
+                                ItemDisplayBinding="{Binding FirstName}" 
+                                TextColor="#2C3E50"
+                                FontSize="16" />
+                        </Frame>
+                    </StackLayout>
+                </Frame>
 
+                <!-- פרטי מורה -->
+                <Frame BackgroundColor="#FFFFFF"
+                       CornerRadius="20"
+                       Margin="0,10,0,15"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15"
+                       IsVisible="{Binding SelectedTeacher, Converter={StaticResource IsNotNullOrEmptyConverter}}">
+                    <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
+                        <Frame
+                            Grid.RowSpan="4"
+                            BackgroundColor="#E3F2FD"
+                            BorderColor="#1A75BC"
+                            CornerRadius="80"
+                            HeightRequest="80"
+                            WidthRequest="80"
+                            Margin="0,0,15,0">
+                            <Image Source="instructor.png" Aspect="AspectFit" Margin="15"/>
+                        </Frame>
 
-        <DatePicker Date="{Binding SelectedDate}"></DatePicker>
+                        <!-- שם המורה -->
+                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="0,0,0,8">
+                            <Label Text="שם המורה" FontSize="14" TextColor="#6D7B92" />
+                            <Label Text="{Binding TeacherName}" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" />
+                        </StackLayout>
 
+                        <!-- עיר -->
+                        <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,8">
+                            <Label Text="עיר" FontSize="14" TextColor="#6D7B92" />
+                            <Label Text="{Binding City}" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" />
+                        </StackLayout>
 
-        <CollectionView ItemsSource="{Binding LessonsByDate}" SelectedItem="{Binding SelectedTime}" SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding LessonTime}" HorizontalOptions="Center"></Label>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        <!-- סוג רכב -->
+                        <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Vertical" Margin="0,0,0,8">
+                            <Label Text="סוג רכב" FontSize="14" TextColor="#6D7B92" />
+                            <Label Text="{Binding CarType}" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" />
+                        </StackLayout>
 
-        <!--save button-->
-        <Button Text="Save lesson" Command="{Binding SaveCommand}"></Button>
-    </VerticalStackLayout>
+                        <!-- ידני / אוטומט -->
+                        <StackLayout Grid.Column="1" Grid.Row="3" Orientation="Vertical" Margin="0,0,0,8">
+                            <Label Text="סוג תיבת הילוכים" FontSize="14" TextColor="#6D7B92" />
+                            <Label Text="{Binding IsManual}" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- בחירת תאריך ושעה -->
+                <Frame BackgroundColor="#FFFFFF"
+                       CornerRadius="20"
+                       Margin="0,10,0,15"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15">
+                    <StackLayout>
+                        <Label 
+                            Text="בחירת תאריך ושעה"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#2C3E50"
+                            Margin="0,0,0,10" />
+
+                        <Frame
+                            BackgroundColor="#F8FAFC"
+                            BorderColor="#E5E7F1"
+                            CornerRadius="10"
+                            Padding="10"
+                            Margin="0,0,0,15"
+                            HasShadow="False">
+                            <DatePicker 
+                                Date="{Binding SelectedDate}"
+                                TextColor="#2C3E50"
+                                FontSize="16" />
+                        </Frame>
+
+                        <Label 
+                            Text="שעות זמינות:"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="#2C3E50"
+                            Margin="0,5,0,10" />
+
+                        <Frame
+                            BackgroundColor="#F8FAFC"
+                            BorderColor="#E5E7F1"
+                            CornerRadius="10"
+                            Padding="10"
+                            HasShadow="False">
+                            <CollectionView 
+                                ItemsSource="{Binding LessonsByDate}" 
+                                SelectedItem="{Binding SelectedTime}" 
+                                SelectionMode="Single"
+                                HeightRequest="150">
+                                <CollectionView.EmptyView>
+                                    <Label 
+                                        Text="אין שעות זמינות בתאריך זה"
+                                        TextColor="#6D7B92"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" />
+                                </CollectionView.EmptyView>
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical" Span="3" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame
+                                            BackgroundColor="#E3F2FD"
+                                            BorderColor="#1A75BC"
+                                            CornerRadius="10"
+                                            Margin="5"
+                                            Padding="10,5"
+                                            HasShadow="False">
+                                            <Label 
+                                                Text="{Binding LessonTime, StringFormat='{0:hh\\:mm}'}" 
+                                                HorizontalOptions="Center"
+                                                TextColor="#2C3E50"
+                                                FontSize="14" />
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+
+                <!-- כפתור שמירה -->
+                <Button 
+                    Text="שמור שיעור"
+                    Command="{Binding SaveCommand}"
+                    BackgroundColor="#1A75BC"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    CornerRadius="15"
+                    HeightRequest="50"
+                    Margin="20,10,20,20" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
