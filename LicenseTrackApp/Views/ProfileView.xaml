@@ -4,108 +4,343 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
-    Title="פרופיל">
-    <ScrollView>
-        <VerticalStackLayout Padding="20">
+    Title="פרופיל"
+    BackgroundColor="#F5F9FC">
 
-            <!--  Photo  -->
-            <Frame
-                Margin="10"
-                Padding="5"
-                BorderColor="Black">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image
-                        x:Name="theImageBug"
-                        HeightRequest="150"
-                        Source="{Binding PhotoURL}" />
-                    <Label
-                        Grid.Row="1"
-                        HorizontalOptions="Center"
-                        Text="Click Here To Upload Photo!"
-                        TextColor="Blue"
-                        VerticalOptions="End">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Grid>
-            </Frame>
-            <!--  first name  -->
-            <Label FontSize="Medium" Text="First name " />
-            <Entry Placeholder="Enter first name" Text="{Binding Name}" />
-            <Label
-                IsVisible="{Binding ShowNameError}"
-                Text="{Binding NameError}"
-                TextColor="Red" />
+    <Grid>
+        <!-- רקע דקורטיבי -->
+        <BoxView 
+            Grid.Row="0"
+            HeightRequest="180"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            BackgroundColor="#1A75BC"
+            Opacity="0.9" />
 
-            <!--  last name  -->
-            <Label FontSize="Medium" Text="Last name " />
-            <Entry Placeholder="Enter last name" Text="{Binding LastName}" />
-            <Label
-                IsVisible="{Binding ShowLastNameError}"
-                Text="{Binding LastNameError}"
-                TextColor="Red" />
+        <Path Fill="#1C8AD9" 
+              Opacity="0.3"
+              Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z" />
 
+        <ScrollView>
+            <VerticalStackLayout Padding="20">
+                <!-- כותרת ראשית -->
+                <Frame BackgroundColor="#FFFFFF" 
+                       CornerRadius="15" 
+                       Margin="0,10,0,20"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15">
+                    <StackLayout>
+                        <Label 
+                            Text="הפרופיל שלי"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#1A75BC"
+                            HorizontalOptions="Center"
+                            Margin="0,10,0,5"/>
 
-            <!--  email  -->
-            <Label FontSize="Medium" Text="Email " />
-            <Entry Placeholder="Enter email" Text="{Binding Email}" />
-            <Label
-                IsVisible="{Binding ShowEmailError}"
-                Text="{Binding EmailError}"
-                TextColor="Red" />
+                        <Label 
+                            Text="עדכון פרטים אישיים"
+                            FontSize="16"
+                            TextColor="#6D7B92"
+                            HorizontalOptions="Center"
+                            Margin="0,0,0,5"/>
+                    </StackLayout>
+                </Frame>
 
+                <!-- תמונת פרופיל -->
+                <Frame 
+                    BackgroundColor="#FFFFFF"
+                    CornerRadius="15"
+                    HasShadow="True"
+                    BorderColor="#E5E7F1"
+                    Padding="20"
+                    Margin="0,0,0,20">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Frame 
+                            Padding="0"
+                            BorderColor="#1A75BC"
+                            BackgroundColor="#E3F2FD"
+                            CornerRadius="90"
+                            HeightRequest="180"
+                            WidthRequest="180"
+                            HorizontalOptions="Center"
+                            IsClippedToBounds="True">
+                            <Image
+                                x:Name="theImageBug"
+                                Aspect="AspectFill"
+                                Source="{Binding PhotoURL}" />
+                        </Frame>
 
-            <!--  password  -->
-            <Label FontSize="Medium" Text="Password " />
-            <Entry Placeholder="Enter password" Text="{Binding Password}" />
-            <Label
-                IsVisible="{Binding ShowPasswordError}"
-                Text="{Binding PasswordError}"
-                TextColor="Red" />
+                        <Label
+                            Margin="0,15,0,0"
+                            FontSize="16"
+                            TextColor="#1A75BC"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="לחץ כאן להעלאת תמונה">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UploadPhotoCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </VerticalStackLayout>
+                </Frame>
 
+                <!-- פרטים אישיים -->
+                <Frame 
+                    BackgroundColor="#FFFFFF"
+                    CornerRadius="15"
+                    HasShadow="True"
+                    BorderColor="#E5E7F1"
+                    Padding="20"
+                    Margin="0,0,0,20">
+                    <VerticalStackLayout Spacing="5">
+                        <Label 
+                            Text="פרטים אישיים"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="#2C3E50"
+                            Margin="0,0,0,10"/>
 
-            <!--  City  -->
-            <Label FontSize="Medium" Text="City " />
-            <Entry Placeholder="Enter city" Text="{Binding City}" />
-            <Label
-                IsVisible="{Binding ShowCityError}"
-                Text="{Binding CityError}"
-                TextColor="Red" />
+                        <!-- שם פרטי -->
+                        <Label 
+                            FontSize="16" 
+                            Text="שם פרטי" 
+                            TextColor="#6D7B92" 
+                            Margin="0,10,0,0"/>
+                        <Frame 
+                            Padding="5" 
+                            CornerRadius="10" 
+                            BorderColor="#E5E7F1" 
+                            BackgroundColor="#F9FAFC" 
+                            Margin="0,0,0,5">
+                            <Entry 
+                                Placeholder="הכנס שם פרטי" 
+                                Text="{Binding Name}" 
+                                FontSize="16"/>
+                        </Frame>
+                        <Label
+                            IsVisible="{Binding ShowNameError}"
+                            Text="{Binding NameError}"
+                            TextColor="#E74C3C"
+                            FontSize="14"
+                            Margin="5,0,0,5" />
 
+                        <!-- שם משפחה -->
+                        <Label 
+                            FontSize="16" 
+                            Text="שם משפחה" 
+                            TextColor="#6D7B92" 
+                            Margin="0,10,0,0"/>
+                        <Frame 
+                            Padding="5" 
+                            CornerRadius="10" 
+                            BorderColor="#E5E7F1" 
+                            BackgroundColor="#F9FAFC" 
+                            Margin="0,0,0,5">
+                            <Entry 
+                                Placeholder="הכנס שם משפחה" 
+                                Text="{Binding LastName}" 
+                                FontSize="16"/>
+                        </Frame>
+                        <Label
+                            IsVisible="{Binding ShowLastNameError}"
+                            Text="{Binding LastNameError}"
+                            TextColor="#E74C3C"
+                            FontSize="14"
+                            Margin="5,0,0,5" />
 
-            <!--  Street  -->
-            <Label FontSize="Medium" Text="Street " />
-            <Entry Placeholder="Enter street" Text="{Binding Street}" />
-            <Label
-                IsVisible="{Binding ShowStreetError}"
-                Text="{Binding StreetError}"
-                TextColor="Red" />
+                        <!-- מייל -->
+                        <Label 
+                            FontSize="16" 
+                            Text="דואר אלקטרוני" 
+                            TextColor="#6D7B92" 
+                            Margin="0,10,0,0"/>
+                        <Frame 
+                            Padding="5" 
+                            CornerRadius="10" 
+                            BorderColor="#E5E7F1" 
+                            BackgroundColor="#F9FAFC" 
+                            Margin="0,0,0,5">
+                            <Entry 
+                                Placeholder="הכנס דואר אלקטרוני" 
+                                Text="{Binding Email}" 
+                                FontSize="16"/>
+                        </Frame>
+                        <Label
+                            IsVisible="{Binding ShowEmailError}"
+                            Text="{Binding EmailError}"
+                            TextColor="#E74C3C"
+                            FontSize="14"
+                            Margin="5,0,0,5" />
 
+                        <!-- סיסמה -->
+                        <Label 
+                            FontSize="16" 
+                            Text="סיסמה" 
+                            TextColor="#6D7B92" 
+                            Margin="0,10,0,0"/>
+                        <Frame 
+                            Padding="5" 
+                            CornerRadius="10" 
+                            BorderColor="#E5E7F1" 
+                            BackgroundColor="#F9FAFC" 
+                            Margin="0,0,0,5">
+                            <Entry 
+                                Placeholder="הכנס סיסמה" 
+                                Text="{Binding Password}" 
+                                IsPassword="True"
+                                FontSize="16"/>
+                        </Frame>
+                        <Label
+                            IsVisible="{Binding ShowPasswordError}"
+                            Text="{Binding PasswordError}"
+                            TextColor="#E74C3C"
+                            FontSize="14"
+                            Margin="5,0,0,5" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            <!--  LicenseAcquisitionDate  -->
-            <Label
-                FontSize="Medium"
-                IsVisible="{Binding IsPassTest}"
-                Text="License Acquisition Date " />
-            <Label FontSize="Medium" Text="{Binding LicenseAcquisitionDate}" />
+                <!-- פרטי כתובת -->
+                <Frame 
+                    BackgroundColor="#FFFFFF"
+                    CornerRadius="15"
+                    HasShadow="True"
+                    BorderColor="#E5E7F1"
+                    Padding="20"
+                    Margin="0,0,0,20">
+                    <VerticalStackLayout Spacing="5">
+                        <Label 
+                            Text="פרטי כתובת"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="#2C3E50"
+                            Margin="0,0,0,10"/>
 
+                        <!-- עיר -->
+                        <Label 
+                            FontSize="16" 
+                            Text="עיר" 
+                            TextColor="#6D7B92" 
+                            Margin="0,10,0,0"/>
+                        <Frame 
+                            Padding="5" 
+                            CornerRadius="10" 
+                            BorderColor="#E5E7F1" 
+                            BackgroundColor="#F9FAFC" 
+                            Margin="0,0,0,5">
+                            <Entry 
+                                Placeholder="הכנס עיר" 
+                                Text="{Binding City}" 
+                                FontSize="16"/>
+                        </Frame>
+                        <Label
+                            IsVisible="{Binding ShowCityError}"
+                            Text="{Binding CityError}"
+                            TextColor="#E74C3C"
+                            FontSize="14"
+                            Margin="5,0,0,5" />
 
+                        <!-- רחוב -->
+                        <Label 
+                            FontSize="16" 
+                            Text="רחוב" 
+                            TextColor="#6D7B92" 
+                            Margin="0,10,0,0"/>
+                        <Frame 
+                            Padding="5" 
+                            CornerRadius="10" 
+                            BorderColor="#E5E7F1" 
+                            BackgroundColor="#F9FAFC" 
+                            Margin="0,0,0,5">
+                            <Entry 
+                                Placeholder="הכנס רחוב" 
+                                Text="{Binding Street}" 
+                                FontSize="16"/>
+                        </Frame>
+                        <Label
+                            IsVisible="{Binding ShowStreetError}"
+                            Text="{Binding StreetError}"
+                            TextColor="#E74C3C"
+                            FontSize="14"
+                            Margin="5,0,0,5" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            <!--  save button  -->
-            <Button Command="{Binding UpdateStudentCommand}" Text="Save Profile" />
+                <!-- מידע על רישיון -->
+                <Frame 
+                    IsVisible="{Binding IsPassTest}"
+                    BackgroundColor="#FFFFFF"
+                    CornerRadius="15"
+                    HasShadow="True"
+                    BorderColor="#E5E7F1"
+                    Padding="20"
+                    Margin="0,0,0,20">
+                    <VerticalStackLayout Spacing="5">
+                        <Label 
+                            Text="פרטי רישיון"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="#2C3E50"
+                            Margin="0,0,0,10"/>
 
+                        <!-- תאריך קבלת רישיון -->
+                        <Label 
+                            FontSize="16" 
+                            Text="תאריך קבלת רישיון" 
+                            TextColor="#6D7B92" 
+                            Margin="0,5,0,5"/>
+                        <Frame 
+                            Padding="15" 
+                            CornerRadius="10" 
+                            BorderColor="#E5E7F1" 
+                            BackgroundColor="#F9FAFC" 
+                            Margin="0,0,0,5">
+                            <Label 
+                                Text="{Binding LicenseAcquisitionDate, StringFormat='{0:dd/MM/yyyy}'}" 
+                                FontSize="16"
+                                TextColor="#2C3E50"
+                                FontAttributes="Bold"/>
+                        </Frame>
+                    </VerticalStackLayout>
+                </Frame>
 
-            <!--  loading indicator  -->
-            <ActivityIndicator IsRunning="{Binding InServerCall}" IsVisible="{Binding InServerCall}" />
+                <!-- כפתור שמירה -->
+                <Button 
+                    Command="{Binding UpdateStudentCommand}" 
+                    Text="שמור פרופיל"
+                    BackgroundColor="#1A75BC"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,10,0,20" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+                <!-- מחוון טעינה -->
+                <Frame 
+                    IsVisible="{Binding InServerCall}"
+                    BackgroundColor="#FFFFFF"
+                    CornerRadius="15"
+                    HasShadow="True"
+                    BorderColor="#E5E7F1"
+                    Padding="20"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,20">
+                    <StackLayout Orientation="Horizontal" Spacing="15">
+                        <ActivityIndicator 
+                            IsRunning="{Binding InServerCall}" 
+                            Color="#1A75BC"
+                            HeightRequest="30"
+                            WidthRequest="30"/>
+                        <Label 
+                            Text="מעדכן נתונים..." 
+                            TextColor="#6D7B92"
+                            FontSize="16"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

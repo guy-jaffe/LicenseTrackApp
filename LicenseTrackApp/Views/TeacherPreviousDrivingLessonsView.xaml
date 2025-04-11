@@ -4,46 +4,142 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
-    Title="שיעורים קודמים - מורה">
-    <ScrollView>
-    <VerticalStackLayout>
-        <Label
-            Margin="10"
-            FontSize="Medium"
-            HorizontalOptions="Center"
-            Text="השיעורים הקודמים:" />
+    Title="שיעורים קודמים"
+    BackgroundColor="#F5F9FC">
 
-        <CollectionView
-            x:Name="cv"
-            ItemsSource="{Binding Lessons}"
-            SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame>
-                        <StackLayout Padding="10">
-                            <Label
-                                FontAttributes="Italic"
-                                FontSize="Small"
-                                Text="{Binding StudentName, StringFormat='student Name: {0}'}" />
-                            <Label
-                                FontAttributes="Italic"
-                                FontSize="Small"
-                                Text="{Binding LessonDate, StringFormat='Date: {0:MM/dd/yyyy}'}" />
-                            <Label
-                                FontAttributes="Italic"
-                                FontSize="Small"
-                                Text="{Binding LessonTime, StringFormat='Time: {0:hh-mm}'}" />
-                            <Entry Placeholder="COMMENT" Text="{Binding Comments}" />
-                            <Button
-                                Command="{Binding Source={x:Reference cv}, Path=BindingContext.SaveCommentsCommand}"
-                                CommandParameter="{Binding}"
-                                Text="שמור הערה" />
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <Grid>
+        <!-- רקע דקורטיבי -->
+        <BoxView 
+            Grid.Row="0"
+            HeightRequest="150"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            BackgroundColor="#1A75BC"
+            Opacity="0.9" />
 
-    </VerticalStackLayout>
-    </ScrollView>
+        <Path Fill="#1C8AD9" 
+              Opacity="0.3"
+              Data="M0,120 C150,170 300,90 400,150 L400,0 L0,0 Z" />
+
+        <ScrollView>
+            <VerticalStackLayout Padding="20">
+                <!-- כותרת ראשית -->
+                <Frame BackgroundColor="#FFFFFF" 
+                       CornerRadius="15" 
+                       Margin="0,10,0,20"
+                       HasShadow="True"
+                       BorderColor="#E5E7F1"
+                       Padding="15">
+                    <StackLayout>
+                        <Label 
+                            Text="השיעורים הקודמים"
+                            FontSize="26"
+                            FontAttributes="Bold"
+                            TextColor="#1A75BC"
+                            HorizontalOptions="Center"
+                            Margin="0,10,0,5"/>
+
+                        <Label 
+                            Text="היסטוריית שיעורי הנהיגה והערות"
+                            FontSize="16"
+                            TextColor="#6D7B92"
+                            HorizontalOptions="Center"
+                            Margin="0,0,0,5"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- רשימת השיעורים -->
+                <CollectionView
+                    x:Name="cv"
+                    ItemsSource="{Binding Lessons}"
+                    SelectionMode="None"
+                    EmptyView="אין שיעורים קודמים להצגה"
+                    Margin="0,0,0,20">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame 
+                                BackgroundColor="#FFFFFF"
+                                CornerRadius="15"
+                                Margin="0,0,0,15"
+                                HasShadow="True"
+                                BorderColor="#E5E7F1"
+                                Padding="0">
+                                <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                                    <Frame
+                                        Grid.RowSpan="5"
+                                        Margin="15"
+                                        BackgroundColor="#E3F2FD"
+                                        BorderColor="#1A75BC"
+                                        CornerRadius="60"
+                                        HeightRequest="70"
+                                        WidthRequest="70"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
+                                        <Image Source="tick.png" Aspect="AspectFit" Margin="10"/>
+                                    </Frame>
+
+                                    <!-- פרטי השיעור -->
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding StudentName}"
+                                        FontSize="20"
+                                        FontAttributes="Bold"
+                                        TextColor="#2C3E50"
+                                        VerticalOptions="End"
+                                        Margin="10,15,10,0" />
+
+                                    <Label
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Text="{Binding LessonDate, StringFormat='תאריך: {0:dd/MM/yyyy}'}"
+                                        FontSize="16"
+                                        TextColor="#6D7B92"
+                                        VerticalOptions="Start"
+                                        Margin="10,5,10,0" />
+
+                                    <Label
+                                        Grid.Column="1"
+                                        Grid.Row="2"
+                                        Text="{Binding LessonTime, StringFormat='שעה: {0}'}"
+                                        FontSize="16"
+                                        TextColor="#6D7B92"
+                                        VerticalOptions="Start"
+                                        Margin="10,0,10,10" />
+
+                                    <!-- שדה להערות -->
+                                    <Frame
+                                        Grid.Column="1"
+                                        Grid.Row="3"
+                                        BorderColor="#E5E7F1"
+                                        CornerRadius="10"
+                                        Padding="5"
+                                        Margin="10,0,10,10">
+                                        <Entry 
+                                            Placeholder="הוסף הערה על השיעור"
+                                            Text="{Binding Comments}"
+                                            TextColor="#2C3E50"
+                                            FontSize="16"
+                                            Margin="5,0" />
+                                    </Frame>
+
+                                    <!-- כפתור שמירה -->
+                                    <Button
+                                        Grid.Column="1"
+                                        Grid.Row="4"
+                                        Command="{Binding Source={x:Reference cv}, Path=BindingContext.SaveCommentsCommand}"
+                                        CommandParameter="{Binding}"
+                                        Text="שמור הערה"
+                                        BackgroundColor="#1A75BC"
+                                        TextColor="White"
+                                        CornerRadius="10"
+                                        Margin="10,0,10,15"
+                                        HeightRequest="45" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
