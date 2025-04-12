@@ -1,100 +1,197 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage BackgroundColor="AliceBlue"
-    x:Class="LicenseTrackApp.Views.AccompaniedDetailsView"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="פרטי מלווה"
-    FlowDirection="RightToLeft">
-
-    <VerticalStackLayout>
-
-        <Grid
-            ColumnDefinitions="*,*"
-            RowDefinitions="*,*,*,*,*,*"
-            RowSpacing="10">
-
-            <BoxView
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LicenseTrackApp.Views.AccompaniedDetailsView"
+             Title="פרטי מלווה"
+             BackgroundColor="#F5F9FC"
+             FlowDirection="RightToLeft">
+    <Grid>
+        <!-- רקע דקורטיבי -->
+        <BoxView 
             Grid.Row="0"
-            BackgroundColor="Transparent"
-            HeightRequest="100" />
+            HeightRequest="180"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            BackgroundColor="#1A75BC"
+            Opacity="0.9" />
 
+        <Path Fill="#1C8AD9" 
+              Opacity="0.3"
+              Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z" />
 
+        <VerticalStackLayout Padding="20">
+            <!-- כותרת ראשית -->
+            <Frame BackgroundColor="#FFFFFF" 
+                   CornerRadius="15" 
+                   Margin="0,10,0,20"
+                   HasShadow="True"
+                   BorderColor="#E5E7F1"
+                   Padding="15">
+                <StackLayout>
+                    <Label 
+                        Text="נהג מלווה"
+                        FontSize="28"
+                        FontAttributes="Bold"
+                        TextColor="#1A75BC"
+                        HorizontalOptions="Center"
+                        Margin="0,10,0,5"/>
 
-                <Frame
-                Grid.Row="1"
-                Grid.Column="0"
-                BackgroundColor="Transparent"
-                BorderColor="Black"
-                
-                CornerRadius="80"
-                HeightRequest="80"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                WidthRequest="80">
-                <Label
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding MorningDays}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
+                    <Label 
+                        Text="סטטוס והתקדמות"
+                        FontSize="16"
+                        TextColor="#6D7B92"
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,5"/>
+                </StackLayout>
             </Frame>
 
-            <Frame
-                Grid.Row="1"
-                Grid.Column="1"
-                BackgroundColor="Transparent"
-                BorderColor="Black"
-                CornerRadius="80"
-                HeightRequest="80"
-                WidthRequest="80">
-                <Label
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding NightDays}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
+            <!-- מלווה יום ולילה -->
+            <Frame BackgroundColor="#FFFFFF"
+                   CornerRadius="20"
+                   Margin="0,10,0,20"
+                   HasShadow="True"
+                   BorderColor="#E5E7F1"
+                   Padding="15">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
+                    <!-- מלווה יום -->
+                    <StackLayout Grid.Column="0" HorizontalOptions="Center">
+                        <Frame
+                            BackgroundColor="#E3F2FD"
+                            BorderColor="#1A75BC"
+                            CornerRadius="80"
+                            HeightRequest="100"
+                            WidthRequest="100"
+                            Padding="0"
+                            Margin="0,0,0,10">
+                            <Grid>
+                                <Image Source="daytime.png" Aspect="AspectFit" Margin="25" Opacity="0.5"/>
+                                <Label
+                                    Text="{Binding MorningDays}"
+                                    FontSize="24"
+                                    FontAttributes="Bold"
+                                    TextColor="#1A75BC"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Label
+                            Text="מלווה יום"
+                            FontSize="18"
+                            TextColor="#2C3E50"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"/>
+                        <Label
+                            Text="נסיעות בשעות האור"
+                            FontSize="14"
+                            TextColor="#6D7B92"
+                            HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <!-- מלווה לילה -->
+                    <StackLayout Grid.Column="1" HorizontalOptions="Center">
+                        <Frame
+                            BackgroundColor="#E0F7FA"
+                            BorderColor="#1A75BC"
+                            CornerRadius="80"
+                            HeightRequest="100"
+                            WidthRequest="100"
+                            Padding="0"
+                            Margin="0,0,0,10">
+                            <Grid>
+                                <Image Source="nighttime.png" Aspect="AspectFit" Margin="25" Opacity="0.5"/>
+                                <Label
+                                    Text="{Binding NightDays}"
+                                    FontSize="24"
+                                    FontAttributes="Bold"
+                                    TextColor="#1A75BC"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Label
+                            Text="מלווה לילה"
+                            FontSize="18"
+                            TextColor="#2C3E50"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"/>
+                        <Label
+                            Text="נסיעות בשעות החשכה"
+                            FontSize="14"
+                            TextColor="#6D7B92"
+                            HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Grid>
             </Frame>
 
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                HorizontalOptions="Center"
-                Text="מלווה יום" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="1"
-                HorizontalOptions="Center"
-                Text="מלווה לילה" />
-            <BoxView
-                Grid.Row="3"
-                BackgroundColor="Transparent"
-                HeightRequest="100" />
-            <Label
-                Grid.Row="4"
-                Grid.Column="0"
-                Padding="10"
-                HorizontalOptions="End"
-                Text="תאריך קבלת הרישיון:" />
-            <Label
-                Grid.Row="4"
-                Grid.Column="1"
-                Padding="10"
-                HorizontalOptions="Start"
-                Text="{Binding EarningLicenseDate}" />
+            <!-- מידע על תאריכים -->
+            <Frame BackgroundColor="#FFFFFF"
+                   CornerRadius="20"
+                   Margin="0,10,0,15"
+                   HasShadow="True"
+                   BorderColor="#E5E7F1"
+                   Padding="20">
+                <StackLayout Spacing="15">
+                    <Label 
+                        Text="תאריכים חשובים"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#2C3E50"
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,10"/>
 
-            <Label
-                Grid.Row="5"
-                Grid.Column="0"
-                HorizontalOptions="End"
-                Text="תאריך סיום נהג צעיר:  " />
-            <Label
-                Grid.Row="5"
-                Grid.Column="1"
-                HorizontalOptions="Start"
-                Text="{Binding FinishNewDriverDate}" />
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" RowSpacing="20">
+                        <Frame
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BackgroundColor="#E3F2FD"
+                            BorderColor="#1A75BC"
+                            CornerRadius="10"
+                            HeightRequest="40"
+                            WidthRequest="40"
+                            Padding="0"
+                            Margin="0,0,15,0">
+                            <Image Source="licensepic.png" Aspect="AspectFit" Margin="10"/>
+                        </Frame>
 
-        </Grid>
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <Label
+                                Text="תאריך קבלת הרישיון"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                TextColor="#2C3E50"/>
+                            <Label
+                                Text="{Binding EarningLicenseDate}"
+                                FontSize="15"
+                                TextColor="#1A75BC"/>
+                        </StackLayout>
 
-    </VerticalStackLayout>
+                        <Frame
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            BackgroundColor="#E0F7FA"
+                            BorderColor="#1A75BC"
+                            CornerRadius="10"
+                            HeightRequest="40"
+                            WidthRequest="40"
+                            Padding="0"
+                            Margin="0,0,15,0">
+                            <Image Source="calendar_temp.png"  Aspect="AspectFit" Margin="10"/>
+                        </Frame>
 
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <Label
+                                Text="תאריך סיום נהג צעיר"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                TextColor="#2C3E50"/>
+                            <Label
+                                Text="{Binding FinishNewDriverDate}"
+                                FontSize="15"
+                                TextColor="#1A75BC"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
