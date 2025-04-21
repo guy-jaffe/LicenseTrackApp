@@ -64,7 +64,7 @@
                                 HasShadow="True"
                                 BorderColor="#E5E7F1"
                                 Padding="0">
-                                <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                                <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
                                     <Frame
                                         Grid.RowSpan="5"
                                         Margin="15"

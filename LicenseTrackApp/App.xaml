@@ -16,7 +16,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!-- 🎨 צבעים עבור הניווט -->
-            <Color x:Key="Primary">#2F4F4F</Color>
+            <Color x:Key="Primary">#4682b4</Color>
             <!-- DarkSlateGray -->
             <Color x:Key="PrimaryText">White</Color>
 

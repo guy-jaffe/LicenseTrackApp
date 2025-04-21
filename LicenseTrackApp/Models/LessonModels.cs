@@ -15,6 +15,7 @@ namespace LicenseTrackApp.Models
         public int? StudentId { get; set; }
         public StudentModels? Student { get; set; }
         public int? InstructorId { get; set; }
+        public TeacherModels? Instructor { get; set; }
         public string? Comments { get; set; }
 
         public string StudentName

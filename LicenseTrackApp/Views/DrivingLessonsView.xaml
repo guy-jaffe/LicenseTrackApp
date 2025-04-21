@@ -5,105 +5,117 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
     Title="שיעורי הנהיגה - תלמיד"
-    FlowDirection="RightToLeft"
-    BackgroundColor="#F5F9FC">
+    BackgroundColor="#F5F9FC"
+    FlowDirection="RightToLeft">
 
     <Grid>
-        <!-- רקע דקורטיבי -->
-        <BoxView 
+        <!--  רקע דקורטיבי  -->
+        <BoxView
             Grid.Row="0"
+            BackgroundColor="#1A75BC"
             HeightRequest="180"
             HorizontalOptions="Fill"
-            VerticalOptions="Start"
-            BackgroundColor="#1A75BC"
-            Opacity="0.9" />
+            Opacity="0.9"
+            VerticalOptions="Start" />
 
-        <Path Fill="#1C8AD9" 
-              Opacity="0.3"
-              Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z" />
+        <Path
+            Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z"
+            Fill="#1C8AD9"
+            Opacity="0.3" />
 
         <ScrollView>
             <VerticalStackLayout Padding="20">
-                <!-- כותרת ראשית -->
-                <Frame BackgroundColor="#FFFFFF" 
-                       CornerRadius="15" 
-                       Margin="0,10,0,20"
-                       HasShadow="True"
-                       BorderColor="#E5E7F1"
-                       Padding="15">
+                <!--  כותרת ראשית  -->
+                <Frame
+                    Margin="0,10,0,20"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#E5E7F1"
+                    CornerRadius="15"
+                    HasShadow="True">
                     <StackLayout>
-                        <Label 
-                            Text="שיעורי הנהיגה שלי"
-                            FontSize="28"
+                        <Label
+                            Margin="0,10,0,5"
                             FontAttributes="Bold"
-                            TextColor="#1A75BC"
+                            FontSize="28"
                             HorizontalOptions="Center"
-                            Margin="0,10,0,5"/>
+                            Text="שיעורי הנהיגה שלי"
+                            TextColor="#1A75BC" />
 
-                        <Label 
-                            Text="ניהול והזמנת שיעורים"
+                        <Label
+                            Margin="0,0,0,5"
                             FontSize="16"
-                            TextColor="#6D7B92"
                             HorizontalOptions="Center"
-                            Margin="0,0,0,5"/>
+                            Text="ניהול והזמנת שיעורים"
+                            TextColor="#6D7B92" />
                     </StackLayout>
                 </Frame>
 
-                <!-- כפתורי פעולות -->
-                <Frame BackgroundColor="#FFFFFF"
-                       CornerRadius="20"
-                       Margin="0,10,0,20"
-                       HasShadow="True"
-                       BorderColor="#E5E7F1"
-                       Padding="15">
+                <!--  כפתורי פעולות  -->
+                <Frame
+                    Margin="0,10,0,20"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#E5E7F1"
+                    CornerRadius="20"
+                    HasShadow="True">
                     <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
                         <Button
                             Grid.Column="0"
-                            Command="{Binding SetDrivingLessonCommand}"
-                            Text="קביעת שיעור"
                             BackgroundColor="#1A75BC"
-                            TextColor="White"
-                            FontSize="16"
-                            FontAttributes="Bold"
+                            Command="{Binding SetDrivingLessonCommand}"
                             CornerRadius="12"
-                            HeightRequest="50">
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="50"
+                            Text="קביעת שיעור"
+                            TextColor="White">
                             <Button.Shadow>
-                                <Shadow Brush="#192F6C" Offset="0,2" Radius="4" Opacity="0.3" />
+                                <Shadow
+                                    Brush="#192F6C"
+                                    Opacity="0.3"
+                                    Radius="4"
+                                    Offset="0,2" />
                             </Button.Shadow>
                         </Button>
 
                         <Button
                             Grid.Column="1"
-                            Command="{Binding PreviousDrivingLessonsCommand}"
-                            Text="שיעורים קודמים"
                             BackgroundColor="#4CA3E0"
-                            TextColor="White"
-                            FontSize="16"
-                            FontAttributes="Bold"
+                            Command="{Binding PreviousDrivingLessonsCommand}"
                             CornerRadius="12"
-                            HeightRequest="50">
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="50"
+                            Text="שיעורים קודמים"
+                            TextColor="White">
                             <Button.Shadow>
-                                <Shadow Brush="#192F6C" Offset="0,2" Radius="4" Opacity="0.3" />
+                                <Shadow
+                                    Brush="#192F6C"
+                                    Opacity="0.3"
+                                    Radius="4"
+                                    Offset="0,2" />
                             </Button.Shadow>
                         </Button>
                     </Grid>
                 </Frame>
 
-                <!-- רשימת השיעורים הקרובים -->
-                <Frame BackgroundColor="#FFFFFF"
-                       CornerRadius="20"
-                       Margin="0,10,0,15"
-                       HasShadow="True"
-                       BorderColor="#E5E7F1"
-                       Padding="15">
+                <!--  רשימת השיעורים הקרובים  -->
+                <Frame
+                    Margin="0,10,0,15"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#E5E7F1"
+                    CornerRadius="20"
+                    HasShadow="True">
                     <StackLayout>
-                        <Label 
-                            Text="השיעורים הקרובים"
-                            FontSize="20"
+                        <Label
+                            Margin="5,0,0,15"
                             FontAttributes="Bold"
-                            TextColor="#2C3E50"
+                            FontSize="20"
                             HorizontalOptions="Start"
-                            Margin="5,0,0,15" />
+                            Text="השיעורים הקרובים"
+                            TextColor="#2C3E50" />
 
                         <CollectionView
                             x:Name="cv"
@@ -112,68 +124,84 @@
                             <CollectionView.EmptyView>
                                 <StackLayout Padding="20">
                                     <Label
-                                        Text="אין שיעורים קרובים להצגה"
                                         FontSize="18"
-                                        TextColor="#6D7B92"
-                                        HorizontalOptions="Center" />
+                                        HorizontalOptions="Center"
+                                        Text="אין שיעורים קרובים להצגה"
+                                        TextColor="#6D7B92" />
                                 </StackLayout>
                             </CollectionView.EmptyView>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout Padding="5,5,5,15">
-                                        <Frame 
+                                        <Frame
+                                            Padding="0"
                                             BackgroundColor="#FFFFFF"
-                                            CornerRadius="15"
-                                            HasShadow="True"
                                             BorderColor="#E5E7F1"
-                                            Padding="0">
-                                            <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, Auto, Auto" Padding="15">
+                                            CornerRadius="15"
+                                            HasShadow="True">
+                                            <Grid
+                                                Padding="15"
+                                                ColumnDefinitions="Auto, *, Auto"
+                                                RowDefinitions="Auto, Auto, Auto">
                                                 <Frame
                                                     Grid.RowSpan="2"
+                                                    Margin="0,0,15,0"
+                                                    Padding="0"
                                                     BackgroundColor="#E6F7FF"
                                                     BorderColor="#1A75BC"
                                                     CornerRadius="60"
                                                     HeightRequest="60"
-                                                    WidthRequest="60"
-                                                    Padding="0"
-                                                    Margin="0,0,15,0">
+                                                    WidthRequest="60">
                                                     <Image
-                                                        Source="calender.png"
                                                         HorizontalOptions="Center"
+                                                        Source="calender.png"
                                                         VerticalOptions="Center" />
                                                 </Frame>
-
+                                                <Frame
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="2"
+                                                    Margin="0,0,15,0"
+                                                    Padding="0"
+                                                    BackgroundColor="#E6F7FF"
+                                                    BorderColor="#1A75BC"
+                                                    HeightRequest="90"
+                                                    WidthRequest="60">
+                                                    <Image
+                                                        HorizontalOptions="Center"
+                                                        Source="{Binding Instructor.ProfileImageUrl}"
+                                                        VerticalOptions="Center" />
+                                                </Frame>
                                                 <Label
                                                     Grid.Column="1"
-                                                    Text="{Binding LessonDate, StringFormat='{0:dd/MM/yyyy}'}"
-                                                    FontSize="18"
+                                                    Margin="0,0,0,5"
                                                     FontAttributes="Bold"
-                                                    TextColor="#2C3E50"
-                                                    Margin="0,0,0,5" />
+                                                    FontSize="18"
+                                                    Text="{Binding LessonDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                                    TextColor="#2C3E50" />
 
                                                 <Label
-                                                    Grid.Column="1" 
                                                     Grid.Row="1"
-                                                    Text="{Binding LessonTime, StringFormat='שעה: {0:hh\\:mm}'}"
+                                                    Grid.Column="1"
+                                                    Margin="0,0,0,15"
                                                     FontSize="16"
-                                                    TextColor="#6D7B92"
-                                                    Margin="0,0,0,15" />
+                                                    Text="{Binding LessonTime, StringFormat='שעה: {0:hh\\:mm}'}"
+                                                    TextColor="#6D7B92" />
 
                                                 <Button
-                                                    Grid.Column="1"
                                                     Grid.Row="2"
-                                                    Command="{Binding Source={x:Reference cv}, Path=BindingContext.DeleteLessonCommand}"
-                                                    CommandParameter="{Binding}"
-                                                    Text="ביטול שיעור"
+                                                    Grid.Column="1"
+                                                    Padding="15,0"
                                                     BackgroundColor="#FFFFFF"
-                                                    TextColor="#E74C3C"
                                                     BorderColor="#E74C3C"
                                                     BorderWidth="1"
-                                                    FontSize="14"
+                                                    Command="{Binding Source={x:Reference cv}, Path=BindingContext.DeleteLessonCommand}"
+                                                    CommandParameter="{Binding}"
                                                     CornerRadius="8"
+                                                    FontSize="14"
                                                     HeightRequest="40"
                                                     HorizontalOptions="Start"
-                                                    Padding="15,0" />
+                                                    Text="ביטול שיעור"
+                                                    TextColor="#E74C3C" />
                                             </Grid>
                                         </Frame>
                                     </StackLayout>
