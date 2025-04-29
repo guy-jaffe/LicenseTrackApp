@@ -204,6 +204,47 @@
                             </Frame>
                         </VerticalStackLayout>
 
+
+                        <!--  טלפון  -->
+                        <VerticalStackLayout Spacing="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    FlowDirection="RightToLeft"
+                                    FontSize="14"
+                                    Text="טלפון"
+                                    TextColor="#6D7B92" />
+                                <Label
+                                    Grid.Column="1"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding ShowPhoneNumberError}"
+                                    Text="{Binding PhoneNumberError}"
+                                    TextColor="#E53E3E" />
+                            </Grid>
+
+                            <Frame
+                                Padding="15,0"
+                                BorderColor="#E5E7F1"
+                                CornerRadius="10"
+                                HasShadow="False"
+                                HeightRequest="50">
+
+                                <Entry
+                                    BackgroundColor="Transparent"
+                                    FlowDirection="RightToLeft"
+                                    Keyboard="Telephone"
+                                    Placeholder="הכנס טלפון"
+                                    PlaceholderColor="#A0AEC0"
+                                    Text="{Binding PhoneNumber}" />
+                            </Frame>
+                        </VerticalStackLayout>
+
+
                         <!-- סיסמה -->
                         <VerticalStackLayout Spacing="5">
                             <Grid>

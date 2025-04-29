@@ -1,164 +1,196 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LicenseTrackApp.Views.AdminPageView"
-             xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
-             Title="דף מנהל"
-             BackgroundColor="#F5F9FC"
-             FlowDirection="RightToLeft">
+<ContentPage
+    x:Class="LicenseTrackApp.Views.AdminPageView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:LicenseTrackApp.ViewModels"
+    Title="דף מנהל"
+    BackgroundColor="#F5F9FC"
+    FlowDirection="RightToLeft">
 
     <Grid>
-        <!-- רקע דקורטיבי -->
-        <BoxView 
+        <!--  רקע דקורטיבי  -->
+        <BoxView
             Grid.Row="0"
+            BackgroundColor="#1A75BC"
             HeightRequest="180"
             HorizontalOptions="Fill"
-            VerticalOptions="Start"
-            BackgroundColor="#1A75BC"
-            Opacity="0.9" />
+            Opacity="0.9"
+            VerticalOptions="Start" />
 
-        <Path Fill="#1C8AD9" 
-              Opacity="0.3"
-              Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z" />
+        <Path
+            Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z"
+            Fill="#1C8AD9"
+            Opacity="0.3" />
 
         <ScrollView Margin="0,20,0,0">
             <VerticalStackLayout Padding="20">
-                <!-- כותרת ראשית -->
-                <Frame BackgroundColor="#FFFFFF" 
-                       CornerRadius="15" 
-                       Margin="0,10,0,20"
-                       HasShadow="True"
-                       BorderColor="#E5E7F1"
-                       Padding="15">
+                <!--  כותרת ראשית  -->
+                <Frame
+                    Margin="0,10,0,20"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#E5E7F1"
+                    CornerRadius="15"
+                    HasShadow="True">
                     <StackLayout>
-                        <Label 
-                            Text="ניהול המערכת"
-                            FontSize="28"
+                        <Label
+                            Margin="0,10,0,5"
                             FontAttributes="Bold"
-                            TextColor="#1A75BC"
+                            FontSize="28"
                             HorizontalOptions="Center"
-                            Margin="0,10,0,5"/>
+                            Text="ניהול המערכת"
+                            TextColor="#1A75BC" />
 
-                        <Label 
-                            Text="ניהול משתמשים ואישורים"
+                        <Label
+                            Margin="0,0,0,5"
                             FontSize="16"
-                            TextColor="#6D7B92"
                             HorizontalOptions="Center"
-                            Margin="0,0,0,5"/>
+                            Text="ניהול משתמשים ואישורים"
+                            TextColor="#6D7B92" />
                     </StackLayout>
                 </Frame>
 
-                <!-- אישור מורים -->
-                <Frame BackgroundColor="#FFFFFF"
-                       CornerRadius="20"
-                       Margin="0,10,0,20"
-                       HasShadow="True"
-                       BorderColor="#E5E7F1"
-                       Padding="15">
+                <!--  אישור מורים  -->
+                <Frame
+                    Margin="0,10,0,20"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#E5E7F1"
+                    CornerRadius="20"
+                    HasShadow="True">
                     <StackLayout Spacing="15">
                         <Grid ColumnDefinitions="Auto,*">
                             <Frame
                                 Grid.Column="0"
+                                Margin="0,0,15,0"
+                                Padding="0"
                                 BackgroundColor="#E3F2FD"
                                 BorderColor="#1A75BC"
                                 CornerRadius="10"
                                 HeightRequest="40"
-                                WidthRequest="40"
-                                Padding="0"
-                                Margin="0,0,15,0">
-                                <Image Source="verify.png" Aspect="AspectFit" Margin="10"/>
+                                WidthRequest="40">
+                                <Image
+                                    Margin="10"
+                                    Aspect="AspectFit"
+                                    Source="verify.png" />
                             </Frame>
 
                             <Label
                                 Grid.Column="1"
-                                Text="אישור מורים"
-                                FontSize="22"
                                 FontAttributes="Bold"
+                                FontSize="22"
+                                Text="אישור מורים"
                                 TextColor="#2C3E50"
-                                VerticalOptions="Center"/>
+                                VerticalOptions="Center" />
                         </Grid>
 
                         <CollectionView
                             x:Name="cv"
+                            EmptyView="אין מורים ממתינים לאישור"
                             ItemsSource="{Binding PendingTeachers}"
-                            SelectionMode="None"
-                            EmptyView="אין מורים ממתינים לאישור">
+                            SelectionMode="None">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame Margin="0,5,0,10"
-                                           Padding="15"
-                                           CornerRadius="15"
-                                           BorderColor="#E5E7F1"
-                                           HasShadow="True">
-                                        <Grid ColumnDefinitions="Auto,*"
-                                              RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                                              RowSpacing="8">
+                                    <Frame
+                                        Margin="0,5,0,10"
+                                        Padding="15"
+                                        BorderColor="#E5E7F1"
+                                        CornerRadius="15"
+                                        HasShadow="True">
+                                        <Grid
+                                            ColumnDefinitions="Auto,*"
+                                            RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                                            RowSpacing="8">
 
-                                            <Frame Grid.RowSpan="5"
-                                                   Grid.Column="0"
-                                                   BackgroundColor="#E3F2FD"
-                                                   BorderColor="#1A75BC"
-                                                   CornerRadius="70"
-                                                   HeightRequest="70"
-                                                   WidthRequest="70"
-                                                   Padding="0"
-                                                   Margin="0,0,15,0">
-                                                <Image Source="{Binding ProfileImageUrl}"
-                                                       Aspect="AspectFill"
-                                                       HeightRequest="70"
-                                                       WidthRequest="70"/>
+                                            <Frame
+                                                Grid.RowSpan="5"
+                                                Grid.Column="0"
+                                                Margin="0,0,15,0"
+                                                Padding="0"
+                                                BackgroundColor="#E3F2FD"
+                                                BorderColor="#1A75BC"
+                                                CornerRadius="70"
+                                                HeightRequest="70"
+                                                WidthRequest="70">
+                                                <Image
+                                                    Aspect="AspectFill"
+                                                    HeightRequest="70"
+                                                    Source="{Binding ProfileImageUrl}"
+                                                    WidthRequest="70" />
                                             </Frame>
 
-                                            <Label Grid.Row="0"
-                                                   Grid.Column="1"
-                                                   Text="{Binding FirstName, StringFormat='שם: {0}'}"
-                                                   TextColor="#2C3E50"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"/>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                Text="{Binding FirstName, StringFormat='שם: {0}'}"
+                                                TextColor="#2C3E50" />
 
-                                            <Label Grid.Row="1"
-                                                   Grid.Column="1"
-                                                   Text="{Binding LastName, StringFormat='שם משפחה: {0}'}"
-                                                   TextColor="#2C3E50"
-                                                   FontSize="16"/>
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontSize="16"
+                                                Text="{Binding LastName, StringFormat='שם משפחה: {0}'}"
+                                                TextColor="#2C3E50" />
 
-                                            <Label Grid.Row="2"
-                                                   Grid.Column="1"
-                                                   Text="{Binding SchoolName, StringFormat='בית ספר: {0}'}"
-                                                   TextColor="#6D7B92"
-                                                   FontSize="14"/>
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                FontSize="14"
+                                                Text="{Binding SchoolName, StringFormat='בית ספר: {0}'}"
+                                                TextColor="#6D7B92" />
 
-                                            <Label Grid.Row="3"
-                                                   Grid.Column="1"
-                                                   Text="{Binding PhoneNum, StringFormat='טלפון: {0}'}"
-                                                   TextColor="#6D7B92"
-                                                   FontSize="14"/>
+                                            <Label
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                FontSize="14"
+                                                Text="{Binding PhoneNum, StringFormat='טלפון: {0}'}"
+                                                TextColor="#6D7B92">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="{Binding PhoneNum}"
+                                                            TextColor="Blue"
+                                                            TextDecorations="Underline">
+                                                            <Span.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding Source={x:Reference cv}, Path=BindingContext.DialCommand}" CommandParameter="{Binding}" />
+                                                            </Span.GestureRecognizers>
+                                                        </Span>
 
-                                            <Grid Grid.Row="4"
-                                                  Grid.Column="1"
-                                                  ColumnDefinitions="*,*"
-                                                  ColumnSpacing="10"
-                                                  Margin="0,10,0,0">
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
 
-                                                <Button Grid.Column="0"
-                                                        Command="{Binding Source={x:Reference cv}, Path=BindingContext.ApproveCommand}"
-                                                        CommandParameter="{Binding}"
-                                                        Text="אישור"
-                                                        BackgroundColor="#1A75BC"
-                                                        TextColor="White"
-                                                        CornerRadius="10"
-                                                        HeightRequest="40"/>
+                                            <Grid
+                                                Grid.Row="4"
+                                                Grid.Column="1"
+                                                Margin="0,10,0,0"
+                                                ColumnDefinitions="*,*"
+                                                ColumnSpacing="10">
 
-                                                <Button Grid.Column="1"
-                                                        Command="{Binding Source={x:Reference cv}, Path=BindingContext.DeclineCommand}"
-                                                        CommandParameter="{Binding}"
-                                                        Text="דחייה"
-                                                        BackgroundColor="#FFFFFF"
-                                                        TextColor="#E74C3C"
-                                                        BorderColor="#E74C3C"
-                                                        BorderWidth="1"
-                                                        CornerRadius="10"
-                                                        HeightRequest="40"/>
+                                                <Button
+                                                    Grid.Column="0"
+                                                    BackgroundColor="#1A75BC"
+                                                    Command="{Binding Source={x:Reference cv}, Path=BindingContext.ApproveCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    CornerRadius="10"
+                                                    HeightRequest="40"
+                                                    Text="אישור"
+                                                    TextColor="White" />
+
+                                                <Button
+                                                    Grid.Column="1"
+                                                    BackgroundColor="#FFFFFF"
+                                                    BorderColor="#E74C3C"
+                                                    BorderWidth="1"
+                                                    Command="{Binding Source={x:Reference cv}, Path=BindingContext.DeclineCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    CornerRadius="10"
+                                                    HeightRequest="40"
+                                                    Text="דחייה"
+                                                    TextColor="#E74C3C" />
                                             </Grid>
                                         </Grid>
                                     </Frame>
@@ -168,113 +200,129 @@
                     </StackLayout>
                 </Frame>
 
-                <!-- רשימת תלמידים -->
-                <Frame BackgroundColor="#FFFFFF"
-                       CornerRadius="20"
-                       Margin="0,10,0,20"
-                       HasShadow="True"
-                       BorderColor="#E5E7F1"
-                       Padding="15">
+                <!--  רשימת תלמידים  -->
+                <Frame
+                    Margin="0,10,0,20"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#E5E7F1"
+                    CornerRadius="20"
+                    HasShadow="True">
                     <StackLayout Spacing="15">
                         <Grid ColumnDefinitions="Auto,*">
                             <Frame
                                 Grid.Column="0"
+                                Margin="0,0,15,0"
+                                Padding="0"
                                 BackgroundColor="#E3F2FD"
                                 BorderColor="#1A75BC"
                                 CornerRadius="10"
                                 HeightRequest="40"
-                                WidthRequest="40"
-                                Padding="0"
-                                Margin="0,0,15,0">
-                                <Image Source="students.png" Aspect="AspectFit" Margin="10"/>
+                                WidthRequest="40">
+                                <Image
+                                    Margin="10"
+                                    Aspect="AspectFit"
+                                    Source="students.png" />
                             </Frame>
 
                             <Label
                                 Grid.Column="1"
-                                Text="רשימת תלמידים"
-                                FontSize="22"
                                 FontAttributes="Bold"
+                                FontSize="22"
+                                Text="רשימת תלמידים"
                                 TextColor="#2C3E50"
-                                VerticalOptions="Center"/>
+                                VerticalOptions="Center" />
                         </Grid>
 
-                        <Frame Padding="5"
-                               CornerRadius="15"
-                               BorderColor="#E5E7F1"
-                               BackgroundColor="#F8FAFC">
-                            <SearchBar Text="{Binding SearchStudents}"
-                                       Placeholder="חיפוש תלמיד..."
-                                       BackgroundColor="Transparent"
-                                       PlaceholderColor="#6D7B92" />
+                        <Frame
+                            Padding="5"
+                            BackgroundColor="#F8FAFC"
+                            BorderColor="#E5E7F1"
+                            CornerRadius="15">
+                            <SearchBar
+                                BackgroundColor="Transparent"
+                                Placeholder="חיפוש תלמיד..."
+                                PlaceholderColor="#6D7B92"
+                                Text="{Binding SearchStudents}" />
                         </Frame>
 
                         <CollectionView
+                            EmptyView="לא נמצאו תלמידים"
                             ItemsSource="{Binding FilteredStudents}"
-                            SelectionMode="None"
-                            EmptyView="לא נמצאו תלמידים">
+                            SelectionMode="None">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame Margin="0,5,0,10"
-                                           Padding="15"
-                                           CornerRadius="15"
-                                           BorderColor="#E5E7F1"
-                                           HasShadow="True">
-                                        <Grid ColumnDefinitions="Auto,*"
-                                              RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                                              RowSpacing="8">
+                                    <Frame
+                                        Margin="0,5,0,10"
+                                        Padding="15"
+                                        BorderColor="#E5E7F1"
+                                        CornerRadius="15"
+                                        HasShadow="True">
+                                        <Grid
+                                            ColumnDefinitions="Auto,*"
+                                            RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                                            RowSpacing="8">
 
-                                            <Frame Grid.RowSpan="5"
-                                                   Grid.Column="0"
-                                                   BackgroundColor="#E3F2FD"
-                                                   BorderColor="#1A75BC"
-                                                   CornerRadius="70"
-                                                   HeightRequest="70"
-                                                   WidthRequest="70"
-                                                   Padding="0"
-                                                   Margin="0,0,15,0">
-                                                <Image Source="{Binding ProfileImageUrl}"
-                                                       Aspect="AspectFill"
-                                                       HeightRequest="70"
-                                                       WidthRequest="70"/>
+                                            <Frame
+                                                Grid.RowSpan="5"
+                                                Grid.Column="0"
+                                                Margin="0,0,15,0"
+                                                Padding="0"
+                                                BackgroundColor="#E3F2FD"
+                                                BorderColor="#1A75BC"
+                                                CornerRadius="70"
+                                                HeightRequest="70"
+                                                WidthRequest="70">
+                                                <Image
+                                                    Aspect="AspectFill"
+                                                    HeightRequest="70"
+                                                    Source="{Binding ProfileImageUrl}"
+                                                    WidthRequest="70" />
                                             </Frame>
 
-                                            <Label Grid.Row="0"
-                                                   Grid.Column="1"
-                                                   Text="{Binding FirstName, StringFormat='שם: {0}'}"
-                                                   TextColor="#2C3E50"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"/>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                Text="{Binding FirstName, StringFormat='שם: {0}'}"
+                                                TextColor="#2C3E50" />
 
-                                            <Label Grid.Row="1"
-                                                   Grid.Column="1"
-                                                   Text="{Binding LastName, StringFormat='שם משפחה: {0}'}"
-                                                   TextColor="#2C3E50"
-                                                   FontSize="16"/>
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontSize="16"
+                                                Text="{Binding LastName, StringFormat='שם משפחה: {0}'}"
+                                                TextColor="#2C3E50" />
 
-                                            <Label Grid.Row="2"
-                                                   Grid.Column="1"
-                                                   Text="{Binding Email, StringFormat='אימייל: {0}'}"
-                                                   TextColor="#6D7B92"
-                                                   FontSize="14"/>
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                FontSize="14"
+                                                Text="{Binding Email, StringFormat='אימייל: {0}'}"
+                                                TextColor="#6D7B92" />
 
-                                            <Label Grid.Row="3"
-                                                   Grid.Column="1"
-                                                   Text="{Binding PhoneNum, StringFormat='טלפון: {0}'}"
-                                                   TextColor="#6D7B92"
-                                                   FontSize="14"/>
+                                            <Label
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                FontSize="14"
+                                                Text="{Binding PhoneNum, StringFormat='טלפון: {0}'}"
+                                                TextColor="#6D7B92" />
 
-                                            <Frame Grid.Row="4"
-                                                   Grid.Column="1"
-                                                   BackgroundColor="#F0F8FF"
-                                                   BorderColor="#1A75BC"
-                                                   CornerRadius="10"
-                                                   Padding="10,5"
-                                                   HorizontalOptions="Start"
-                                                   Margin="0,5,0,0">
-                                                <Label Text="{Binding LicenseStatusName, StringFormat='מצב רישיון: {0}'}"
-                                                       TextColor="#1A75BC"
-                                                       FontSize="14"
-                                                       FontAttributes="Bold"/>
+                                            <Frame
+                                                Grid.Row="4"
+                                                Grid.Column="1"
+                                                Margin="0,5,0,0"
+                                                Padding="10,5"
+                                                BackgroundColor="#F0F8FF"
+                                                BorderColor="#1A75BC"
+                                                CornerRadius="10"
+                                                HorizontalOptions="Start">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    Text="{Binding LicenseStatusName, StringFormat='מצב רישיון: {0}'}"
+                                                    TextColor="#1A75BC" />
                                             </Frame>
                                         </Grid>
                                     </Frame>
@@ -284,113 +332,129 @@
                     </StackLayout>
                 </Frame>
 
-                <!-- רשימת מורים -->
-                <Frame BackgroundColor="#FFFFFF"
-                       CornerRadius="20"
-                       Margin="0,10,0,20"
-                       HasShadow="True"
-                       BorderColor="#E5E7F1"
-                       Padding="15">
+                <!--  רשימת מורים  -->
+                <Frame
+                    Margin="0,10,0,20"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#E5E7F1"
+                    CornerRadius="20"
+                    HasShadow="True">
                     <StackLayout Spacing="15">
                         <Grid ColumnDefinitions="Auto,*">
                             <Frame
                                 Grid.Column="0"
+                                Margin="0,0,15,0"
+                                Padding="0"
                                 BackgroundColor="#E3F2FD"
                                 BorderColor="#1A75BC"
                                 CornerRadius="10"
                                 HeightRequest="40"
-                                WidthRequest="40"
-                                Padding="0"
-                                Margin="0,0,15,0">
-                                <Image Source="teachers.png" Aspect="AspectFit" Margin="10"/>
+                                WidthRequest="40">
+                                <Image
+                                    Margin="10"
+                                    Aspect="AspectFit"
+                                    Source="teachers.png" />
                             </Frame>
 
                             <Label
                                 Grid.Column="1"
-                                Text="רשימת מורים"
-                                FontSize="22"
                                 FontAttributes="Bold"
+                                FontSize="22"
+                                Text="רשימת מורים"
                                 TextColor="#2C3E50"
-                                VerticalOptions="Center"/>
+                                VerticalOptions="Center" />
                         </Grid>
 
-                        <Frame Padding="5"
-                               CornerRadius="15"
-                               BorderColor="#E5E7F1"
-                               BackgroundColor="#F8FAFC">
-                            <SearchBar Text="{Binding SearchTeachers}"
-                                       Placeholder="חיפוש מורה..."
-                                       BackgroundColor="Transparent"
-                                       PlaceholderColor="#6D7B92" />
+                        <Frame
+                            Padding="5"
+                            BackgroundColor="#F8FAFC"
+                            BorderColor="#E5E7F1"
+                            CornerRadius="15">
+                            <SearchBar
+                                BackgroundColor="Transparent"
+                                Placeholder="חיפוש מורה..."
+                                PlaceholderColor="#6D7B92"
+                                Text="{Binding SearchTeachers}" />
                         </Frame>
 
                         <CollectionView
+                            EmptyView="לא נמצאו מורים"
                             ItemsSource="{Binding FilteredTeachers}"
-                            SelectionMode="None"
-                            EmptyView="לא נמצאו מורים">
+                            SelectionMode="None">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame Margin="0,5,0,10"
-                                           Padding="15"
-                                           CornerRadius="15"
-                                           BorderColor="#E5E7F1"
-                                           HasShadow="True">
-                                        <Grid ColumnDefinitions="Auto,*"
-                                              RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                                              RowSpacing="8">
+                                    <Frame
+                                        Margin="0,5,0,10"
+                                        Padding="15"
+                                        BorderColor="#E5E7F1"
+                                        CornerRadius="15"
+                                        HasShadow="True">
+                                        <Grid
+                                            ColumnDefinitions="Auto,*"
+                                            RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                                            RowSpacing="8">
 
-                                            <Frame Grid.RowSpan="5"
-                                                   Grid.Column="0"
-                                                   BackgroundColor="#E3F2FD"
-                                                   BorderColor="#1A75BC"
-                                                   CornerRadius="70"
-                                                   HeightRequest="70"
-                                                   WidthRequest="70"
-                                                   Padding="0"
-                                                   Margin="0,0,15,0">
-                                                <Image Source="{Binding ProfileImageUrl}"
-                                                       Aspect="AspectFill"
-                                                       HeightRequest="70"
-                                                       WidthRequest="70"/>
+                                            <Frame
+                                                Grid.RowSpan="5"
+                                                Grid.Column="0"
+                                                Margin="0,0,15,0"
+                                                Padding="0"
+                                                BackgroundColor="#E3F2FD"
+                                                BorderColor="#1A75BC"
+                                                CornerRadius="70"
+                                                HeightRequest="70"
+                                                WidthRequest="70">
+                                                <Image
+                                                    Aspect="AspectFill"
+                                                    HeightRequest="70"
+                                                    Source="{Binding ProfileImageUrl}"
+                                                    WidthRequest="70" />
                                             </Frame>
 
-                                            <Label Grid.Row="0"
-                                                   Grid.Column="1"
-                                                   Text="{Binding FirstName, StringFormat='שם: {0}'}"
-                                                   TextColor="#2C3E50"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"/>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                Text="{Binding FirstName, StringFormat='שם: {0}'}"
+                                                TextColor="#2C3E50" />
 
-                                            <Label Grid.Row="1"
-                                                   Grid.Column="1"
-                                                   Text="{Binding LastName, StringFormat='שם משפחה: {0}'}"
-                                                   TextColor="#2C3E50"
-                                                   FontSize="16"/>
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontSize="16"
+                                                Text="{Binding LastName, StringFormat='שם משפחה: {0}'}"
+                                                TextColor="#2C3E50" />
 
-                                            <Label Grid.Row="2"
-                                                   Grid.Column="1"
-                                                   Text="{Binding Email, StringFormat='אימייל: {0}'}"
-                                                   TextColor="#6D7B92"
-                                                   FontSize="14"/>
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                FontSize="14"
+                                                Text="{Binding Email, StringFormat='אימייל: {0}'}"
+                                                TextColor="#6D7B92" />
 
-                                            <Label Grid.Row="3"
-                                                   Grid.Column="1"
-                                                   Text="{Binding PhoneNum, StringFormat='טלפון: {0}'}"
-                                                   TextColor="#6D7B92"
-                                                   FontSize="14"/>
+                                            <Label
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                FontSize="14"
+                                                Text="{Binding PhoneNum, StringFormat='טלפון: {0}'}"
+                                                TextColor="#6D7B92" />
 
-                                            <Frame Grid.Row="4"
-                                                   Grid.Column="1"
-                                                   BackgroundColor="#F0F8FF"
-                                                   BorderColor="#1A75BC"
-                                                   CornerRadius="10"
-                                                   Padding="10,5"
-                                                   HorizontalOptions="Start"
-                                                   Margin="0,5,0,0">
-                                                <Label Text="{Binding SchoolName, StringFormat='בית ספר: {0}'}"
-                                                       TextColor="#1A75BC"
-                                                       FontSize="14"
-                                                       FontAttributes="Bold"/>
+                                            <Frame
+                                                Grid.Row="4"
+                                                Grid.Column="1"
+                                                Margin="0,5,0,0"
+                                                Padding="10,5"
+                                                BackgroundColor="#F0F8FF"
+                                                BorderColor="#1A75BC"
+                                                CornerRadius="10"
+                                                HorizontalOptions="Start">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    Text="{Binding SchoolName, StringFormat='בית ספר: {0}'}"
+                                                    TextColor="#1A75BC" />
                                             </Frame>
                                         </Grid>
                                     </Frame>

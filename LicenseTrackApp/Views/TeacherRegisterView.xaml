@@ -9,51 +9,52 @@
     BackgroundColor="#F5F9FC">
 
     <Grid>
-        <!-- רקע דקורטיבי -->
-        <BoxView 
+        <!--  רקע דקורטיבי  -->
+        <BoxView
             Grid.Row="0"
+            BackgroundColor="#1A75BC"
             HeightRequest="200"
             HorizontalOptions="Fill"
-            VerticalOptions="Start"
-            BackgroundColor="#1A75BC"
-            Opacity="0.9" />
+            Opacity="0.9"
+            VerticalOptions="Start" />
 
-        <Path Fill="#1C8AD9" 
-              Opacity="0.3"
-              Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z" />
+        <Path
+            Data="M0,150 C150,200 300,110 400,180 L400,0 L0,0 Z"
+            Fill="#1C8AD9"
+            Opacity="0.3" />
 
         <ScrollView>
             <Grid Padding="20,15">
-                <!-- כותרת המסך -->
+                <!--  כותרת המסך  -->
                 <VerticalStackLayout Grid.Row="0" Margin="0,0,0,20">
-                    <Label 
-                        Text="הרשמת מורה חדש"
-                        FontSize="28"
+                    <Label
+                        Margin="0,20,0,10"
                         FontAttributes="Bold"
-                        TextColor="#FFFFFF"
+                        FontSize="28"
                         HorizontalOptions="Center"
-                        Margin="0,20,0,10" />
+                        Text="הרשמת מורה חדש"
+                        TextColor="#FFFFFF" />
 
-                    <Label 
-                        Text="ברוכים הבאים למערכת שיעורי נהיגה"
+                    <Label
+                        Margin="0,0,0,10"
                         FontSize="16"
-                        TextColor="#E5E7F1"
                         HorizontalOptions="Center"
-                        Margin="0,0,0,10" />
+                        Text="ברוכים הבאים למערכת שיעורי נהיגה"
+                        TextColor="#E5E7F1" />
                 </VerticalStackLayout>
 
-                <!-- טופס הרשמה במסגרת לבנה -->
-                <Frame 
-                    Grid.Row="1" 
-                    BackgroundColor="#FFFFFF"
-                    CornerRadius="20"
-                    HasShadow="True"
-                    BorderColor="#E5E7F1"
+                <!--  טופס הרשמה במסגרת לבנה  -->
+                <Frame
+                    Grid.Row="1"
+                    Margin="0,70,0,20"
                     Padding="20"
-                    Margin="0,70,0,20">
+                    BackgroundColor="#FFFFFF"
+                    BorderColor="#E5E7F1"
+                    CornerRadius="20"
+                    HasShadow="True">
 
-                    <VerticalStackLayout Spacing="15" IsEnabled="{Binding NotInServerCall}">
-                        <!-- אזור התמונה -->
+                    <VerticalStackLayout IsEnabled="{Binding NotInServerCall}" Spacing="15">
+                        <!--  אזור התמונה  -->
                         <Frame
                             Margin="0,5,0,15"
                             Padding="0"
@@ -61,7 +62,7 @@
                             BorderColor="#1A75BC"
                             CornerRadius="15"
                             HasShadow="False">
-                            <Grid RowSpacing="10" Padding="10">
+                            <Grid Padding="10" RowSpacing="10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
@@ -70,34 +71,34 @@
                                 <Image
                                     x:Name="theImageBug"
                                     Grid.Row="0"
-                                    HeightRequest="150"
-                                    WidthRequest="150"
                                     Aspect="AspectFill"
+                                    HeightRequest="150"
                                     HorizontalOptions="Center"
-                                    Source="{Binding PhotoURL}" />
+                                    Source="{Binding PhotoURL}"
+                                    WidthRequest="150" />
 
                                 <Button
                                     Grid.Row="1"
-                                    Text="העלה תמונה"
-                                    Command="{Binding UploadPhotoCommand}"
                                     BackgroundColor="#1A75BC"
-                                    TextColor="White"
+                                    Command="{Binding UploadPhotoCommand}"
                                     CornerRadius="10"
                                     FontSize="14"
                                     HeightRequest="40"
-                                    HorizontalOptions="Center" />
+                                    HorizontalOptions="Center"
+                                    Text="העלה תמונה"
+                                    TextColor="White" />
                             </Grid>
                         </Frame>
 
-                        <!-- מידע אישי -->
-                        <Label 
-                            Text="פרטים אישיים" 
-                            FontSize="18"
+                        <!--  מידע אישי  -->
+                        <Label
+                            Margin="5,0,5,10"
                             FontAttributes="Bold"
-                            TextColor="#2c3e50"
-                            Margin="5,0,5,10" />
+                            FontSize="18"
+                            Text="פרטים אישיים"
+                            TextColor="#2c3e50" />
 
-                        <!-- שם פרטי -->
+                        <!--  שם פרטי  -->
                         <VerticalStackLayout Spacing="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -106,36 +107,36 @@
                                 </Grid.ColumnDefinitions>
                                 <Label
                                     Grid.Column="0"
-                                    Text="שם פרטי"
+                                    FlowDirection="RightToLeft"
                                     FontSize="14"
-                                    TextColor="#6D7B92"
-                                    FlowDirection="RightToLeft" />
+                                    Text="שם פרטי"
+                                    TextColor="#6D7B92" />
                                 <Label
                                     Grid.Column="1"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
                                     IsVisible="{Binding ShowNameError}"
                                     Text="{Binding NameError}"
-                                    TextColor="#E53E3E"
-                                    FontSize="12"
-                                    HorizontalOptions="End" />
+                                    TextColor="#E53E3E" />
                             </Grid>
 
                             <Frame
                                 Padding="15,0"
-                                CornerRadius="10"
                                 BorderColor="#E5E7F1"
+                                CornerRadius="10"
                                 HasShadow="False"
                                 HeightRequest="50">
 
                                 <Entry
+                                    BackgroundColor="Transparent"
+                                    FlowDirection="RightToLeft"
                                     Placeholder="הכנס שם פרטי"
                                     PlaceholderColor="#A0AEC0"
-                                    Text="{Binding Name}"
-                                    BackgroundColor="Transparent"
-                                    FlowDirection="RightToLeft" />
+                                    Text="{Binding Name}" />
                             </Frame>
                         </VerticalStackLayout>
 
-                        <!-- שם משפחה -->
+                        <!--  שם משפחה  -->
                         <VerticalStackLayout Spacing="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -144,36 +145,36 @@
                                 </Grid.ColumnDefinitions>
                                 <Label
                                     Grid.Column="0"
-                                    Text="שם משפחה"
+                                    FlowDirection="RightToLeft"
                                     FontSize="14"
-                                    TextColor="#6D7B92"
-                                    FlowDirection="RightToLeft" />
+                                    Text="שם משפחה"
+                                    TextColor="#6D7B92" />
                                 <Label
                                     Grid.Column="1"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
                                     IsVisible="{Binding ShowLastNameError}"
                                     Text="{Binding LastNameError}"
-                                    TextColor="#E53E3E"
-                                    FontSize="12"
-                                    HorizontalOptions="End" />
+                                    TextColor="#E53E3E" />
                             </Grid>
 
                             <Frame
                                 Padding="15,0"
-                                CornerRadius="10"
                                 BorderColor="#E5E7F1"
+                                CornerRadius="10"
                                 HasShadow="False"
                                 HeightRequest="50">
 
                                 <Entry
+                                    BackgroundColor="Transparent"
+                                    FlowDirection="RightToLeft"
                                     Placeholder="הכנס שם משפחה"
                                     PlaceholderColor="#A0AEC0"
-                                    Text="{Binding LastName}"
-                                    BackgroundColor="Transparent"
-                                    FlowDirection="RightToLeft" />
+                                    Text="{Binding LastName}" />
                             </Frame>
                         </VerticalStackLayout>
 
-                        <!-- אימייל -->
+                        <!--  אימייל  -->
                         <VerticalStackLayout Spacing="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -182,37 +183,37 @@
                                 </Grid.ColumnDefinitions>
                                 <Label
                                     Grid.Column="0"
-                                    Text="אימייל"
+                                    FlowDirection="RightToLeft"
                                     FontSize="14"
-                                    TextColor="#6D7B92"
-                                    FlowDirection="RightToLeft" />
+                                    Text="אימייל"
+                                    TextColor="#6D7B92" />
                                 <Label
                                     Grid.Column="1"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
                                     IsVisible="{Binding ShowEmailError}"
                                     Text="{Binding EmailError}"
-                                    TextColor="#E53E3E"
-                                    FontSize="12"
-                                    HorizontalOptions="End" />
+                                    TextColor="#E53E3E" />
                             </Grid>
 
                             <Frame
                                 Padding="15,0"
-                                CornerRadius="10"
                                 BorderColor="#E5E7F1"
+                                CornerRadius="10"
                                 HasShadow="False"
                                 HeightRequest="50">
 
                                 <Entry
+                                    BackgroundColor="Transparent"
+                                    FlowDirection="RightToLeft"
+                                    Keyboard="Email"
                                     Placeholder="הכנס כתובת אימייל"
                                     PlaceholderColor="#A0AEC0"
-                                    Keyboard="Email"
-                                    Text="{Binding Email}"
-                                    BackgroundColor="Transparent"
-                                    FlowDirection="RightToLeft" />
+                                    Text="{Binding Email}" />
                             </Frame>
                         </VerticalStackLayout>
 
-                        <!-- סיסמה -->
+                        <!--  טלפון  -->
                         <VerticalStackLayout Spacing="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -221,23 +222,62 @@
                                 </Grid.ColumnDefinitions>
                                 <Label
                                     Grid.Column="0"
-                                    Text="סיסמה"
+                                    FlowDirection="RightToLeft"
                                     FontSize="14"
-                                    TextColor="#6D7B92"
-                                    FlowDirection="RightToLeft" />
+                                    Text="טלפון"
+                                    TextColor="#6D7B92" />
                                 <Label
                                     Grid.Column="1"
-                                    IsVisible="{Binding ShowPasswordError}"
-                                    Text="{Binding PasswordError}"
-                                    TextColor="#E53E3E"
                                     FontSize="12"
-                                    HorizontalOptions="End" />
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding ShowPhoneNumberError}"
+                                    Text="{Binding PhoneNumberError}"
+                                    TextColor="#E53E3E" />
                             </Grid>
 
                             <Frame
                                 Padding="15,0"
-                                CornerRadius="10"
                                 BorderColor="#E5E7F1"
+                                CornerRadius="10"
+                                HasShadow="False"
+                                HeightRequest="50">
+
+                                <Entry
+                                    BackgroundColor="Transparent"
+                                    FlowDirection="RightToLeft"
+                                    Keyboard="Telephone"
+                                    Placeholder="הכנס טלפון"
+                                    PlaceholderColor="#A0AEC0"
+                                    Text="{Binding PhoneNumber}" />
+                            </Frame>
+                        </VerticalStackLayout>
+
+                        <!--  סיסמה  -->
+                        <VerticalStackLayout Spacing="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    FlowDirection="RightToLeft"
+                                    FontSize="14"
+                                    Text="סיסמה"
+                                    TextColor="#6D7B92" />
+                                <Label
+                                    Grid.Column="1"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding ShowPasswordError}"
+                                    Text="{Binding PasswordError}"
+                                    TextColor="#E53E3E" />
+                            </Grid>
+
+                            <Frame
+                                Padding="15,0"
+                                BorderColor="#E5E7F1"
+                                CornerRadius="10"
                                 HasShadow="False"
                                 HeightRequest="50">
 
@@ -249,34 +289,34 @@
 
                                     <Entry
                                         Grid.Column="0"
+                                        BackgroundColor="Transparent"
+                                        FlowDirection="RightToLeft"
+                                        IsPassword="{Binding IsPassword}"
                                         Placeholder="הכנס סיסמה"
                                         PlaceholderColor="#A0AEC0"
-                                        IsPassword="{Binding IsPassword}"
-                                        Text="{Binding Password}"
-                                        BackgroundColor="Transparent"
-                                        FlowDirection="RightToLeft" />
+                                        Text="{Binding Password}" />
 
                                     <ImageButton
                                         Grid.Column="1"
+                                        Aspect="AspectFit"
+                                        BackgroundColor="Transparent"
                                         Command="{Binding ShowPasswordCommand}"
                                         HeightRequest="25"
-                                        WidthRequest="25"
                                         Source="passwordeye.jpg"
-                                        BackgroundColor="Transparent"
-                                        Aspect="AspectFit" />
+                                        WidthRequest="25" />
                                 </Grid>
                             </Frame>
                         </VerticalStackLayout>
 
-                        <!-- מידע מקצועי -->
-                        <Label 
-                            Text="פרטים מקצועיים" 
-                            FontSize="18"
+                        <!--  מידע מקצועי  -->
+                        <Label
+                            Margin="5,10,5,10"
                             FontAttributes="Bold"
-                            TextColor="#2c3e50"
-                            Margin="5,10,5,10" />
+                            FontSize="18"
+                            Text="פרטים מקצועיים"
+                            TextColor="#2c3e50" />
 
-                        <!-- אזור לימוד -->
+                        <!--  אזור לימוד  -->
                         <VerticalStackLayout Spacing="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -285,36 +325,36 @@
                                 </Grid.ColumnDefinitions>
                                 <Label
                                     Grid.Column="0"
-                                    Text="אזור לימוד"
+                                    FlowDirection="RightToLeft"
                                     FontSize="14"
-                                    TextColor="#6D7B92"
-                                    FlowDirection="RightToLeft" />
+                                    Text="אזור לימוד"
+                                    TextColor="#6D7B92" />
                                 <Label
                                     Grid.Column="1"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
                                     IsVisible="{Binding ShowTeachingAreaError}"
                                     Text="{Binding TeachingAreaError}"
-                                    TextColor="#E53E3E"
-                                    FontSize="12"
-                                    HorizontalOptions="End" />
+                                    TextColor="#E53E3E" />
                             </Grid>
 
                             <Frame
                                 Padding="15,0"
-                                CornerRadius="10"
                                 BorderColor="#E5E7F1"
+                                CornerRadius="10"
                                 HasShadow="False"
                                 HeightRequest="50">
 
                                 <Entry
+                                    BackgroundColor="Transparent"
+                                    FlowDirection="RightToLeft"
                                     Placeholder="הכנס אזור לימוד"
                                     PlaceholderColor="#A0AEC0"
-                                    Text="{Binding TeachingArea}"
-                                    BackgroundColor="Transparent"
-                                    FlowDirection="RightToLeft" />
+                                    Text="{Binding TeachingArea}" />
                             </Frame>
                         </VerticalStackLayout>
 
-                        <!-- שם בית ספר -->
+                        <!--  שם בית ספר  -->
                         <VerticalStackLayout Spacing="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -323,36 +363,36 @@
                                 </Grid.ColumnDefinitions>
                                 <Label
                                     Grid.Column="0"
-                                    Text="שם בית ספר"
+                                    FlowDirection="RightToLeft"
                                     FontSize="14"
-                                    TextColor="#6D7B92"
-                                    FlowDirection="RightToLeft" />
+                                    Text="שם בית ספר"
+                                    TextColor="#6D7B92" />
                                 <Label
                                     Grid.Column="1"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
                                     IsVisible="{Binding ShowSchoolNameError}"
                                     Text="{Binding SchoolNameError}"
-                                    TextColor="#E53E3E"
-                                    FontSize="12"
-                                    HorizontalOptions="End" />
+                                    TextColor="#E53E3E" />
                             </Grid>
 
                             <Frame
                                 Padding="15,0"
-                                CornerRadius="10"
                                 BorderColor="#E5E7F1"
+                                CornerRadius="10"
                                 HasShadow="False"
                                 HeightRequest="50">
 
                                 <Entry
+                                    BackgroundColor="Transparent"
+                                    FlowDirection="RightToLeft"
                                     Placeholder="הכנס שם בית ספר"
                                     PlaceholderColor="#A0AEC0"
-                                    Text="{Binding SchoolName}"
-                                    BackgroundColor="Transparent"
-                                    FlowDirection="RightToLeft" />
+                                    Text="{Binding SchoolName}" />
                             </Frame>
                         </VerticalStackLayout>
 
-                        <!-- סוג הרכב -->
+                        <!--  סוג הרכב  -->
                         <VerticalStackLayout Spacing="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -361,70 +401,70 @@
                                 </Grid.ColumnDefinitions>
                                 <Label
                                     Grid.Column="0"
-                                    Text="סוג הרכב"
+                                    FlowDirection="RightToLeft"
                                     FontSize="14"
-                                    TextColor="#6D7B92"
-                                    FlowDirection="RightToLeft" />
+                                    Text="סוג הרכב"
+                                    TextColor="#6D7B92" />
                                 <Label
                                     Grid.Column="1"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
                                     IsVisible="{Binding ShowVehicleTypeError}"
                                     Text="{Binding VehicleTypeError}"
-                                    TextColor="#E53E3E"
-                                    FontSize="12"
-                                    HorizontalOptions="End" />
+                                    TextColor="#E53E3E" />
                             </Grid>
 
                             <Frame
                                 Padding="15,0"
-                                CornerRadius="10"
                                 BorderColor="#E5E7F1"
+                                CornerRadius="10"
                                 HasShadow="False"
                                 HeightRequest="50">
 
                                 <Entry
+                                    BackgroundColor="Transparent"
+                                    FlowDirection="RightToLeft"
                                     Placeholder="הכנס סוג הרכב"
                                     PlaceholderColor="#A0AEC0"
-                                    Text="{Binding VehicleType}"
-                                    BackgroundColor="Transparent"
-                                    FlowDirection="RightToLeft" />
+                                    Text="{Binding VehicleType}" />
                             </Frame>
                         </VerticalStackLayout>
 
-                        <!-- סוג תיבת הילוכים -->
+                        <!--  סוג תיבת הילוכים  -->
                         <VerticalStackLayout Spacing="5">
                             <Label
-                                Text="סוג תיבת הילוכים"
-                                FontSize="14"
-                                TextColor="#6D7B92"
+                                Margin="5,0,0,3"
                                 FlowDirection="RightToLeft"
-                                Margin="5,0,0,3" />
+                                FontSize="14"
+                                Text="סוג תיבת הילוכים"
+                                TextColor="#6D7B92" />
 
                             <Frame
                                 Padding="15,5"
-                                CornerRadius="10"
+                                BackgroundColor="#F0F5FF"
                                 BorderColor="#E5E7F1"
-                                HasShadow="False"
-                                BackgroundColor="#F0F5FF">
+                                CornerRadius="10"
+                                HasShadow="False">
 
-                                <VerticalStackLayout 
-                                    RadioButtonGroup.GroupName="Manual" 
+                                <VerticalStackLayout
+                                    RadioButtonGroup.GroupName="Manual"
                                     RadioButtonGroup.SelectedValue="{Binding ManualButton}"
                                     Spacing="10">
-                                    <RadioButton 
-                                        Content="ידני" 
-                                        Value="0" 
+                                    <RadioButton
+                                        Content="ידני"
+                                        FontSize="16"
                                         TextColor="#34495e"
-                                        FontSize="16" />
-                                    <RadioButton 
-                                        Content="אוטומט" 
-                                        Value="1" 
+                                        Value="0" />
+                                    <RadioButton
+                                        Content="אוטומט"
+                                        FontSize="16"
                                         TextColor="#34495e"
-                                        FontSize="16" />
+                                        Value="1" />
                                 </VerticalStackLayout>
                             </Frame>
                         </VerticalStackLayout>
 
-                        <!-- כפתורי הרשמה וביטול -->
+                        <!--  כפתורי הרשמה וביטול  -->
                         <Grid Margin="0,15,0,10" ColumnSpacing="15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -433,47 +473,47 @@
 
                             <Button
                                 Grid.Column="1"
-                                Text="הרשמה"
-                                Command="{Binding RegisterCommand}"
-                                IsEnabled="{Binding NotInServerCall}"
                                 BackgroundColor="#1A75BC"
-                                TextColor="White"
+                                Command="{Binding RegisterCommand}"
                                 CornerRadius="10"
-                                HeightRequest="50"
                                 FontAttributes="Bold"
-                                FontSize="16" />
+                                FontSize="16"
+                                HeightRequest="50"
+                                IsEnabled="{Binding NotInServerCall}"
+                                Text="הרשמה"
+                                TextColor="White" />
 
                             <Button
                                 Grid.Column="0"
-                                Text="ביטול"
-                                Command="{Binding CancelCommand}"
-                                IsEnabled="{Binding NotInServerCall}"
                                 BackgroundColor="#E5E7F1"
-                                TextColor="#6D7B92"
+                                Command="{Binding CancelCommand}"
                                 CornerRadius="10"
+                                FontSize="16"
                                 HeightRequest="50"
-                                FontSize="16" />
+                                IsEnabled="{Binding NotInServerCall}"
+                                Text="ביטול"
+                                TextColor="#6D7B92" />
                         </Grid>
 
-                        <!-- קישור להרשמת תלמיד -->
+                        <!--  קישור להרשמת תלמיד  -->
                         <Frame
-                            BackgroundColor="#F0F5FF"
-                            CornerRadius="10"
-                            HasShadow="False"
-                            BorderColor="#1C8AD9"
+                            Margin="0,5,0,10"
                             Padding="10"
-                            Margin="0,5,0,10">
+                            BackgroundColor="#F0F5FF"
+                            BorderColor="#1C8AD9"
+                            CornerRadius="10"
+                            HasShadow="False">
 
-                            <Label 
-                                Text="להרשמה כתלמיד/ה לחץ כאן"
-                                TextColor="#1A75BC"
+                            <Label
                                 FontSize="14"
                                 HorizontalOptions="Center"
-                                VerticalOptions="Center" 
-                                IsEnabled="{Binding NotInServerCall}">
+                                IsEnabled="{Binding NotInServerCall}"
+                                Text="להרשמה כתלמיד/ה לחץ כאן"
+                                TextColor="#1A75BC"
+                                VerticalOptions="Center">
 
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding StudentRegisterCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding StudentRegisterCommand}" />
                                 </Label.GestureRecognizers>
                             </Label>
                         </Frame>
@@ -483,36 +523,34 @@
         </ScrollView>
 
         <!--  אינדיקטור טעינה מרוכז  -->
-        <Frame 
-            BackgroundColor="#80000000"
-            IsVisible="{Binding InServerCall}"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill"
-            HasShadow="False"
+        <Frame
             Padding="0"
-            Opacity="0.7">
-            <VerticalStackLayout
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
+            BackgroundColor="#80000000"
+            HasShadow="False"
+            HorizontalOptions="Fill"
+            IsVisible="{Binding InServerCall}"
+            Opacity="0.7"
+            VerticalOptions="Fill">
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                 <Frame
                     BackgroundColor="#ffffff"
                     CornerRadius="12"
+                    HasShadow="True"
                     HeightRequest="100"
-                    WidthRequest="100"
-                    HasShadow="True">
+                    WidthRequest="100">
                     <VerticalStackLayout
                         HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Spacing="10">
+                        Spacing="10"
+                        VerticalOptions="Center">
                         <ActivityIndicator
                             HeightRequest="40"
-                            WidthRequest="40"
                             IsRunning="{Binding InServerCall}"
+                            WidthRequest="40"
                             Color="#1A75BC" />
                         <Label
+                            HorizontalOptions="Center"
                             Text="טוען..."
-                            TextColor="#34495e"
-                            HorizontalOptions="Center" />
+                            TextColor="#34495e" />
                     </VerticalStackLayout>
                 </Frame>
             </VerticalStackLayout>

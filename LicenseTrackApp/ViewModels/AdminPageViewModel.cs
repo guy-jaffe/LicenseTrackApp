@@ -148,10 +148,18 @@ namespace LicenseTrackApp.ViewModels
             filteredTeachers = new ObservableCollection<TeacherModels>();
             ApproveCommand = new Command<TeacherModels>(OnApprove);
             DeclineCommand = new Command<TeacherModels>(OnDecline);
+            DialCommand = new Command<TeacherModels>(OnDialCommand);
+
             ReadData();
         }
 
         public Command ApproveCommand { get; set; }
+        public Command DialCommand { get; set; }
+        private void OnDialCommand(TeacherModels t)
+        {
+            if (PhoneDialer.Default.IsSupported && t.PhoneNum != null)
+                PhoneDialer.Default.Open(t.PhoneNum);
+        }
         public Command DeclineCommand { get; set; }
 
         private async void OnApprove(TeacherModels t)
@@ -169,6 +177,18 @@ namespace LicenseTrackApp.ViewModels
                     AllTeachers.Add(teacherModels);
 
                 }
+
+                //Send Email to teacher tat he was approved
+                Services.Email email = new Services.Email()
+                {
+                    From = "מערכת בתי ספר לנהיגה",
+                    To = t.Email,
+                    Subject = "חשבונך במערכת אושר",
+                    Body = $"שלום {t.FirstName} \n חשבונך אושר"
+                };
+
+                SendEmailService emailService = new SendEmailService();
+                await emailService.Send(email);
             }
         }
 

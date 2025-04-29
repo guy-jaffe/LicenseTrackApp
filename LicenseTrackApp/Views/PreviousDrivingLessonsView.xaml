@@ -88,7 +88,7 @@
                                                 VerticalOptions="Center" />
                                         </Frame>
 
-                                        <Frame
+                                        <!--<Frame
                                                     Grid.RowSpan="2"
                                                     Grid.Column="2"
                                                     Margin="0,0,15,0"
@@ -101,7 +101,7 @@
                                                         HorizontalOptions="Center"
                                                         Source="{Binding Instructor.ProfileImageUrl}"
                                                         VerticalOptions="Center" />
-                                        </Frame>
+                                        </Frame>-->
 
 
                                         <Label

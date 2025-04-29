@@ -4,9 +4,8 @@ namespace LicenseTrackApp.Views;
 
 public partial class TeachersWaitingPagexaml : ContentPage
 {
-	public TeachersWaitingPagexaml(TeachersWaitingPagexamlViewModel vm)
+	public TeachersWaitingPagexaml()
 	{
-		this.BindingContext = vm;
 		InitializeComponent();
 	}
 }

@@ -31,6 +31,7 @@ namespace LicenseTrackApp.ViewModels
             EmailError = "Email is required";
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             CityError = "city is required";
+            PhoneNumberError = "Phone number must be 9 or 10 digits";
             SchoolNameError = "SchoolName is required";
             VehicleTypeError = "VehicleType is required";
             TeachingAreaError = "TeachingArea is required";
@@ -531,6 +532,56 @@ namespace LicenseTrackApp.ViewModels
         }
         #endregion
 
+        #region PhoneNumber
+        private bool showPhoneNumberError;
+
+        public bool ShowPhoneNumberError
+        {
+            get => showPhoneNumberError;
+            set
+            {
+                showPhoneNumberError = value;
+                OnPropertyChanged("ShowPhoneNumberError");
+            }
+        }
+
+        private string phoneNumber;
+
+        public string PhoneNumber
+        {
+            get => phoneNumber;
+            set
+            {
+                phoneNumber = value;
+                ValidatePhoneNumber();
+                OnPropertyChanged("PhoneNumber");
+            }
+        }
+
+        private string phoneNumberError;
+
+        public string PhoneNumberError
+        {
+            get => phoneNumberError;
+            set
+            {
+                phoneNumberError = value;
+                OnPropertyChanged("PhoneNumberError");
+            }
+        }
+
+        private void ValidatePhoneNumber()
+        {
+            if (string.IsNullOrEmpty(PhoneNumber) || PhoneNumber.Length < 9 || PhoneNumber.Length > 10)
+            {
+                this.ShowPhoneNumberError = true;
+            }
+            else
+                this.ShowPhoneNumberError = false;
+            
+        }
+        #endregion
+
         #region Photo
 
         private string photoURL;
@@ -622,6 +673,7 @@ namespace LicenseTrackApp.ViewModels
                     VehicleType = VehicleType,
                     ManualCar = ManualCar,
                     ConfirmationStatus = 0,
+                    PhoneNum = PhoneNumber,
                     FileExtension = GetImageExtention()
                 };
 
@@ -645,7 +697,7 @@ namespace LicenseTrackApp.ViewModels
                         }
                     }
                     InServerCall = false;
-
+                    await Application.Current.MainPage.DisplayAlert("Registration", "Registration Succeeded. You will be able to Log in to the system after System manager approval.", "ok");
                     ((App)(Application.Current)).MainPage.Navigation.PopAsync();
                 }
                 else
@@ -673,14 +725,15 @@ namespace LicenseTrackApp.ViewModels
             return this.LocalPhotoPath.Substring(index);
         }
 
-        private void OnStudentRegister()
+        private async void OnStudentRegister()
         {
             //ErrorMsg = "";
             //Email = "";
             //Password = "";
             // Navigate to the Register View page
             StudentRegisterView? t = serviceProvider.GetService<StudentRegisterView>();
-            ((App)Application.Current).MainPage.Navigation.PushAsync(t);
+            await ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+            await ((App)Application.Current).MainPage.Navigation.PushAsync(t);
         }
 
     }

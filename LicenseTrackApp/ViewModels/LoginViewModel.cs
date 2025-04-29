@@ -92,6 +92,17 @@ namespace LicenseTrackApp.ViewModels
             }
             else
             {
+                if (u is TeacherModels)
+                {
+                    TeacherModels teacher = (TeacherModels)u;
+                    if (teacher.ConfirmationStatus == 0) //Pending teacher
+                    {
+                        TeachersWaitingPagexaml waiting = serviceProvider.GetService<TeachersWaitingPagexaml>();
+                        await ((App)Application.Current).MainPage.Navigation.PushAsync(waiting);
+                        ErrorMsg = "";
+                        return;
+                    }
+                }
                 ErrorMsg = "";
                 //Navigate to the main page
                 AppShell shell = serviceProvider.GetService<AppShell>();

@@ -32,6 +32,7 @@ namespace LicenseTrackApp.ViewModels
             PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
             //IdError = "id is required";
             CityError = "city is required";
+            PhoneNumberError = "Phone number must be 9 or 10 digits";
             StreetError = "street is required";
         }
 
@@ -390,6 +391,57 @@ namespace LicenseTrackApp.ViewModels
         }
         #endregion
 
+        #region PhoneNumber
+        private bool showPhoneNumberError;
+
+        public bool ShowPhoneNumberError
+        {
+            get => showPhoneNumberError;
+            set
+            {
+                showPhoneNumberError = value;
+                OnPropertyChanged("ShowPhoneNumberError");
+            }
+        }
+
+        private string phoneNumber;
+
+        public string PhoneNumber
+        {
+            get => phoneNumber;
+            set
+            {
+                phoneNumber = value;
+                ValidatePhoneNumber();
+                OnPropertyChanged("PhoneNumber");
+            }
+        }
+
+        private string phoneNumberError;
+
+        public string PhoneNumberError
+        {
+            get => phoneNumberError;
+            set
+            {
+                phoneNumberError = value;
+                OnPropertyChanged("PhoneNumberError");
+            }
+        }
+
+        private void ValidatePhoneNumber()
+        {
+            if (string.IsNullOrEmpty(PhoneNumber) || PhoneNumber.Length < 9 || PhoneNumber.Length > 10)
+            {
+                this.ShowPhoneNumberError = true;
+            }
+            else
+                this.ShowPhoneNumberError = false;
+
+        }
+        #endregion
+
+
         #region Photo
 
         private string photoURL;
@@ -478,6 +530,7 @@ namespace LicenseTrackApp.ViewModels
                     Street = Street,
                     LicenseAcquisitionDate = null,
                     LicenseStatus = 0,
+                    PhoneNum = PhoneNumber,
                     FileExtension = GetImageExtention()
                 };
 
@@ -529,14 +582,15 @@ namespace LicenseTrackApp.ViewModels
             return this.LocalPhotoPath.Substring(index);
         }
 
-        private void OnTeacherRegister()
+        private async void OnTeacherRegister()
         {
             //ErrorMsg = "";
             //Email = "";
             //Password = "";
             // Navigate to the Register View page
             TeacherRegisterView? t = serviceProvider.GetService<TeacherRegisterView>();
-            ((App)Application.Current).MainPage.Navigation.PushAsync(t);
+            await ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+            await ((App)Application.Current).MainPage.Navigation.PushAsync(t);
         }
 
 

@@ -46,6 +46,7 @@ namespace LicenseTrackApp
             builder.Services.AddTransient<TeacherProfileView>();
             builder.Services.AddTransient<TeacherDrivingLessonsView>();
             builder.Services.AddTransient<HomepageView>();
+            builder.Services.AddTransient<TeachersWaitingPagexaml>();
 
 
 

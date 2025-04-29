@@ -8,5 +8,8 @@ namespace LicenseTrackApp.ViewModels
 {
     public class TeachersWaitingPagexamlViewModel : ViewModelBase
     {
+
+
+
     }
 }
