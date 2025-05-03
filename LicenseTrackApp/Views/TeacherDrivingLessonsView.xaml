@@ -124,20 +124,7 @@
                                                         VerticalOptions="Center" />
                                                 </Frame>
 
-                                                <Frame
-                                                    Grid.RowSpan="2"
-                                                    Grid.Column="2"
-                                                    Margin="0,0,15,0"
-                                                    Padding="0"
-                                                    BackgroundColor="#E6F7FF"
-                                                    BorderColor="#1A75BC"
-                                                    HeightRequest="90"
-                                                    WidthRequest="60">
-                                                    <Image
-                                                        HorizontalOptions="Center"
-                                                        Source="{Binding Student.ProfileImageUrl}"
-                                                        VerticalOptions="Center" />
-                                                </Frame>
+
 
                                                 <Label
                                                     Grid.Column="1"
