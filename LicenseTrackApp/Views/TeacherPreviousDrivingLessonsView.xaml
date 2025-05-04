@@ -75,7 +75,10 @@
                                         WidthRequest="70"
                                         HorizontalOptions="Center"
                                         VerticalOptions="Center">
-                                        <Image Source="tick.png" Aspect="AspectFit" Margin="10"/>
+                                        <Image
+                                                Source="tick.png"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center" />
                                     </Frame>
 
                                     <!-- פרטי השיעור -->
